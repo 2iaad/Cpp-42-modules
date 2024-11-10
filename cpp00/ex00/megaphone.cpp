@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:12:17 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/10 14:41:10 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/10 17:24:25 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,8 @@
 #include <iostream>
 #include <string>
 
-float	morba3(int x)
-{
-	return x*x;
-}
-
 int main(int ac, char **av)
 {
-	// int x = 11;
-	// std::cout << "jid3 morba3 deyal " << x << " howa " << morba3(x) << "\n";
 	int i;
 	int j;
 

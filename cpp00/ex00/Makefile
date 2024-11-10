@@ -6,7 +6,7 @@
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/09 15:02:32 by zderfouf          #+#    #+#              #
-#    Updated: 2024/11/09 18:11:58 by zderfouf         ###   ########.fr        #
+#    Updated: 2024/11/10 17:25:20 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = $(FILES:.c=.o)
 
 CC = c++
 
-CFLAGS = #c++ -std=c++98
+CFLAGS =  -std=c++98
 
 all: $(NAME)
 
