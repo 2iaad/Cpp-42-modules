@@ -6,13 +6,14 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:12:17 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/10 17:24:25 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/14 15:09:46 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cstring>
 #include <iostream>
 #include <string>
+
 
 int main(int ac, char **av)
 {
@@ -23,7 +24,7 @@ int main(int ac, char **av)
 	j = 1;
 	if (!av[1] || !av[1][0])
 	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
+		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 		return (0);
 	}
 	while (av[j])

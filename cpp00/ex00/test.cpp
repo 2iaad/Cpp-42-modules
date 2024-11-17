@@ -3,18 +3,21 @@
 #include <string>
 
 
-namespace deyali
+namespace std
 {
 	int i;
 	float	main(int x)
 	{
 		return x*x;
-	}
+	} 
 }
+
+using namespace std;
 
 int main(int ac, char **av)
 {
-	deyali::i = 1337;
-	std::cout << "jid3 morba3 deyal " << deyali::i << " howa " << deyali::main(deyali::i) << "\n";
-	std::cout << deyali::i << std::endl;
+	i = 17;
+	cout << "jid3 morba3 deyal " << i << " howa " << main(std::i) << "\n";
+	cin >> i ; // ghadi nreadi lvalude d i mn stdin
+	cout << i; // nprinti lvalue d i
 }
