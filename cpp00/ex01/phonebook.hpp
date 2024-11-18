@@ -6,29 +6,28 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 15:17:16 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/16 22:55:16 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/18 16:07:21 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 
-#include <cstring>
 #include <string>
 #include <iostream>
 
-using namespace std; // 
+// using namespace std;
 
-class contact
+class Contact
 {
 	int			index;
-	string first_name;
+	std::string first_name;
 	std::string last_name;
 	std::string nick_name;
 	std::string phone_number;
 	std::string darkest_secret;
 public:
-	contact(int Index,
+	Contact(int Index,
 	std::string First_name,
 	std::string Last_name,
 	std::string Nick_name,
@@ -41,12 +40,17 @@ public:
 		nick_name = Nick_name;
 		phone_number = Phone_number;
 	}
-	
 };
 
-class phonebook
+class Phonebook
 {
-	contact contact[8];
+public:
+	Contact contact[8];
+
+	Contact GetValue(int i)
+	{
+		return contact[i];
+	}
 };
 
 #endif
