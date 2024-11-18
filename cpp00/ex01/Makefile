@@ -5,20 +5,20 @@
 #                                                     +:+ +:+         +:+      #
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/09 15:02:32 by zderfouf          #+#    #+#              #
-#    Updated: 2024/11/18 11:39:46 by zderfouf         ###   ########.fr        #
+#    Created: 2024/11/18 10:50:50 by zderfouf          #+#    #+#              #
+#    Updated: 2024/11/18 11:11:44 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = phonebook
 
-FILES = megaphone.cpp
+FILES = phonebook.cpp
 
 SRCS = $(FILES:.c=.o)
 
 CC = c++
 
-CFLAGS =  -std=c++98
+CFLAGS = -std=c++98
 
 all: $(NAME)
 
