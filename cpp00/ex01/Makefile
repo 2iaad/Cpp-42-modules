@@ -6,7 +6,7 @@
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 10:50:50 by zderfouf          #+#    #+#              #
-#    Updated: 2024/11/18 11:11:44 by zderfouf         ###   ########.fr        #
+#    Updated: 2024/11/19 17:26:38 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,11 @@ NAME = phonebook
 
 FILES = phonebook.cpp
 
-SRCS = $(FILES:.c=.o)
+SRCS = $(FILES:.cpp=.o)
 
 CC = c++
+
+RM  = rm -rf
 
 CFLAGS = -std=c++98
 
@@ -25,10 +27,13 @@ all: $(NAME)
 $(NAME): $(SRCS)
 	@$(CC) $(CFLAGS) $^ -o $@
 
-clean:
-	rm $(SRCS)
+%.o: %.c phonebook.hpp contact.hpp
+	@$(CC) $(FLAGS) -c $< -o $@
 
-fclean:
-	rm $(SRCS) $(NAME)
+clean:
+	@$(RM) $(SRCS)
+
+fclean: clean
+	rm $(NAME)
 
 re: fclean all
