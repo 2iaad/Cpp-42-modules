@@ -6,16 +6,14 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:19:41 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/20 19:02:24 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/20 22:01:19 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 #include "contact.hpp"
-#include <cctype>
-#include <cstdio>
-#include <cstdlib>
-#include <string>
+#include <cstring>
+
 
 bool	parse(std::string str)
 {
@@ -49,14 +47,28 @@ void Phonebook::add(void)
 
 void Phonebook::search(int i)
 {
-	contact[0].print();
+	for (int i = 0; i < 8; i++)
+	{
+		contact[i].print();
+	}
+}
+
+std::string ten_char(std::string word)
+{
+	if (word.length() > 10) {
+		std::string tmp;
+		tmp = word.substr(0, 10);
+		tmp[9] = '.';
+		return tmp;		
+	}
+	return NULL;
 }
 
 int main(int ac, char **av, char **env)
 {
 	Phonebook	_PHONE;
 	std::string	line_read;
-	
+
 	while (std::cin)
 	{
 		std::cout << "Enter a command (ADD, SEARCH, EXIT):" << std::endl;
