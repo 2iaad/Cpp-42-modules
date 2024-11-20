@@ -6,7 +6,7 @@
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 10:50:50 by zderfouf          #+#    #+#              #
-#    Updated: 2024/11/19 17:26:38 by zderfouf         ###   ########.fr        #
+#    Updated: 2024/11/19 19:09:26 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ FILES = phonebook.cpp
 
 SRCS = $(FILES:.cpp=.o)
 
-CC = c++
+CC = c++ #-fsanitize=address
 
 RM  = rm -rf
 
