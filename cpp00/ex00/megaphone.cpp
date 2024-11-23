@@ -6,10 +6,11 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:12:17 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/14 15:09:46 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/23 14:52:00 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cctype>
 #include <cstring>
 #include <iostream>
 #include <string>
@@ -33,13 +34,14 @@ int main(int ac, char **av)
 		while (av[j][i])
 		{
 			if (av[j][i] >= 'a' && av[j][i] <= 'z')
-				av[j][i] -= 32;
-			std::cout << av[j][i];
+				std::cout << (char)std::toupper(av[j][i]);
+			else
+				std::cout << av[j][i];
 			i++;
 		}
 		if (av[j + 1])
 			std::cout << " ";
 		j++;
 	}
-	std::cout << "\n";
+	std::cout << std::endl;
 }
