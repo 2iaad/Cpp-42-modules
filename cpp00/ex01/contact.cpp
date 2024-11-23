@@ -6,12 +6,13 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:24:59 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/23 04:44:44 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/23 12:10:29 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contact.hpp"
 #include "phonebook.hpp"
+#include <string>
 
 
 void Contact::print()
@@ -41,5 +42,22 @@ void Phonebook::search(Phonebook _PHONE)
 	for (int i = 0; i < _PHONE.C_count; i++)
 	{
 		contact[i].print();
+	}
+
+	int index;
+	while (!std::cin.eof())
+	{
+		std::string line;
+		
+		std::cout << "Enter index to be looked for:";
+		std::getline(std::cin, line);
+		index = my_atol(line);
+
+		if ( index < 0 || index > _PHONE.C_count - 1)
+		{
+			std::cerr << "No contact available with the index given !" << std::endl;
+			continue ;
+		}
+		contact[index].print();
 	}
 }

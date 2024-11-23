@@ -6,13 +6,13 @@
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 10:50:50 by zderfouf          #+#    #+#              #
-#    Updated: 2024/11/20 20:44:19 by zderfouf         ###   ########.fr        #
+#    Updated: 2024/11/23 09:49:38 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 
-FILES = phonebook.cpp contact.cpp
+FILES = phonebook.cpp contact.cpp tools.cpp
 
 SRCS = $(FILES:.cpp=.o)
 

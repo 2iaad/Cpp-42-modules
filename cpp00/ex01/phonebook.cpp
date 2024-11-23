@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:19:41 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/23 05:07:44 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/23 09:43:13 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,6 @@
 #include <ostream>
 #include <string>
 
-
-std::string ten_char(std::string word)
-{
-	std::string tmp;
-	if (word.length() > 10) {
-		tmp = word.substr(0, 10);
-		tmp[9] = '.';
-		return tmp;		
-	}
-	else {
-		tmp = "          ";
-		int spaces_count;
-
-		spaces_count = 10 - word.size();
-		tmp = tmp.substr(0, spaces_count) + word;
-		return tmp;
-	}
-	return word;
-}
-
-bool	parse(std::string str)
-{
-	int i = 0;
-	while (str[i])
-	{
-		if (!std::isdigit(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
-}
 
 void Phonebook::add(Phonebook *_PHONE)
 {
