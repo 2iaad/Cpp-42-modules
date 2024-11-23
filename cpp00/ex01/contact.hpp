@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 05:21:18 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/20 20:26:43 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/23 01:33:11 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ public:
 		last_name = Last_name;
 		nick_name = Nick_name;
 		phone_number = Phone_number;
+		darkest_secret = Darkest_secret;
 	}
 	void	print(void);
 };
