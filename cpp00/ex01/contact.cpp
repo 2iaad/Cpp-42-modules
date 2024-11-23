@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:24:59 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/23 12:10:29 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/23 12:14:55 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void Phonebook::search(Phonebook _PHONE)
 			std::cerr << "No contact available with the index given !" << std::endl;
 			continue ;
 		}
-		contact[index].print();
+		if (!std::cin.eof())
+			contact[index].print();
 	}
 }
