@@ -6,7 +6,7 @@
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 10:50:50 by zderfouf          #+#    #+#              #
-#    Updated: 2024/11/23 09:49:38 by zderfouf         ###   ########.fr        #
+#    Updated: 2024/11/23 12:32:13 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,19 +16,19 @@ FILES = phonebook.cpp contact.cpp tools.cpp
 
 SRCS = $(FILES:.cpp=.o)
 
-CC = c++ #-fsanitize=address
+CC = c++ #-fsanitize=address 
 
 RM  = rm -rf
 
-CFLAGS = -std=c++98
+CPPFLAGS =  -fsanitize=address -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@$(CC) $(CFLAGS) $^ -o $@
+	@$(CC) $(CPPFLAGS) $^ -o $@
 
 %.o: %.c phonebook.hpp contact.hpp
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@$(RM) $(SRCS)

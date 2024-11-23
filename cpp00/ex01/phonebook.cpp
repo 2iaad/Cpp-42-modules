@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:19:41 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/23 09:43:13 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/23 12:31:44 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void Phonebook::add(Phonebook *_PHONE)
 		c++;
 }
 
-int main(int ac, char **av, char **env)
+int main(void)
 {
 	Phonebook	_PHONE;
 	std::string	line_read;
