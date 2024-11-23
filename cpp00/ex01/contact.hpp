@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 05:21:18 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/23 01:33:11 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/23 04:41:31 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ class Contact
 	std::string phone_number;
 	std::string darkest_secret;
 public:
-	Contact()
-	{
-		
-	};
+	Contact(){};
 	Contact(int Index,
 	std::string First_name,
 	std::string Last_name,

@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:19:41 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/23 04:38:28 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/23 05:07:44 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@
 
 std::string ten_char(std::string word)
 {
+	std::string tmp;
 	if (word.length() > 10) {
-		std::string tmp;
 		tmp = word.substr(0, 10);
 		tmp[9] = '.';
 		return tmp;		
 	}
 	else {
-	/*
-		hna aykhsni nhandli blan d "    ziadd"
-	 */
+		tmp = "          ";
+		int spaces_count;
+
+		spaces_count = 10 - word.size();
+		tmp = tmp.substr(0, spaces_count) + word;
+		return tmp;
 	}
 	return word;
 }
@@ -63,7 +66,6 @@ void Phonebook::add(Phonebook *_PHONE)
 			std::cout << "Last name:";
 		if (i == 2)
 			std::cout << "Nickname:";
-		
 		if (i == 3)
 		{
 			std::cout << "Phone number:";
@@ -74,7 +76,6 @@ void Phonebook::add(Phonebook *_PHONE)
 				std::getline(std::cin, str[i]);
 			}
 		}
-		
 		if (i == 4)
 			std::cout << "Darkest secret:";
 
@@ -82,25 +83,15 @@ void Phonebook::add(Phonebook *_PHONE)
 			std::getline(std::cin, str[i]);
 		i++;
 	}
-	contact[c] = Contact(c, ten_char(str[0]), str[1], str[2], str[3], str[4]);
+	contact[c] = Contact(c,
+						 ten_char(str[0]),
+						 ten_char(str[1]),
+						 ten_char(str[2]),
+						 ten_char(str[3]),
+						 ten_char(str[4]));
 	if (c < 8)
 		c++;
 }
-
-void Phonebook::search(Phonebook _PHONE)
-{
-	std::cout << "|" << "     index";
-	std::cout << "|" << "first_name";
-	std::cout << "|" << " last_name";
-	std::cout << "|" << " nick_name";
-	std::cout << "|" << std::endl;
-	std::cout << "---------------------------------------------" << std::endl;
-	for (int i = 0; i < _PHONE.C_count; i++)
-	{
-		contact[i].print();
-	}
-}
-
 
 int main(int ac, char **av, char **env)
 {
@@ -110,12 +101,10 @@ int main(int ac, char **av, char **env)
 	while (std::cin)
 	{
 		std::cout << "Enter a command (ADD, SEARCH, EXIT):";
-		
+
 		std::getline(std::cin, line_read);
 		if (!line_read.compare("ADD"))
-		{
 			_PHONE.add(&_PHONE);
-		}
 		else if (!line_read.compare("SEARCH"))
 			_PHONE.search(_PHONE);
 		else if (!line_read.compare("EXIT"))
