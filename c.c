@@ -5,9 +5,9 @@ int main()
 {
 	// char *str = malloc(sizeof(NULL));
 
-	char *str = "salam";
+	char *str = "salamloooool";
 	printf("{%ld}", sizeof((int)str));
-	printf("{%ld}", sizeof(NULL));
+	printf("{%ld}", sizeof((int)NULL));
 	// printf("{%ld}", sizeof((int)NULL));
 
 }
