@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:19:41 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/23 12:31:44 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/24 11:47:38 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,16 @@
 void Phonebook::add(Phonebook *_PHONE)
 {
 	int i = 0;
-	static int c = 0;
+	static int c = {0};
 	std::string str[5];
 
-	if (c <= 8)
-		_PHONE->C_count++;
-	if (c == 8)
-		c = 0;
+	if (!c)
+	{
+		_PHONE->C_count = 0;
+		_PHONE->C_old = 0;
+		c++;
+	}
+
 	while (!std::cin.eof() && i < 5) // ""!std::cin.eof()"" bach m3a ytdrb stdin m3a ykhrj maykmlch f loop
 	{
 		if (i == 0)
@@ -52,14 +55,17 @@ void Phonebook::add(Phonebook *_PHONE)
 			std::getline(std::cin, str[i]);
 		i++;
 	}
-	contact[c] = Contact(c,
+	contact[_PHONE->C_old] = Contact(_PHONE->C_old,
 						 ten_char(str[0]),
 						 ten_char(str[1]),
 						 ten_char(str[2]),
 						 ten_char(str[3]),
 						 ten_char(str[4]));
-	if (c < 8)
-		c++;
+	if (_PHONE->C_count < 8)
+		_PHONE->C_count++;
+	_PHONE->C_old++;
+	if (_PHONE->C_old == 8)
+		_PHONE->C_old = 0;
 }
 
 int main(void)
