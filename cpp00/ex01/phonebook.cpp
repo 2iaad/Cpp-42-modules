@@ -6,16 +6,11 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:19:41 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/24 11:47:38 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/24 11:58:44 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
-#include "contact.hpp"
-#include <cstring>
-#include <ostream>
-#include <string>
-
 
 void Phonebook::add(Phonebook *_PHONE)
 {

@@ -6,14 +6,11 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:24:59 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/23 12:35:42 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/24 11:59:28 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "contact.hpp"
 #include "phonebook.hpp"
-#include <string>
-
 
 void Contact::print()
 {	

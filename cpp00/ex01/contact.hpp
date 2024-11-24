@@ -6,13 +6,12 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 05:21:18 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/23 04:41:31 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/24 11:58:59 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_H
 #define CONTACT_H
-
 
 #include <string>
 #include <iostream>
