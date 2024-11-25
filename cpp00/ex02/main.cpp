@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 16:15:17 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/25 09:10:59 by zderfouf         ###   ########.fr       */
+/*   Created: 2024/11/25 09:46:20 by zderfouf          #+#    #+#             */
+/*   Updated: 2024/11/25 10:07:21 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+# include <ctime>
+# include <iostream>
 
-Zombie* Zombie::newZombie( std::string name )
+void	_displayTimestamp( void )
 {
-	Zombie *p = (Zombie *) new (std::nothrow)Zombie;
-	if (!p)
-	{
-		std::cerr << "Memory allocation failed" << std::endl;
-		return NULL;
-	}
-	p->SetName(name);
-	return (p);
+	time_t time_stamp;
+
+	std::cout << std::put_time(time(&time_stamp));
 }

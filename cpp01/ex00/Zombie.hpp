@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:00:24 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/24 18:10:47 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/25 09:11:24 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Zombie
 	std::string	name;
 public:
 	Zombie(){};
-	
+
 	void	announce( void );
 	void	SetName( std::string name);
 	Zombie* newZombie( std::string name );

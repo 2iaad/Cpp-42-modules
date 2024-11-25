@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:00:16 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/24 18:21:48 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/24 20:36:02 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void f(){
 
 int main()
 {
-	atexit(f);
+	// atexit(f);
 	Zombie *zembabwe = zembabwe->newZombie("Heap Zombie");
 	zembabwe->announce();
 
