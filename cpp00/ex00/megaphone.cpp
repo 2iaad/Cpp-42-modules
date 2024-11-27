@@ -6,15 +6,11 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:12:17 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/23 14:52:00 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/27 20:29:34 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cctype>
-#include <cstring>
 #include <iostream>
-#include <string>
-
 
 int main(int ac, char **av)
 {
@@ -23,24 +19,16 @@ int main(int ac, char **av)
 
 	i = 0;
 	j = 1;
-	if (!av[1] || !av[1][0])
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-		return (0);
-	}
+	if (!av[1])
+		return (std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl, 0);
 	while (av[j])
 	{
 		i = 0;
 		while (av[j][i])
 		{
-			if (av[j][i] >= 'a' && av[j][i] <= 'z')
-				std::cout << (char)std::toupper(av[j][i]);
-			else
-				std::cout << av[j][i];
+			std::cout << (char)std::toupper(av[j][i]);
 			i++;
 		}
-		if (av[j + 1])
-			std::cout << " ";
 		j++;
 	}
 	std::cout << std::endl;
