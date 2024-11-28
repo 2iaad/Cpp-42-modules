@@ -6,13 +6,24 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:19:41 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/28 18:50:41 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/28 22:23:03 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 
-void Phonebook::add(Phonebook *_PHONE)
+void	phone_number(std::string *str)
+{
+	std::cout << "Phone number:";
+	std::getline(std::cin, *str);
+	while (!std::cin.eof() && (!parse(*str) || (*str).empty()))
+	{
+		std::cout << "Enter a valide number:";
+		std::getline(std::cin, *str);
+	}
+}
+
+void	Phonebook::add(Phonebook *_PHONE)
 {
 	int i = 0;
 	static int c = {0};
@@ -34,15 +45,7 @@ void Phonebook::add(Phonebook *_PHONE)
 		if (i == 2)
 			std::cout << "Nickname:";
 		if (i == 3)
-		{
-			std::cout << "Phone number:";
-			std::getline(std::cin, str[i]);
-			while (!std::cin.eof() && (!parse(str[i]) || str[i].empty()))
-			{
-				std::cout << "Enter a valide number:";
-				std::getline(std::cin, str[i]);
-			}
-		}
+			phone_number(&str[i]);
 		if (i == 4)
 			std::cout << "Darkest secret:";
 
@@ -50,12 +53,12 @@ void Phonebook::add(Phonebook *_PHONE)
 			std::getline(std::cin, str[i]);
 		i++;
 	}
-	contact[_PHONE->C_old] = Contact(_PHONE->C_old,
-						 str[0],
-						 str[1],
-						 str[2],
-						 str[3],
-						 str[4]);
+	contact[_PHONE->C_old] = Contact(_PHONE->C_old, 
+											str[0], 
+											str[1], 
+											str[2], 
+											str[3], 
+											str[4]);
 	if (_PHONE->C_count < 8)
 		_PHONE->C_count++;
 	_PHONE->C_old++;

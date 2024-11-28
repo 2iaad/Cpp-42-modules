@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:24:59 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/28 22:06:20 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/28 22:19:03 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void Contact::print_index()
 	std::cout << "First name:" << first_name << std::endl;
 	std::cout << "Last name:" << last_name << std::endl;
 	std::cout << "Nickname:" << nick_name << std::endl;
+	std::cout << "Phone number:" << phone_number << std::endl;
 	std::cout << "Darkest secret:" << darkest_secret << std::endl;
 }
 
