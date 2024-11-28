@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:24:59 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/27 23:02:54 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:45:35 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,20 @@ void Contact::print()
 	std::cout << "|         ";
 	std::cout << index;
 	std::cout << "|";
-	std::cout << first_name;
+	std::cout << ten_char(first_name);
 	std::cout << "|";
-	std::cout << last_name;
+	std::cout << ten_char(last_name);
 	std::cout << "|";
-	std::cout << nick_name;
+	std::cout << ten_char(nick_name);
 	std::cout << "|" << std::endl;
+}
+
+void Contact::print_index()
+{
+	std::cout << "First name:" << first_name << std::endl;
+	std::cout << "Last name:" << last_name << std::endl;
+	std::cout << "Nickname:" << nick_name << std::endl;
+	std::cout << "Darkest secret:" << darkest_secret << std::endl;
 }
 
 
@@ -61,6 +69,6 @@ void Phonebook::search(Phonebook _PHONE)
 			continue ;
 		}
 		if (!std::cin.eof())
-			contact[index].print();
+			contact[index].print_index();
 	}
 }

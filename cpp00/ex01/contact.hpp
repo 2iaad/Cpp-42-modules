@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 05:21:18 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/24 11:58:59 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:45:45 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ public:
 		darkest_secret = Darkest_secret;
 	}
 	void	print(void);
+	void	print_index(void);
 };
 
 #endif

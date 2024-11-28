@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:19:41 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/24 11:58:44 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/28 17:42:35 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,11 @@ void Phonebook::add(Phonebook *_PHONE)
 		i++;
 	}
 	contact[_PHONE->C_old] = Contact(_PHONE->C_old,
-						 ten_char(str[0]),
-						 ten_char(str[1]),
-						 ten_char(str[2]),
-						 ten_char(str[3]),
-						 ten_char(str[4]));
+						 str[0],
+						 str[1],
+						 str[2],
+						 str[3],
+						 str[4]);
 	if (_PHONE->C_count < 8)
 		_PHONE->C_count++;
 	_PHONE->C_old++;
