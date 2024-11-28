@@ -6,11 +6,26 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:24:59 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/28 17:45:35 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/28 22:06:20 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
+
+Contact::Contact(int Index,
+std::string First_name,
+std::string Last_name,
+std::string Nick_name,
+std::string Phone_number,
+std::string Darkest_secret)
+{
+	index = Index;
+	first_name = First_name;
+	last_name = Last_name;
+	nick_name = Nick_name;
+	phone_number = Phone_number;
+	darkest_secret = Darkest_secret;
+}
 
 void Contact::print()
 {	

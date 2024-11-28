@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 09:19:04 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/24 11:58:30 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:42:23 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,19 @@ bool	parse(std::string str)
 	int i = 0;
 	while (str[i])
 	{
-		if (!std::isdigit(str[i]))
+		if (!std::isdigit(str[i]) || !std::isprint(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+bool	parse_(std::string str)
+{
+	int i = 0;
+	while (str[i])
+	{
+		if (!std::isprint(str[i]))
 			return (false);
 		i++;
 	}

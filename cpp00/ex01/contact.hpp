@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 05:21:18 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/28 17:45:45 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/28 22:06:25 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,10 @@ class Contact
 	std::string phone_number;
 	std::string darkest_secret;
 public:
-	Contact(){};
-	Contact(int Index,
-	std::string First_name,
-	std::string Last_name,
-	std::string Nick_name,
-	std::string Phone_number,
-	std::string Darkest_secret)
-	{
-		index = Index;
-		first_name = First_name;
-		last_name = Last_name;
-		nick_name = Nick_name;
-		phone_number = Phone_number;
-		darkest_secret = Darkest_secret;
-	}
+	Contact() {};
+	Contact(int Index, std::string First_name,
+	std::string Last_name, std::string Nick_name,
+	std::string Phone_number, std::string Darkest_secret);
 	void	print(void);
 	void	print_index(void);
 };

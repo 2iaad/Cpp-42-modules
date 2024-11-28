@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/19 19:19:41 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/28 17:42:35 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:50:41 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,11 @@ int main(void)
 		std::cout << "Enter a command (ADD, SEARCH, EXIT):";
 
 		std::getline(std::cin, line_read);
+		if (!parse_(line_read))
+		{
+			std::cout << "Bad input!" << std::endl;
+			continue ;
+		}
 		if (!line_read.compare("ADD"))
 			_PHONE.add(&_PHONE);
 		else if (!line_read.compare("SEARCH"))
