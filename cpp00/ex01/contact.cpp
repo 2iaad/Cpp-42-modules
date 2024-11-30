@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 20:24:59 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/28 22:19:03 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/29 18:09:00 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,11 @@ void Phonebook::search(Phonebook _PHONE)
 	while (!std::cin.eof())
 	{
 		std::string line;
-		
+
 		std::cout << "Enter index to be looked for:";
 		std::getline(std::cin, line);
 		if (!line.size() || !parse(line))
-		{
-			std::cout << "Ops!" << std::endl;
 			continue ;
-		}
 		index = my_atol(line);
 
 		if ( index < 0 || index > _PHONE.C_count - 1)
