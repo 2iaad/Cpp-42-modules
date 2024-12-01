@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 09:19:04 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/28 18:42:23 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/01 16:04:31 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,32 @@ long	my_atol(std::string str)
 	return (nb * s);
 }
 
+void	phone_number(std::string *str)
+{
+	std::cout << "Phone number:";
+	std::getline(std::cin, *str);
+	while (!std::cin.eof() && (!parse(*str) || (*str).empty()))
+	{
+		std::cout << "Enter a valide number:";
+		std::getline(std::cin, *str);
+	}
+}
+
 std::string ten_char(std::string word)
 {
 	std::string tmp;
 
-	if (word.length() > 10) {
+	if (word.size() > 10)
+	{
 		tmp = word.substr(0, 10);
 		tmp[9] = '.';
-		return tmp;		
+		return tmp;
 	}
-	else {
-		tmp = "          ";
+	else
+	{
 		int spaces_count;
-		
+
+		tmp = "          ";
 		spaces_count = 10 - word.size();
 		tmp = tmp.substr(0, spaces_count) + word;
 		return tmp;

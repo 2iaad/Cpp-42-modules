@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 09:30:16 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/30 13:11:02 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/11/30 14:43:15 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Account::Account( int initial_deposit )
 {
 	_accountIndex = getNbAccounts();
 	_amount = initial_deposit;
-	
+
 	_nbDeposits = 0;
 	_nbWithdrawals = 0;
 
@@ -87,8 +87,7 @@ void	Account::makeDeposit(int deposit)
 	_nbDeposits++;
 	Account::_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount;
-	std::cout << ";deposit:" << deposit << ";amount:" << _amount + deposit << \
-		";nb_deposits:" << _nbDeposits << std::endl;
+	std::cout << ";deposit:" << deposit << ";amount:" << _amount + deposit << ";nb_deposits:" << _nbDeposits << std::endl;
 	_amount += deposit;
 	Account::_totalNbDeposits++;
 	Account::_totalAmount += deposit;
@@ -97,8 +96,7 @@ void	Account::makeDeposit(int deposit)
 bool	Account::makeWithdrawal(int withdrawal)
 {
 	Account::_displayTimestamp();
-	std::cout << "index:" << _accountIndex << ";p_amount:" << \
-	_amount << ";withdrawal:";
+	std::cout << "index:" << _accountIndex << ";p_amount:" << _amount << ";withdrawal:";
 	if (withdrawal > checkAmount())
 	{
 		std::cout << "refused" << std::endl;
@@ -106,8 +104,7 @@ bool	Account::makeWithdrawal(int withdrawal)
 	}
 	_nbWithdrawals++;
 	Account::_totalNbWithdrawals++;
-	std::cout << withdrawal << ";amount:" << checkAmount() - withdrawal << \
-		";nb_withdrawals:" << _nbWithdrawals << std::endl;
+	std::cout << withdrawal << ";amount:" << checkAmount() - withdrawal << ";nb_withdrawals:" << _nbWithdrawals << std::endl;
 	_amount -= withdrawal;
 	Account::_totalAmount -= withdrawal;
 	return (true);
@@ -122,6 +119,5 @@ void	Account::displayStatus(void) const
 {
 	Account::_displayTimestamp();
 	std::cout << "index:" << _accountIndex << ";amount:" << checkAmount();
-	std::cout << ";deposits:" << _nbDeposits << \
-		";withdrawals:" << _nbWithdrawals << std::endl;
+	std::cout << ";deposits:" << _nbDeposits << ";withdrawals:" << _nbWithdrawals << std::endl;
 }

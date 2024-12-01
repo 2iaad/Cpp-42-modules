@@ -6,11 +6,11 @@
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/25 09:27:43 by zderfouf          #+#    #+#              #
-#    Updated: 2024/11/25 10:07:40 by zderfouf         ###   ########.fr        #
+#    Updated: 2024/12/01 16:57:44 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = dream
+NAME = bank
 
 FILES = Account.cpp tests.cpp
 
@@ -18,9 +18,7 @@ SRCS = $(FILES:.cpp=.o)
 
 CC = c++ 
 
-RM  = rm -rf
-
-CPPFLAGS = #-fsanitize=address -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
@@ -31,9 +29,9 @@ $(NAME): $(SRCS)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@$(RM) $(SRCS)
+	rm -rf $(SRCS)
 
 fclean: clean
-	rm $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all

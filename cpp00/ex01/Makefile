@@ -6,21 +6,19 @@
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 10:50:50 by zderfouf          #+#    #+#              #
-#    Updated: 2024/11/27 20:51:26 by zderfouf         ###   ########.fr        #
+#    Updated: 2024/12/01 16:57:02 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = phonebook
 
-FILES = phonebook.cpp contact.cpp tools.cpp
+FILES = main.cpp phonebook.cpp contact.cpp tools.cpp
 
 SRCS = $(FILES:.cpp=.o)
 
-CC = c++ -fsanitize=address 
+CC = c++
 
-RM  = rm -rf
-
-CPPFLAGS =  -fsanitize=address -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
@@ -31,9 +29,9 @@ $(NAME): $(SRCS)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@$(RM) $(SRCS)
+	rm -rf $(SRCS)
 
 fclean: clean
-	rm $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
