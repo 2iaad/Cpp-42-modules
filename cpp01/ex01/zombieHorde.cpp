@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 16:03:44 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/02 01:18:31 by zderfouf         ###   ########.fr       */
+/*   Created: 2024/12/02 01:29:00 by zderfouf          #+#    #+#             */
+/*   Updated: 2024/12/02 02:01:13 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-Zombie::Zombie()
+Zombie* zombieHorde( int N, std::string name )
 {
-	
-}
+	Zombie *Arr[N];
 
-Zombie::~Zombie()
-{
-	std::cout << "Destructure called!" << std::endl;
-}
-
-void	Zombie::SetName(std::string Name)
-{
-	name = Name;
-}
-
-void	Zombie::announce(void)
-{
-	std::cout << this->name << ":" << " BraiiiiiiinnnzzzZ..." << std::endl;
+	for (int i = 0; i < N; i++)
+	{
+		Arr[i] = newZombie(name);
+	}
+	return Arr[0];
 }

@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/24 16:03:44 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/02 01:18:31 by zderfouf         ###   ########.fr       */
+/*   Created: 2024/12/02 01:25:48 by zderfouf          #+#    #+#             */
+/*   Updated: 2024/12/02 01:27:06 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#pragma once
 
-Zombie::Zombie()
-{
-	
-}
+# include <iostream>
+# include <new>
 
-Zombie::~Zombie()
+class Zombie
 {
-	std::cout << "Destructure called!" << std::endl;
-}
+	std::string	name;
+public:
+	Zombie();
+	~Zombie();
 
-void	Zombie::SetName(std::string Name)
-{
-	name = Name;
-}
-
-void	Zombie::announce(void)
-{
-	std::cout << this->name << ":" << " BraiiiiiiinnnzzzZ..." << std::endl;
-}
+	Zombie* zombieHorde( int N, std::string name );
+};
