@@ -6,19 +6,19 @@
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/14 18:01:14 by zderfouf          #+#    #+#              #
-#    Updated: 2024/12/14 18:55:01 by zderfouf         ###   ########.fr        #
+#    Updated: 2024/12/16 11:26:46 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = main
 
-FILES = main.cpp  \
+FILES = main.cpp ft_replace.cpp \
 
 SRCS = $(FILES:.cpp=.o)
 
 CC = c++ 
 
-CPPFLAGS = #-fsanitize=address -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -fsanitize=address #-Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
