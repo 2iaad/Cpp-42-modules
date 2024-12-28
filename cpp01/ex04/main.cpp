@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 18:01:37 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/16 11:54:52 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:50:52 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,27 @@ bool	parse(int ac, char **av)
 	return true ;
 }
 
+void f(){
+	// system("lsof -c main");
+	}
 int main(int ac, char **av)
 {
 	std::string str;
+	std::string new_filename;
 
-	if (ac != 4)
-		return 0;
-	std::ifstream f(av[1]);
+	// atexit(f);
+	// if (ac != 4)
+	// 	return std::cerr << "Bad input" << std::endl, 1;
+	// if (!parse(ac, av))
+	// 	return std::cerr << "Parse Error!" << std::endl, 1;
 
-	if (!parse(ac, av))
-		return std::cerr << "Parse Error!" << std::endl, 1;
-	if (!f.is_open())
-		return std::cerr << "cant open file" << std::endl , 1;
+	new_filename = (std::string)av[1] + ".replace";
 
-	// std::string s;
-	// while (getline(f, s))
-	// 	std::cout << s << std::endl;
-	// f.close();
+	std::ifstream av[1];
+	std::ofstream new_filename;
+	if (!file.is_open() || new_filename.is_open())
+		return std::cerr << "can't open file!" << std::endl , 1;
+
+	getline(file, str, '\0');
+		std::cout << str << std::endl;
 }
