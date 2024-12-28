@@ -6,11 +6,12 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 05:18:51 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/16 11:38:16 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/28 18:12:48 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cinttypes>
+#include <string>
 #include <fstream>
 #include <iostream>
 
