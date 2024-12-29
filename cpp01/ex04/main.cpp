@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 18:01:37 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/28 18:13:38 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/29 03:53:03 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ bool	parse(int ac, char **av)
 int main(int ac, char **av)
 {
 	std::string buf;
+	std::string leftbuf;
 
 	if (ac != 4 || !parse(ac, av))
 		return std::cerr << "Bad input" << std::endl, 1;
@@ -44,9 +45,30 @@ int main(int ac, char **av)
 		return std::cerr << "can't open file!" << std::endl , 1;
 
 	getline(infile, buf, '\0');
-	outfile << buf;
+
+	std::size_t size = Container::get(file, av[2]).size(); // end deyal *Needle*
+	
+	std::size_t start;
+	int i = 0;
+	while (i < buf.size())
+	{
+		leftbuf = buf.c_str() + i;
+		std::cout << "****************" << leftbuf << "***********************\n";
+		start = leftbuf.find((std::string)av[2]); // .find katreturni size_t dyal first occurance d string li lqit
+		i = start;
+
+		if (start == std::string::npos)
+			break ;
+		
+		std::cout << "before:" << buf << std::endl;
+
+		std::cout << start << "----" << size << std::endl;
+
+		buf.erase(start, size);
+
+		buf.insert(start, av[3]);
+		std::cout << "after:"<< buf << std::endl;
 
 
-	std::ifstream testfile;
-	testfile.close();
+	}
 }

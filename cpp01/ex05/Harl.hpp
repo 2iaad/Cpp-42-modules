@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   header.hpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/15 05:18:51 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/28 21:20:26 by zderfouf         ###   ########.fr       */
+/*   Created: 2024/12/16 15:15:40 by zderfouf          #+#    #+#             */
+/*   Updated: 2024/12/16 15:24:03 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cinttypes>
-#include <fstream>
+#pragma once
+
 #include <iostream>
 
-class Container
+class Harl
 {
 private:
-	std::string filename;
-	std::string s1;
-	std::string s2;
-public:
-	Container(std::string filename, std::string S1, std::string S2);
-	static std::string get(const Container obj, std::string flag);
-};
+	void debug( void );
+	void info( void );
+	void warning( void );
+	void error( void );
+}
