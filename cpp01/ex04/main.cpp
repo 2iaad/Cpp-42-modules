@@ -6,12 +6,11 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 18:01:37 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/30 03:11:48 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/30 03:45:21 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.hpp"
-#include <cstring>
+#include "Container.hpp"
 
 bool	parse(int ac, char **av)
 {
@@ -58,13 +57,14 @@ int main(int ac, char **av)
 
 	Container file(av[1], av[2], av[3]);
 
-	infile.open((std::string)av[1], std::ios::in);
-	outfile.open((std::string)av[1] + ".replace", std::ios::out);
+
+	infile.open(file.get(av[1]), std::ios::in);
+	outfile.open(file.get(av[1]) + ".replace", std::ios::out);
 
 	if (!infile.is_open() || !outfile.is_open())
-		return std::cerr << "Can't open file!" << std::endl , 1;
+		return (std::cerr << "Can't open file!" << std::endl , 1);
 
-	std::size_t size = ((std::string)av[2]).size(); // end deyal *Needle*
+	std::size_t size = file.get(av[2]).size(); // end deyal *Needle*
 	while (true)
 	{
 		getline(infile, buf);

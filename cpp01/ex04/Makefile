@@ -6,13 +6,13 @@
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/14 18:01:14 by zderfouf          #+#    #+#              #
-#    Updated: 2024/12/30 02:56:20 by zderfouf         ###   ########.fr        #
+#    Updated: 2024/12/30 03:35:55 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = main
 
-FILES = main.cpp ft_replace.cpp \
+FILES = main.cpp Container.cpp \
 
 SRCS = $(FILES:.cpp=.o)
 
