@@ -6,11 +6,12 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 18:01:37 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/29 03:53:03 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/30 03:11:48 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.hpp"
+#include <cstring>
 
 bool	parse(int ac, char **av)
 {
@@ -23,52 +24,54 @@ bool	parse(int ac, char **av)
 	return true ;
 }
 
+void ft_replace(std::string &buf, std::size_t size, char **av)
+{
+	size_t	start;
+
+	if ((start = buf.find(av[2]))!= std::string::npos)
+	{
+		(buf).erase(start, size);
+		(buf).insert(start, av[3]);
+		ft_replace(buf, size, av);
+	}
+}
+
+void ft_replace2(std::string &str, char **av)
+{
+	size_t start;
+
+	while ((start = str.find(av[2]))!= std::string::npos)
+	{
+		str.erase(start, strlen(av[2]));
+		str.insert(start, av[3]);
+	}
+}
+
 int main(int ac, char **av)
 {
 	std::string buf;
-	std::string leftbuf;
+	std::ifstream infile; // ngd ndir ----> std::ifstream infile("file.txt");
+	std::ofstream outfile;
 
 	if (ac != 4 || !parse(ac, av))
 		return std::cerr << "Bad input" << std::endl, 1;
 
-
 	Container file(av[1], av[2], av[3]);
-	// new_filename = (std::string)av[1] + ".replace";
-
-	std::ifstream infile; // can also do ----> std::ifstream infile("file.txt");
-	std::ofstream outfile;
 
 	infile.open((std::string)av[1], std::ios::in);
 	outfile.open((std::string)av[1] + ".replace", std::ios::out);
 
 	if (!infile.is_open() || !outfile.is_open())
-		return std::cerr << "can't open file!" << std::endl , 1;
+		return std::cerr << "Can't open file!" << std::endl , 1;
 
-	getline(infile, buf, '\0');
-
-	std::size_t size = Container::get(file, av[2]).size(); // end deyal *Needle*
-	
-	std::size_t start;
-	int i = 0;
-	while (i < buf.size())
+	std::size_t size = ((std::string)av[2]).size(); // end deyal *Needle*
+	while (true)
 	{
-		leftbuf = buf.c_str() + i;
-		std::cout << "****************" << leftbuf << "***********************\n";
-		start = leftbuf.find((std::string)av[2]); // .find katreturni size_t dyal first occurance d string li lqit
-		i = start;
-
-		if (start == std::string::npos)
+		getline(infile, buf);
+		if (infile.eof())
 			break ;
-		
-		std::cout << "before:" << buf << std::endl;
-
-		std::cout << start << "----" << size << std::endl;
-
-		buf.erase(start, size);
-
-		buf.insert(start, av[3]);
-		std::cout << "after:"<< buf << std::endl;
-
-
+		ft_replace(buf, size ,av);
+		outfile << buf << std::endl;
 	}
+	return (infile.close(), outfile.close(), 0);
 }

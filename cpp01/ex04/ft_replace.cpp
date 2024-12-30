@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 05:22:44 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/16 11:47:48 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/30 03:15:16 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,5 @@ std::string	Container::get(Container obj, std::string flag)
 		return obj.s1;
 	if (flag == obj.s2)
 	 	return obj.s2;
-	return NULL ;
+	return (NULL);
 }
