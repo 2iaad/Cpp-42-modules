@@ -6,13 +6,15 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 15:13:44 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/16 15:13:50 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/30 16:37:01 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "Harl.hpp"
 
 int main()
 {
-	
+	Harl pers;
+
+	pers.complain("DEBUG");
 }
