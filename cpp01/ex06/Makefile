@@ -6,7 +6,7 @@
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/16 15:12:49 by zderfouf          #+#    #+#              #
-#    Updated: 2024/12/30 17:48:40 by zderfouf         ###   ########.fr        #
+#    Updated: 2024/12/31 16:33:41 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = $(FILES:.cpp=.o)
 
 CC = c++ 
 
-CPPFLAGS = -fsanitize=address -std=c++98 #-Wall -Wextra -Werror 
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
