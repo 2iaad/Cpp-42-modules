@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:03:44 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/30 20:21:36 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/31 10:33:04 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ Zombie::~Zombie()
 	std::cout << "Destructure called!" << std::endl;
 }
 
-void	Zombie::SetName(std::string Name)
+void	Zombie::setName(std::string Name)
 {
-	name = Name;
+	this->name = Name;
 }
 
 void	Zombie::announce(void)

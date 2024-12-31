@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 02:01:31 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/02 02:08:27 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/31 10:36:35 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 int main()
 {
-	Zombie *_1 = zombieHorde(5, "MFuckers");
+	Zombie *_1 = NULL;
+	
+	_1 = zombieHorde(5, "MFuckers");
+
+	delete [] _1;
 }

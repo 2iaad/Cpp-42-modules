@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:00:24 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/30 20:22:33 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/31 10:33:10 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ public:
 	~Zombie();
 
 	void	announce( void );
-	void	SetName( std::string name);
+	void	setName( std::string name);
 	Zombie* newZombie( std::string name );
 	void	randomChump( std::string name );
 };
