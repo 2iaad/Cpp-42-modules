@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 21:00:00 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/12 21:20:54 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/31 14:32:55 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,21 @@
 HumanB::HumanB(std::string Name)
 {
 	this->name = Name;
+	this->W = NULL;
 }
 
-void	HumanB::attack()
+void	HumanB::setWeapon(Weapon &Wset)
 {
-	std::cout << this->name << "attacks with their" << this->W.getType() << std::endl;
+	this->W = &Wset;
 }
 
-void	HumanB::setWeapon(Weapon& Wset)
+void	HumanB::attack( void )
 {
-	this->W = Wset;
+	if (!this->W || this->W->getType().empty())
+	{
+		std::cerr << this->name << " has no weapon !" << std::endl;
+		return ;
+	}
+
+	std::cout << this->name << " attacks with their " << this->W->getType() << std::endl;
 }

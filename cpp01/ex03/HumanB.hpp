@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:56:24 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/12 21:21:03 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/31 12:40:23 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ class HumanB
 {
 private:
 	std::string name;
-	Weapon		W;
+	Weapon		*W;
 public:
 	HumanB();
 	HumanB(std::string Name);
-	void	setWeapon(Weapon& Wset);
-	void	attack();
+	void	setWeapon(Weapon &Wset);
+	void	attack( void );
 };
