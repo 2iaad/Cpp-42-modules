@@ -6,22 +6,20 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:00:16 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/11/24 20:36:02 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/31 09:54:00 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-void f(){
-	system("leaks zombie");
-}
-
 int main()
 {
-	// atexit(f);
-	Zombie *zembabwe = zembabwe->newZombie("Heap Zombie");
+	Zombie *zembabwe = NULL;
+	zembabwe = zembabwe->newZombie("Heap-Zombie");
+	if (!zembabwe)
+		return 1;
 	zembabwe->announce();
-
-	zembabwe->randomChump("Stack Zombie");
 	delete zembabwe;
+
+	zembabwe->randomChump("Stack-Zombie");
 }

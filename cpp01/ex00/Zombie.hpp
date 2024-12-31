@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:00:24 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/02 01:17:54 by zderfouf         ###   ########.fr       */
+/*   Updated: 2024/12/30 20:22:33 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 class Zombie
 {
+private:
 	std::string	name;
 public:
 	Zombie();
