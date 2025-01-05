@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/15 05:22:44 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/30 03:37:06 by zderfouf         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:43:19 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@ Container::Container(std::string Filename, std::string S1, std::string S2)
 	s2 = S2;
 }
 
-std::string	Container::get(std::string flag)
+void	Container::ft_replace(std::string &str)
 {
-	if (flag == this->filename)
-		return this->filename;
-	if (flag == this->s1)
-		return this->s1;
-	if (flag == this->s2)
-	 	return this->s2;
-	return (NULL);
+	size_t start = 0;
+
+	while ((start = str.find(this->s1, start))!= std::string::npos && !s1.empty())
+	{
+		str.erase(start, this->s1.size());
+		str.insert(start, this->s2);
+		start += this->s2.size();
+	}
 }

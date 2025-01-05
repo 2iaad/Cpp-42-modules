@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 20:49:30 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/31 11:35:09 by zderfouf         ###   ########.fr       */
+/*   Updated: 2025/01/03 20:54:33 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ private:
 public:
 	Weapon();
 	Weapon(std::string name);
-	std::string	getType( void );
-	void		setType(std::string newtype);
+	const std::string	&getType( void );
+	void				setType(std::string newtype);
 };

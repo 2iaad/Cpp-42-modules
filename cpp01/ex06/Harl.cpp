@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:56:10 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/30 19:27:49 by zderfouf         ###   ########.fr       */
+/*   Updated: 2025/01/03 18:07:40 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,34 @@ void	Harl::complain( std::string level )
 		&Harl::error
 	};
 
-	std::size_t i = 1;
+	std::size_t i = 0;
 
-	while (i < 5)
+	while (i < 4)
 	{
-		if (Harl[i - 1] == level)
-		{
+		if (Harl[i] == level)
 			break ;
-		}
 		i++;
 	}
 
 	switch (i)
 	{
-		case 1: std::cout << "[ DEBUG ]" << std::endl; (this->*ptr_fun[0])();
-
-		case 2: std::cout << "[ INFO ]" << std::endl; (this->*ptr_fun[1])();
-
-		case 3: std::cout << "[ WARNING ]" << std::endl; (this->*ptr_fun[2])();
-
-		case 4: std::cout << "[ ERROR ]" << std::endl; (this->*ptr_fun[3])(); break;
-
-		case 5: std::cout << "[ Probably complaining about insignificant problems ]";
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+			break ;
+		case 0: 
+			std::cout << "[ DEBUG ]" << std::endl; 
+			(this->*ptr_fun[0])();
+			// fall through
+		case 1: 
+			std::cout << "[ INFO ]" << std::endl; 
+			(this->*ptr_fun[1])();
+			// fall through
+		case 2: 
+			std::cout << "[ WARNING ]" << std::endl; 
+			(this->*ptr_fun[2])();
+			// fall through
+		case 3: 
+			std::cout << "[ ERROR ]" << std::endl; 
+			(this->*ptr_fun[3])();
 	}
 }

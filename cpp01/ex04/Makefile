@@ -6,7 +6,7 @@
 #    By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/14 18:01:14 by zderfouf          #+#    #+#              #
-#    Updated: 2024/12/31 16:28:59 by zderfouf         ###   ########.fr        #
+#    Updated: 2025/01/02 17:53:32 by zderfouf         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,5 +33,6 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
+	rm -rf *.replace
 
 re: fclean all

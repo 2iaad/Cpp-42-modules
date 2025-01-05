@@ -6,9 +6,11 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:56:10 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/31 16:32:11 by zderfouf         ###   ########.fr       */
+/*   Updated: 2025/01/01 17:25:41 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "Harl.hpp"
 
@@ -34,20 +36,22 @@ void	Harl::error( void )
 
 void	Harl::complain( std::string level )
 {
+	typedef void (Harl::*F_ptr)();
+
 	if (level.empty())
 		return ;
 	std::string Harl[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	
-	void (Harl::*ptr_fun[4])( void ) = {
+	F_ptr Arr[4] = {
 		&Harl::debug,
 		&Harl::info,
 		&Harl::warning,
 		&Harl::error
 	};
-	
+
 	for (int i = 0; i < 4; i++)
 	{
 		if (Harl[i] == level)
-			(this->*ptr_fun[i])();
+			(this->*Arr[i])();
 	}
 }

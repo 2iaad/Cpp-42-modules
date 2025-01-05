@@ -6,7 +6,7 @@
 /*   By: zderfouf <zderfouf@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 16:00:16 by zderfouf          #+#    #+#             */
-/*   Updated: 2024/12/31 09:54:00 by zderfouf         ###   ########.fr       */
+/*   Updated: 2025/01/01 20:56:11 by zderfouf         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 int main()
 {
-	Zombie *zembabwe = NULL;
-	zembabwe = zembabwe->newZombie("Heap-Zombie");
+	Zombie *zembabwe;
+
+	zembabwe = newZombie("Heap-Zombie");
 	if (!zembabwe)
 		return 1;
 	zembabwe->announce();
 	delete zembabwe;
 
-	zembabwe->randomChump("Stack-Zombie");
+	randomChump("Stack-Zombie");
 }
