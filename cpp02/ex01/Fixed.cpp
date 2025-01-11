@@ -6,10 +6,17 @@ Fixed::Fixed()
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(int value)
+Fixed::Fixed(const int value)
 {
 	this->FPvalue = value;
 	std::cout << "Default constructor called" << std::endl;
+}
+
+Fixed::Fixed(const Fixed &other)
+{
+	FPvalue = other.FPvalue;
+	Fractional_bits = other.Fractional_bits;
+	std::cout << "Copy constructor called" << std::endl;
 }
 
 Fixed::~Fixed()

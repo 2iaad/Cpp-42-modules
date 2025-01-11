@@ -9,7 +9,8 @@ private:
 	static const int Fractional_bits;
 public:
 	Fixed();
-	Fixed(int value);
+	Fixed(const int value);
+	Fixed(const Fixed &other);
 	~Fixed();
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
