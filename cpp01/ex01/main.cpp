@@ -14,7 +14,7 @@
 
 int main()
 {
-	int N = 5;
+	int N = -3;
 	Zombie *_1 = NULL;
 	
 	_1 = zombieHorde(N, "Zawmbie");

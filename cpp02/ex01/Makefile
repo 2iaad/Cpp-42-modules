@@ -2,18 +2,18 @@ NAME = harlFilter
 
 FILES = main.cpp Fixed.cpp \
 
-SRCS = $(FILES:.cpp=.o)
-
 CC = c++ 
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+
+SRCS = $(FILES:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(SRCS)
 		@$(CC) $(CPPFLAGS) $^ -o $@
 
-%.o: %.c
+%.o: %.cpp Fixed.hpp
 		@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

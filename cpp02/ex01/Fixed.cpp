@@ -12,10 +12,9 @@ Fixed::Fixed(const int value)
 	std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &other)
+Fixed::Fixed(const Fixed &other) : FPvalue(other.FPvalue)
 {
-	FPvalue = other.FPvalue;
-	Fractional_bits = other.Fractional_bits;
+	// Fractional_bits = other.Fractional_bits;
 	std::cout << "Copy constructor called" << std::endl;
 }
 
@@ -32,5 +31,5 @@ int		Fixed::getRawBits( void ) const
 
 void	Fixed::setRawBits( int const raw )
 {
-
+	(void)raw;
 }

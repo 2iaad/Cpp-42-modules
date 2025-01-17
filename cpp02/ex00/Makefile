@@ -13,7 +13,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 		@$(CC) $(CPPFLAGS) $^ -o $@
 
-%.o: %.c
+%.o: %.cpp Fixed.hpp
 		@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
