@@ -9,7 +9,12 @@ Fixed::Fixed()
 Fixed::Fixed(const int value)
 {
 	this->FPvalue = value;
-	std::cout << "Default constructor called" << std::endl;
+	std::cout << "Int constructor called" << std::endl;
+}
+
+Fixed::Fixed(const float value)
+{
+	std::cout << "Float constructor called" << std::endl;
 }
 
 Fixed::Fixed(const Fixed &other) : FPvalue(other.FPvalue)
@@ -31,5 +36,16 @@ int		Fixed::getRawBits( void ) const
 
 void	Fixed::setRawBits( int const raw )
 {
-	(void)raw;
+	std::cout << "setRawBits member function called" << std::endl;
+	this->FPvalue = raw;
+}
+
+float	toFloat( void ) const
+{
+
+}
+
+int		toInt( void ) const
+{
+	
 }
