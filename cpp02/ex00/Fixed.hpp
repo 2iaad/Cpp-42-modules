@@ -6,7 +6,7 @@ class Fixed
 {
 private:
 	int FPvalue;
-	static const int Fractional_bits;
+	static const int Fractional_bits = 8;
 public:
 	Fixed();
 	Fixed(int value);
