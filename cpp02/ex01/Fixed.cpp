@@ -40,12 +40,12 @@ void	Fixed::setRawBits( int const raw )
 	this->FPvalue = raw;
 }
 
-float	toFloat( void ) const
+float	Fixed::toFloat( void ) const
 {
-	
+	return (float)0;
 }
 
-int		toInt( void ) const
+int		Fixed::toInt( void ) const
 {
-	
+	return 0;
 }
