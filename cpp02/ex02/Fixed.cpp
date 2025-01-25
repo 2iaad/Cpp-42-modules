@@ -1,8 +1,7 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed()
+Fixed::Fixed() : N(0)
 {
-	this->N = 0;
 	std::cout << "Default constructor called" << std::endl;
 }
 
@@ -16,15 +15,9 @@ Fixed::Fixed(const float value) : N((int) roundf(value * (1 << Fractional_b)))
 	std::cout << "Float constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &other) : N(other.N)
-{
-	std::cout << "Copy constructor called" << std::endl;
-}
+Fixed::Fixed(const Fixed &other) : N(other.N) { std::cout << "Copy constructor called" << std::endl; }
 
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
 int		Fixed::getRawBits( void ) const
 {
@@ -49,12 +42,22 @@ float	Fixed::toFloat( void ) const
 }
 
 Fixed	&Fixed::operator=(const Fixed &other)
+	// we pass by reference to not create a new copy of the Obj. (to not call CP CONS)
+	// const to not change the "other" object, for safety.
+/*
+	return reference in case of chain assignements , a = b = c.
+	it will keep returning a copy but now the Object itself.
+	the CP CONS will be called twice bec it will create a copy to return it.
+*/
+
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
 		this->N = other.getRawBits();
 	return (*this);
+	// return *this because we need to return reference to the object pointed by this
 }
+
 
 std::ostream	&operator<<(std::ostream &out, const Fixed &fixed)
 {

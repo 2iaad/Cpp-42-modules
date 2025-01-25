@@ -1,31 +1,48 @@
 #include <cmath>
 #include <iostream>
 
+using namespace std;
 
-class C
+class CLS
 {
-	int a;
 public:
-	C();
-	~C();
+	int a;
+
+	CLS() {	cout << "CO called !" << endl;	}; // DEFAULT CON
+
+	CLS(int value) :  a(value) { cout << "PARA CO called !" << endl; }; // PARA CON
+
+	// CLS(const CLS &other) {
+	// 	cout << "COPY CO called !" << endl;
+	// 	a = other.a;
+	// 	} // COPY CON
+
+	~CLS() {}; // DES
+
+	CLS operator=(const CLS &OTHER) // COPY ASSI
+	{
+		cout << "COPY ASSI OPERA called !" << endl;
+		a = OTHER.a;
+		return *this;
+	}
 };
 
-C::C()
-{
-	std::cout << "default constructure called" << std::endl;
-}
 
-C::~C()
-{
-	std::cout << "default DE called" << std::endl;
-}
 int main()
 {
-	C _1;
-	int c = 0;
+	CLS _1(42);
+	CLS _2;
+	CLS _3;
+	CLS _69;
 
-	c = 11;
-	float x = std::roundf(11);
+	cout << endl;
 
-	// std::cout << x << std::endl;
+	_69 = _3 = _2 = _1;
+
+	cout << endl;
+
+	cout << _1.a << endl;
+	cout << _2.a << endl;
+	cout << _3.a << endl;
+	cout << _69.a << endl;
 }
