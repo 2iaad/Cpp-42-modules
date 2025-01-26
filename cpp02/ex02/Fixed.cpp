@@ -138,7 +138,6 @@ bool	Fixed::operator!=( const Fixed &other ) const
 
 Fixed	&Fixed::operator++( void )
 {
-	this->N++;
 	return (this->N++, *this);
 }
 
