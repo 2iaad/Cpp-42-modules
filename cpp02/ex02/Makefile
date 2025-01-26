@@ -4,7 +4,7 @@ FILES = main.cpp Fixed.cpp \
 
 CC = c++ 
 
-CPPFLAGS = -Wall -Wextra -Werror -Wnull-dereference -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 SRCS = $(FILES:.cpp=.o)
 

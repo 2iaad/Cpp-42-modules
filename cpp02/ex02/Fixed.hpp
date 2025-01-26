@@ -6,7 +6,7 @@
 class Fixed
 {
 private:
-	int N;
+	int				N;
 	static const int Fractional_b = 8;
 public:
 	Fixed();
@@ -23,25 +23,28 @@ public:
 	float	toFloat( void ) const;
 
 	Fixed	&operator=(const Fixed &other);
-	Fixed	operator+( const Fixed &fixed1 ) const;
-	Fixed	operator-( const Fixed &fixed1 ) const; 
-	Fixed	operator*( const Fixed &fixed1 ) const;
-	Fixed	operator/( const Fixed &fixed1 ) const;
+	Fixed	operator+( const Fixed &other ) const;
+	Fixed	operator-( const Fixed &other ) const; 
+	Fixed	operator*( const Fixed &other ) const;
+	Fixed	operator/( const Fixed &other ) const;
 	Fixed	&operator++( void );
 	Fixed	&operator--( void );
-	Fixed	operator++( int n ); // For postincrement
-	Fixed	operator--( int n ); // For postdecrement
+	Fixed	operator++( int n );
+	Fixed	operator--( int n );
 
-	bool	operator>( const Fixed &fixed1 ) const;
-	bool	operator<( const Fixed &fixed1 ) const;
-	bool	operator>=( const Fixed &fixed1 ) const;
-	bool	operator<=( const Fixed &fixed1 ) const;
-	bool	operator==( const Fixed &fixed1 ) const;
-	bool	operator!=( const Fixed &fixed1 ) const;
+	bool	operator>( const Fixed &other ) const;
+	bool	operator<( const Fixed &other ) const;
+	bool	operator>=( const Fixed &other ) const;
+	bool	operator<=( const Fixed &other ) const;
+	bool	operator==( const Fixed &other ) const;
+	bool	operator!=( const Fixed &other ) const;
 
 
 	static Fixed	min( Fixed &fixed1, Fixed &fixed2);
+	static Fixed	min( const Fixed &fixed1, const Fixed &fixed2);
+
 	static Fixed	max( Fixed &fixed1, Fixed &fixed2);
+	static Fixed	max( const Fixed &fixed1, const Fixed &fixed2);
 };
 
 std::ostream	&operator<<(std::ostream &out, const Fixed &fixed );

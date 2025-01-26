@@ -1,33 +1,34 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed() : N(0)
-{
-	std::cout << "Default constructor called" << std::endl;
+Fixed::Fixed() : N(0) {
+	// std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(const int value) : N(value << Fractional_b)
-{
-	std::cout << "Int constructor called" << std::endl;
+Fixed::Fixed(const int value) : N(value << Fractional_b) {
+	// std::cout << "Int constructor called" << std::endl;
 }
 
-Fixed::Fixed(const float value) : N((int) roundf(value * (1 << Fractional_b)))
-{
-	std::cout << "Float constructor called" << std::endl;
+Fixed::Fixed(const float value) : N((int) roundf(value * (1 << Fractional_b))) {
+	// std::cout << "Float constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &other) : N(other.N) { std::cout << "Copy constructor called" << std::endl; }
+Fixed::Fixed(const Fixed &other) : N(other.N) {
+	// std::cout << "Copy constructor called" << std::endl;
+}
 
-Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
+Fixed::~Fixed() {
+	// std::cout << "Destructor called" << std::endl;
+}
 
 int		Fixed::getRawBits( void ) const
 {
-	std::cout << "getRawBits member function called" << std::endl;
+	// std::cout << "getRawBits member function called" << std::endl;
 	return this->N;
 }
 
 void	Fixed::setRawBits( int const raw )
 {
-	std::cout << "setRawBits member function called" << std::endl;
+	// std::cout << "setRawBits member function called" << std::endl;
 	this->N = raw;
 }
 
@@ -51,7 +52,7 @@ Fixed	&Fixed::operator=(const Fixed &other)
 */
 
 {
-	std::cout << "Copy assignment operator called" << std::endl;
+	// std::cout << "Copy assignment operator called" << std::endl;
 	if (this != &other)
 		this->N = other.getRawBits();
 	return (*this);
@@ -79,106 +80,83 @@ Fixed	Fixed::max( Fixed &fixed1, Fixed &fixed2)
 	return (Fixed( fixed2 ));
 }
 
-Fixed	Fixed::operator+( const Fixed &fixed1 ) const
+
+Fixed	Fixed::max( const Fixed &fixed1, const Fixed &fixed2)
 {
-	return (Fixed(fixed1.toFloat() + this->toFloat()));
+	if (fixed1 >= fixed2)
+		return (Fixed( fixed1 ));
+	return (Fixed( fixed2 ));
 }
 
-Fixed	Fixed::operator-( const Fixed &fixed1 ) const
+Fixed	Fixed::operator+( const Fixed &other ) const
 {
-	return (Fixed(fixed1.toFloat() - this->toFloat()));
+	return (Fixed(other.toFloat() + this->toFloat()));
 }
 
-Fixed	Fixed::operator*( const Fixed &fixed1 ) const
+Fixed	Fixed::operator-( const Fixed &other ) const
 {
-	return (Fixed(fixed1.toFloat() * this->toFloat()));
+	return (Fixed(other.toFloat() - this->toFloat()));
 }
 
-Fixed	Fixed::operator/( const Fixed &fixed1 ) const
+Fixed	Fixed::operator*( const Fixed &other ) const
 {
-	return (Fixed(fixed1.toFloat() / this->toFloat()));
+	return (Fixed(other.toFloat() * this->toFloat()));
 }
 
-bool	Fixed::operator>( const Fixed &fixed1 ) const
+Fixed	Fixed::operator/( const Fixed &other ) const
 {
-	return (this->toFloat() > fixed1.toFloat());
-}
-bool	Fixed::operator<( const Fixed &fixed1 ) const
-{
-	return (this->toFloat() < fixed1.toFloat());
-}
-bool	Fixed::operator>=( const Fixed &fixed1 ) const
-{
-	return (this->toFloat() >= fixed1.toFloat());
+	return (Fixed(other.toFloat() / this->toFloat()));
 }
 
-bool	Fixed::operator<=( const Fixed &fixed1 ) const
+bool	Fixed::operator>( const Fixed &other ) const
 {
-	return (this->toFloat() <= fixed1.toFloat());
+	return (this->toFloat() > other.toFloat());
+}
+bool	Fixed::operator<( const Fixed &other ) const
+{
+	return (this->toFloat() < other.toFloat());
+}
+bool	Fixed::operator>=( const Fixed &other ) const
+{
+	return (this->toFloat() >= other.toFloat());
 }
 
-bool	Fixed::operator==( const Fixed &fixed1 ) const
+bool	Fixed::operator<=( const Fixed &other ) const
 {
-	return (this->toFloat() == fixed1.toFloat());
+	return (this->toFloat() <= other.toFloat());
 }
 
-bool	Fixed::operator!=( const Fixed &fixed1 ) const
+bool	Fixed::operator==( const Fixed &other ) const
 {
-	return (this->toFloat() != fixed1.toFloat());
+	return (this->toFloat() == other.toFloat());
+}
+
+bool	Fixed::operator!=( const Fixed &other ) const
+{
+	return (this->toFloat() != other.toFloat());
 }
 
 Fixed	&Fixed::operator++( void )
 {
-	(this->N)++;
-	return (*this);
+	this->N++;
+	return (this->N++, *this);
 }
 
 Fixed	&Fixed::operator--( void )
 {
-	(this->N)--;
-	return (*this);
+	return (this->N--, *this);
 }
 
 Fixed	Fixed::operator++( int n )
 {
-	Fixed	aux = *this;
-	if (n < 0)
-	{
-		while (n <= 0)
-		{
-			--*this;
-			n++;
-		}
-	}
-	else
-	{
-		while (n >= 0)
-		{
-			++*this;
-			n--;
-		}
-	}
-	return (aux);
+	Fixed	tmp = *this;
+	this->N++;
+	return (tmp);
 }
 
 Fixed	Fixed::operator--( int n )
 {
-	Fixed	aux = *this;
-	if (n < 0)
-	{
-		while (n <= 0)
-		{
-			++*this;
-			n++;
-		}
-	}
-	else
-	{
-		while (n >= 0)
-		{
-			--*this;
-			n--;
-		}
-	}
-	return (aux);
+	Fixed	tmp = *this;
+	this->N--;
+	return (tmp);
 }
