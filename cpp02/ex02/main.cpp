@@ -1,6 +1,23 @@
 #include "Fixed.hpp"
 #include <iostream>
 
+/*
+
+	Difference between:
+		Fixed	&Fixed::operator++( void );
+		Fixed	Fixed::operator++( int n );
+	Difference between:
+		value << Fractional_b
+		value * (1 << Fractional_b)
+	Difference between:
+		toInt();
+		toFloat();
+	Why
+		Fixed ( 3,42f ), why f
+
+*/
+
+
 int main( void ) {
 
 	Fixed a;
