@@ -40,11 +40,11 @@ public:
 	bool	operator!=( const Fixed &other ) const;
 
 
-	static Fixed	min( Fixed &fixed1, Fixed &fixed2);
-	static Fixed	min( const Fixed &fixed1, const Fixed &fixed2);
+	static Fixed	min( Fixed &left, Fixed &right);
+	static Fixed	min( const Fixed &left, const Fixed &right);
 
-	static Fixed	max( Fixed &fixed1, Fixed &fixed2);
-	static Fixed	max( const Fixed &fixed1, const Fixed &fixed2);
+	static Fixed	max( Fixed &left, Fixed &right);
+	static Fixed	max( const Fixed &left, const Fixed &right);
 };
 
 std::ostream	&operator<<(std::ostream &out, const Fixed &fixed );

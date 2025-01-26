@@ -66,26 +66,32 @@ std::ostream	&operator<<(std::ostream &out, const Fixed &fixed)
 	return (out);
 }
 
-Fixed	Fixed::min(Fixed &fixed1, Fixed &fixed2)
+Fixed	Fixed::min(Fixed &left, Fixed &right)
 {
-	if (fixed1 > fixed2)
-		return (Fixed( fixed2 ));
-	return (Fixed( fixed1 ));
+	if (left > right)
+		return ( right );
+	return ( left );
 }
 
-Fixed	Fixed::max( Fixed &fixed1, Fixed &fixed2)
+Fixed	Fixed::min( const Fixed &left, const Fixed &right)
 {
-	if (fixed1 >= fixed2)
-		return (Fixed( fixed1 ));
-	return (Fixed( fixed2 ));
+	if (left > right)
+		return ( right);
+	return (left);
 }
 
-
-Fixed	Fixed::max( const Fixed &fixed1, const Fixed &fixed2)
+Fixed	Fixed::max( Fixed &left, Fixed &right)
 {
-	if (fixed1 >= fixed2)
-		return (Fixed( fixed1 ));
-	return (Fixed( fixed2 ));
+	if (left >= right)
+		return ( left );
+	return ( right );
+}
+
+Fixed	Fixed::max( const Fixed &left, const Fixed &right)
+{
+	if (left >= right)
+		return (left);
+	return (right);
 }
 
 Fixed	Fixed::operator+( const Fixed &other ) const
