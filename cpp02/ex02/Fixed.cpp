@@ -152,14 +152,14 @@ Fixed	&Fixed::operator--( void )
 	return (this->N--, *this);
 }
 
-Fixed	Fixed::operator++( int n )
+Fixed	Fixed::operator++( int )
 {
 	Fixed	tmp = *this;
 	this->N++;
 	return (tmp);
 }
 
-Fixed	Fixed::operator--( int n )
+Fixed	Fixed::operator--( int )
 {
 	Fixed	tmp = *this;
 	this->N--;

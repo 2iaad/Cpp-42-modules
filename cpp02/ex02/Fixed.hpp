@@ -6,7 +6,7 @@
 class Fixed
 {
 private:
-	int				N;
+	int				 N;
 	static const int Fractional_b = 8;
 public:
 	Fixed();
@@ -29,8 +29,8 @@ public:
 	Fixed	operator/( const Fixed &other ) const;
 	Fixed	&operator++( void );
 	Fixed	&operator--( void );
-	Fixed	operator++( int n );
-	Fixed	operator--( int n );
+	Fixed	operator++( int );
+	Fixed	operator--( int );
 
 	bool	operator>( const Fixed &other ) const;
 	bool	operator<( const Fixed &other ) const;
