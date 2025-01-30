@@ -6,7 +6,7 @@
 class Fixed
 {
 private:
-	int				N;
+	int				 N;
 	static const int Fractional_b = 8;
 public:
 	Fixed();
