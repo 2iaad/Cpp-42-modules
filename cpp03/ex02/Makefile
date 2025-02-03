@@ -1,6 +1,6 @@
 NAME = ClapTrap
 
-FILES = main.cpp ClapTrap.cpp ScavTrap.cpp \
+FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp \
 
 SRCS = $(FILES:.cpp=.o)
 

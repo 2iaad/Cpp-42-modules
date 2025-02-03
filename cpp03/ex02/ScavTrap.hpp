@@ -21,4 +21,4 @@ public:
 	void beRepaired(unsigned int amount);
 
 	void guardGate();
-};
+}
