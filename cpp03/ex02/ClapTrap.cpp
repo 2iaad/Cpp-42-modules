@@ -1,16 +1,16 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap () : Name("Name"),
-						Hit_points(10),
-						Energy_points(10),
-						Attack_damage(0) {
+						Hit_points(100),
+						Energy_points(100),
+						Attack_damage(30) {
 	std::cout << "ClapTrap Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap (std::string Name) : Name(Name),
-										Hit_points(10),
-										Energy_points(10),
-										Attack_damage(0) {
+										Hit_points(100),
+										Energy_points(100),
+										Attack_damage(30) {
 	std::cout << "ClapTrap " << this-> Name << " Parameterized constructor called" << std::endl;
 }
 

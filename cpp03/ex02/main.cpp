@@ -1,4 +1,6 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int     main()
 {
@@ -6,6 +8,10 @@ int     main()
 	ClapTrap chuck("Chuck Norris");
 	ClapTrap foreign;
 	foreign = chuck;
+
+	FragTrap allo("zbni");
+
+	ScavTrap ndsljfk;
 
 	ziad.attack("Chuck Norris");
 	chuck.takeDamage(0);
