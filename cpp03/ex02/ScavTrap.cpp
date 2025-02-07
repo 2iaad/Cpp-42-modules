@@ -1,20 +1,25 @@
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap () : ClapTrap() {
+	this->Hit_points = 100;
+	this->Energy_points = 50;
+	this->Attack_damage = 20;
 	std::cout << "ScavTrap Default constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap (std::string Name) : ClapTrap(Name) {
+	this->Hit_points = 100;
+	this->Energy_points = 50;
+	this->Attack_damage = 20;
 	std::cout << "ScavTrap " << this->Name << " Parameterized constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other)
-											// Name(other.Name),
-											// Hit_points(other.Hit_points),
-											// Energy_points(other.Energy_points),
-											// Attack_damage(other.Attack_damage)
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other.name)
 {
-	*this = other;
+	this->Name = other.Name;
+	this->Hit_points = other.Hit_points;
+	this->Energy_points = other.Energy_points;
+	this->Attack_damage = other.Attack_damage;
 	std::cout << "ScavTrap " << this-> Name << " Copy constructor called" << std::endl;
 }
 
@@ -22,10 +27,10 @@ ScavTrap	&ScavTrap::operator=(const ScavTrap &other)
 {
 	if (this != &other)
 	{
-		Name = other.Name;
-		Hit_points = other.Hit_points;
-		Energy_points = other.Energy_points;
-		Attack_damage = other.Attack_damage;
+		this->Name = other.Name;
+		this->Hit_points = other.Hit_points;
+		this->Energy_points = other.Energy_points;
+		this->Attack_damage = other.Attack_damage;
 	}
 	std::cout << "ScavTrap " << this-> Name << " Copy assignment operator called" << std::endl;
 	return *this;
