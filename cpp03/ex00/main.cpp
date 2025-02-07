@@ -9,7 +9,8 @@ int     main()
 
 	ziad.attack("Chuck Norris");
 	chuck.takeDamage(0);
-	chuck.takeDamage(132);
+	chuck.takeDamage(2);
+	chuck.beRepaired(2);
 	chuck.attack("Me");
 	chuck.beRepaired(2);
 	chuck.takeDamage(10);

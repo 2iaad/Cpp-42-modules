@@ -4,14 +4,14 @@ ClapTrap::ClapTrap () : Name("Name"),
 						Hit_points(10),
 						Energy_points(10),
 						Attack_damage(0) {
-	std::cout << " Default constructor called" << std::endl;
+	std::cout << "ClapTrap Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap (std::string Name) : Name(Name),
 										Hit_points(10),
 										Energy_points(10),
 										Attack_damage(0) {
-	std::cout << this-> Name << " Parameterized constructor called" << std::endl;
+	std::cout << "ClapTrap " << this-> Name << " Parameterized constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &other) : Name(other.Name),
@@ -19,7 +19,7 @@ ClapTrap::ClapTrap(const ClapTrap &other) : Name(other.Name),
 											Energy_points(other.Energy_points),
 											Attack_damage(other.Attack_damage)
 {
-	std::cout << this-> Name << " Copy constructor called" << std::endl;
+	std::cout << "ClapTrap " << this-> Name << " Copy constructor called" << std::endl;
 }
 
 ClapTrap	&ClapTrap::operator=(const ClapTrap &other)
@@ -31,13 +31,13 @@ ClapTrap	&ClapTrap::operator=(const ClapTrap &other)
 		Energy_points = other.Energy_points;
 		Attack_damage = other.Attack_damage;
 	}
-	std::cout << this-> Name << " Copy assignment operator called" << std::endl;
+	std::cout << "ClapTrap " << this-> Name << " Copy assignment operator called" << std::endl;
 	return *this;
 }
 
 ClapTrap::~ClapTrap()
 {
-	std::cout << this-> Name << " Destructor called" << std::endl;
+	std::cout << "ClapTrap " << this-> Name << " Destructor called" << std::endl;
 }
 
 // 			######################################################
@@ -46,7 +46,7 @@ void	ClapTrap::attack(const std::string& target)
 {
 	if (Hit_points <= 0 || Energy_points <= 0)
 	{
-		std::cout << this->Name << " Can't attack!" << std::endl;
+		std::cout << "ClapTrap " << this->Name << " Can't attack!" << std::endl;
 		return ;
 	}
 	this->Energy_points--;
@@ -76,7 +76,6 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	}
 	this->Energy_points--;
 	Hit_points += amount;
-	std::cout << "ClapTrap " << this->Name << " repairs itself with " << amount << std::endl;
-
-
+	std::cout << "ClapTrap " << this->Name << " repairs itself with " << amount << " points. My HitPoints: " << \
+	this->Hit_points << ", And my EnergyPoints: " << this->Energy_points << std::endl;
 }

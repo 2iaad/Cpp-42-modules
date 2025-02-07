@@ -1,16 +1,16 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap () : Name("Name"),
-						Hit_points(100),
-						Energy_points(50),
-						Attack_damage(20) {
+						Hit_points(10),
+						Energy_points(10),
+						Attack_damage(0) {
 	std::cout << "ClapTrap Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap (std::string Name) : Name(Name),
-										Hit_points(100),
-										Energy_points(50),
-										Attack_damage(20) {
+										Hit_points(10),
+										Energy_points(10),
+										Attack_damage(0) {
 	std::cout << "ClapTrap " << this-> Name << " Parameterized constructor called" << std::endl;
 }
 
@@ -76,7 +76,6 @@ void	ClapTrap::beRepaired(unsigned int amount)
 	}
 	this->Energy_points--;
 	Hit_points += amount;
-	std::cout << "ClapTrap " << this->Name << " repairs itself with " << amount << std::endl;
-
-
+	std::cout << "ClapTrap " << this->Name << " repairs itself with " << amount << " points. My HitPoints: " << \
+	this->Hit_points << ", And my EnergyPoints: " << this->Energy_points << std::endl;
 }
