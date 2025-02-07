@@ -2,7 +2,7 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
 // private:
 	// std::string	Name;
@@ -15,10 +15,6 @@ public:
 	FragTrap(const FragTrap &other);
 	FragTrap	&operator=(const FragTrap &other);
 	~FragTrap();
-
-	void attack(const std::string& target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
 
 	void highFivesGuys(void);
 };
