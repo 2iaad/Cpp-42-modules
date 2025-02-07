@@ -1,4 +1,4 @@
-NAME = ClapTrap
+NAME = FragTrap
 
 FILES = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp \
 

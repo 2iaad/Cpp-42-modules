@@ -1,18 +1,20 @@
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int     main()
 {
-	ClapTrap ziad("ziad");
-	ClapTrap chuck("Chuck Norris");
-	ClapTrap foreign;
-	foreign = chuck;
+	ClapTrap ziad("Ziad");
+	ScavTrap speed("Speed");
 
-	ziad.attack("Chuck Norris");
-	chuck.takeDamage(0);
-	chuck.takeDamage(132);
-	chuck.attack("Me");
-	chuck.beRepaired(2);
-	chuck.takeDamage(10);
-	foreign.attack("ziad");
+	std::cout << std::endl;
+
+	ziad.attack("Speed"); // working with ClapTrap's attack here!
+	speed.guardGate();
+	speed.attack("Ziad"); // working with ScavTrap's attack here!
+	ziad.takeDamage(20);
+	ziad.takeDamage(20);
+
+	std::cout << std::endl;
+
 	return 0;
 }

@@ -4,21 +4,24 @@
 
 int     main()
 {
-	ClapTrap ziad("ziad");
-	ClapTrap chuck("Chuck Norris");
-	ClapTrap foreign;
-	foreign = chuck;
+	ClapTrap ziad("Ziad");
+	ScavTrap speed("Speed");
+	FragTrap slow("Slow");
 
-	FragTrap allo("zbni");
+	std::cout << std::endl;
 
-	ScavTrap ndsljfk;
+	ziad.attack("Speed"); // working with ClapTrap's attack here!
+	speed.guardGate();
+	speed.attack("Ziad"); // working with ScavTrap's attack here!
+	ziad.takeDamage(20);
 
-	ziad.attack("Chuck Norris");
-	chuck.takeDamage(0);
-	chuck.takeDamage(132);
-	chuck.attack("Me");
-	chuck.beRepaired(2);
-	chuck.takeDamage(10);
-	foreign.attack("ziad");
+	slow.attack("Ziad");
+	ziad.takeDamage(30);
+	ziad.beRepaired(100);
+	slow.highFivesGuys();
+
+
+	std::cout << std::endl;
+
 	return 0;
 }
