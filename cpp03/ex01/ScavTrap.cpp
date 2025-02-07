@@ -14,7 +14,7 @@ ScavTrap::ScavTrap (std::string Name) : ClapTrap(Name) {
 	std::cout << "ScavTrap " << this->Name << " Parameterized constructor called" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other.name)
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(other.Name)
 {
 	this->Name = other.Name;
 	this->Hit_points = other.Hit_points;
