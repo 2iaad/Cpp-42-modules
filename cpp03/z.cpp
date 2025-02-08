@@ -47,6 +47,10 @@ class X : public B, public C, public D
 {
 public:
 	X() { cout << "Constructing X" << endl; }
+/**
+	 * @brief using will allow me to use D's Derived_fun() automaticly when; _xoxo.Derived_fun()
+*/
+	using D::Derived_fun;
 };
 
 int main()
@@ -74,6 +78,9 @@ int main()
 			_xoxo.Derived_fun();
 */
 	_xoxo.B::Derived_fun();
+	_xoxo.Derived_fun(); // calling D's method
+
+	cout << "********************" << endl;
 
 /**
 	 * @brief this will cause Compile-time error (‘void A::Base_fun()’ is protected within this context)
