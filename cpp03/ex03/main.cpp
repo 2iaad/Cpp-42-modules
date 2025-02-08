@@ -12,25 +12,24 @@ int main(void)
 
 	std::cout << "\n**************\n**************\n" << std::endl;
 
-
-
 	claptrap.attack("Enemy1");
-	claptrap.takeDamage(6);
-	claptrap.beRepaired(5);
-    std::cout << "**************" << std::endl;
-	claptrap.attack("Enemy2");
 	claptrap.takeDamage(15);
 	claptrap.beRepaired(9);
 	std::cout << "**************" << std::endl;
-	scavtrap.attack("Enemy3");
+	scavtrap.attack("Enemy2");
 	scavtrap.takeDamage(14);
 	scavtrap.guardGate();
 	std::cout << "**************" << std::endl;
-	fragtrap.attack("Enemy4");
+	fragtrap.attack("Enemy3");
 	fragtrap.takeDamage(11);
 	fragtrap.highFivesGuys();
 	std::cout << "**************" << std::endl;
 	diamondtrap.whoAmI();
+	diamondtrap.guardGate();
+	diamondtrap.attack("Enemy4");
+	diamondtrap.highFivesGuys();
+	diamondtrap.beRepaired(10);
+
 
 	std::cout << "\n**************\n**************\n" << std::endl;
 

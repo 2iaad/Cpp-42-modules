@@ -1,6 +1,7 @@
 #include "DiamondTrap.hpp"
 
 DiamondTrap::DiamondTrap () : ClapTrap() {
+	this->name = "diamond";
 	this->Hit_points = 100;
 	this->Energy_points = 100;
 	this->Attack_damage = 30;
