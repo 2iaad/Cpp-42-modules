@@ -13,7 +13,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 		@$(CC) $(CPPFLAGS) $^ -o $@
 
-%.o: %.cpp ClapTrap.hpp
+%.o: %.cpp ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 		@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
