@@ -1,47 +1,46 @@
-#include <cmath>
-#include <iostream>
-
+#include<iostream>
 using namespace std;
-
-class A
-{
-	int x;
+class A {
+private:
+    int m_x = 42;
 public:
-	A() {	cout << "CO called !" << endl;	}; // DEFAULT CON
-
-	A(int value) :  x(value) { cout << "PARA CO called !" << endl; }; // PARA CON
-
-	~A() {}; // DES
-
-	// A operator=(const A &OTHER) // COPY ASSI
-	// {
-	// 	cout << "COPY ASSI OPERA called !" << endl;
-	// 	x = OTHER.x;
-	// 	return *this;
-	// }
+    A()                { cout << "A::A() "; }
+    A(int x) : m_x(x)  { cout << "A::A(" << x << ") "; }
+    int getX() const   { return m_x; }
 };
 
-class B : public A
-{
+class B : public A {
 public:
-	// int x;
-
-	B() {	cout << "CO called !" << endl;	}; // DEFAULT CON
-
-	B(int value) :  A(value) { cout << "PARA CO called !" << endl; }; // PARA CON
-
-	~B() {}; // DES
-
-	// B operator=(const B &OTHER) // COPY ASSI
-	// {
-	// 	cout << "COPY ASSI OPERA called !" << endl;
-	// 	x = OTHER.x;
-	// 	return *this;
-	// }
+    B(int x):A(x)   { cout << "B::B(" << x << ") "; }
 };
 
+class C : public A {
+public:
+    C(int x):A(x) { cout << "C::C(" << x << ") "; }
+};
 
-int main()
-{
-	A _1;
+class D : public C, public B  {
+public:
+    D(int x, int y): C(x), B(y)   {
+        cout << "D::D(" << x << ", " << y << ") "; }
+};
+
+int main()  {
+    cout << "Create b(2): " << endl;
+    B b(2); cout << endl << endl;
+
+    cout << "Create c(3): " << endl;
+    C c(3); cout << endl << endl;
+
+    cout << "Create d(2,3): " << endl;
+    D d(2, 3); cout << endl << endl;
+
+    // error: request for member 'getX' is ambiguous
+    // cout << "d.getX() = " << d.getX() << endl;
+
+    // error: 'A' is an ambiguous base of 'D'
+    // cout << "d.A::getX() = " << d.A::getX() << endl;
+
+    cout << "d.B::getX() = " << d.B::getX() << endl;
+    cout << "d.C::getX() = " << d.C::getX() << endl;
 }
