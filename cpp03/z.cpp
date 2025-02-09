@@ -1,5 +1,16 @@
 #include <iostream>
 
+/**
+ * @brief this is how the hierarchy going to look like:
+ * 					A
+ *				____|____
+ *				|	|	|
+ *				B	C	D
+ *				|	|	|
+ *				 ---|---
+ *					X
+ */				
+
 using namespace std;
 
 class A {
@@ -7,7 +18,6 @@ public:
 	int a = 42;
 	A() { cout << "Constructing A" << endl; }
 
-// protected:
 	void Base_fun() { cout << "I am in class A" << endl; }
 };
 
@@ -16,7 +26,6 @@ public:
 	char b = 'b';
 	B() { cout << "Constructing B" << endl; }
 
-// protected:
 	void Derived_fun() { cout << "I am in class B" << endl; }
 };
 
@@ -25,7 +34,6 @@ public:
 	char c = 'c';
 	C() { cout << "Constructing C" << endl; }
 
-// protected:
 	void Derived_fun() { cout << "I am in class C" << endl; }
 };
 
@@ -34,7 +42,6 @@ public:
 	char d = 'd';
 	D() { cout << "Constructing D" << endl; }
 
-// protected:
 	void Derived_fun() { cout << "I am in class D" << endl; }
 };
 
