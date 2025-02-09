@@ -14,7 +14,7 @@ $(NAME): $(SRCS)
 		@$(CC) $(CPPFLAGS) $^ -o $@
 
 %.o: %.cpp ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
-		@$(CC) $(CFLAGS) -c $< -o $@
+		@$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
 		rm -rf $(SRCS)
