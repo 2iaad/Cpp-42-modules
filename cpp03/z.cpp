@@ -13,6 +13,7 @@
 
 using namespace std;
 
+
 class A {
 public:
 	int a = 42;
