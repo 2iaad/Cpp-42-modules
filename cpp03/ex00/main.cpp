@@ -4,8 +4,6 @@ int     main()
 {
 	ClapTrap A("Ziad");
 	ClapTrap B("Speed");
-	ClapTrap X;
-	X = B;
 
 	std::cout << std::endl;
 
