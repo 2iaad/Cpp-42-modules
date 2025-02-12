@@ -2,17 +2,17 @@
 
 DiamondTrap::DiamondTrap () : ClapTrap() {
 	this->name = "diamond";
-	this->Hit_points = 100;
-	this->Energy_points = 100;
-	this->Attack_damage = 30;
+	this->Hit_points = FragTrap::Hit_points;
+	this->Energy_points = ScavTrap::Energy_points;
+	this->Attack_damage = FragTrap::Attack_damage;
 	std::cout << "DiamondTrap Default constructor called" << std::endl;
 }
 
 DiamondTrap::DiamondTrap (std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name) {
 	this->name = name;
-	this->Hit_points = 100;
-	this->Energy_points = 100;
-	this->Attack_damage = 30;
+	this->Hit_points = FragTrap::Hit_points;
+	this->Energy_points = ScavTrap::Energy_points;
+	this->Attack_damage = FragTrap::Attack_damage;
 	std::cout << "DiamondTrap " << this->name << " Parameterized constructor called" << std::endl;
 }
 

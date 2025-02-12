@@ -9,6 +9,7 @@ int     main()
 	std::cout << std::endl;
 
 	ziad.attack("Speed"); // working with ClapTrap's attack here!
+	speed.takeDamage(5);
 	speed.guardGate();
 	speed.attack("Ziad"); // working with ScavTrap's attack here!
 	ziad.takeDamage(20);
