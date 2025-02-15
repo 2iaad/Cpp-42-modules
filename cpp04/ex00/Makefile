@@ -1,6 +1,6 @@
-NAME = ClapTrap
+NAME = ex00
 
-FILES = main.cpp ClapTrap.cpp \
+FILES = main.cpp Animal.cpp Cat.cpp Dog.cpp \
 
 SRCS = $(FILES:.cpp=.o)
 
@@ -13,7 +13,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 		@$(CC) $(CPPFLAGS) $^ -o $@
 
-%.o: %.cpp ClapTrap.hpp
+%.o: %.cpp Animal.hpp Cat.hpp Dog.hpp
 		@$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
