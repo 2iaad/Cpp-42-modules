@@ -1,15 +1,17 @@
 #include "Cat.hpp"
 
-Cat::Cat() {
-	this->type = "Default_name";
+Cat::Cat() : Animal() {
+	this->type = "Cat";
 	std::cout << "Cat Default Constructor called" << std::endl;
 }
 
-Cat::Cat(std::string _type) : type(_type) {
+Cat::Cat(std::string _type) : Animal(_type) {
+	this->type = _type;
 	std::cout << "Cat Parametrized Constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat &other) : type(other.type) {
+Cat::Cat(const Cat &other) : Animal(other.type) {
+	this->type = other.type;
 	std::cout << "Cat Copy Constructor called" << std::endl;
 }
 

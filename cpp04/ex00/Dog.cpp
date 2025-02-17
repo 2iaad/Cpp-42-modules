@@ -1,15 +1,17 @@
 #include "Dog.hpp"
 
-Dog::Dog() {
-	this->type = "Default_name";
+Dog::Dog() : Animal() {
+	this->type = "Dog";
 	std::cout << "Dog Default Constructor called" << std::endl;
 }
 
-Dog::Dog(std::string _type) : type(_type) {
+Dog::Dog(std::string _type) : Animal(_type) {
+	this->type = _type;
 	std::cout << "Dog Parametrized Constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog &other) : type(other.type) {
+Dog::Dog(const Dog &other) : Animal(other.type)  {
+	this->type = other.type;
 	std::cout << "Dog Copy Constructor called" << std::endl;
 }
 
