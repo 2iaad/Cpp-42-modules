@@ -6,7 +6,6 @@
 class Animal {
 protected:
 	std::string type;
-	Brain *B_ptr;
 public:
 	Animal();
 	Animal(std::string _type);
