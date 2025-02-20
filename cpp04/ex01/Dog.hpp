@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 #include <iostream>
 
 class Dog : public Animal {
@@ -13,6 +14,5 @@ public:
 	Dog	&operator=(const Dog &other);
 	virtual	~Dog();
 
-	const	std::string	 	&getType() const;
-	virtual	void			makeSound() const;
+	void	makeSound() const;
 };

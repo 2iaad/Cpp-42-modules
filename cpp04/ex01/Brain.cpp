@@ -5,8 +5,9 @@ Brain::Brain() {
 }
 
 Brain::Brain(const Brain &other)  {
-	*this = other;
 	std::cout << "Brain Copy Constructor called" << std::endl;
+	for (int i = 0; i < 100; i++)
+        this->ideas[i] = other.ideas[i];
 }
 
 Brain	&Brain::operator=(const Brain &other) {
@@ -27,8 +28,8 @@ Brain::~Brain() {
 
 const std::string	&Brain::getIdea(size_t index)
 {
-	if (index >= 100)
-		return std::cout << "Can't have that!" << std::endl;
+	// if (index >= 100)
+	// 	return std::cout << "Can't have that!" << std::endl;
 	return ideas[index];
 }
 
