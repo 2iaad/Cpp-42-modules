@@ -4,8 +4,6 @@
 #include <iostream>
 
 class Dog : public Animal {
-private:
-	Brain *B_ptr;
 public:
 	Dog();
 	Dog(std::string _type);
