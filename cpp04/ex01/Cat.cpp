@@ -2,18 +2,18 @@
 
 Cat::Cat() : Animal() {
 	this->type = "Cat";
-	// this->B_ptr = new Brain();
+	this->B_ptr = new Brain();
 	std::cout << "Cat Default Constructor called" << std::endl;
 }
 
 Cat::Cat(std::string _type) : Animal(_type) {
 	this->type = _type;
-	// this->B_ptr = new Brain();
+	this->B_ptr = new Brain();
 	std::cout << "Cat Parametrized Constructor called" << std::endl;
 }
 
 Cat::Cat(const Cat &other) : Animal(other) {
-    // this->B_ptr = new Brain(*other.B_ptr);
+    this->B_ptr = new Brain(*other.B_ptr);
 	std::cout << "Cat Copy Constructor called" << std::endl;
 }
 
@@ -21,7 +21,7 @@ Cat	&Cat::operator=(const Cat &other) {
     if (this != &other) {
         Animal::operator=(other);
         delete B_ptr;
-        // B_ptr = new Brain(*other.B_ptr);
+        B_ptr = new Brain(*other.B_ptr);
     }
 	std::cout << "Cat Copy Assignment Operator called" << std::endl;
     return *this;
@@ -29,7 +29,7 @@ Cat	&Cat::operator=(const Cat &other) {
 
 Cat::~Cat() {
 	std::cout << "Cat Destructor called" << std::endl;
-	// delete B_ptr;
+	delete B_ptr;
 }
 
 // 			######################################################

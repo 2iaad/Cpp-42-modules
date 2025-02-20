@@ -8,12 +8,12 @@ Dog::Dog() : Animal() {
 
 Dog::Dog(std::string _type) : Animal(_type) {
 	this->type = _type;
-	// this->B_ptr = new Brain();
+	this->B_ptr = new Brain();
 	std::cout << "Dog Parametrized Constructor called" << std::endl;
 }
 
 Dog::Dog(const Dog &other) : Animal(other) {
-    // this->B_ptr = new Brain(*other.B_ptr);
+    this->B_ptr = new Brain(*other.B_ptr);
 	std::cout << "Dog Copy Constructor called" << std::endl;
 }
 
@@ -21,7 +21,7 @@ Dog	&Dog::operator=(const Dog &other) {
     if (this != &other) {
         Animal::operator=(other);
         delete B_ptr;
-        // B_ptr = new Brain(*other.B_ptr);
+        B_ptr = new Brain(*other.B_ptr);
     }
 	std::cout << "Dog Copy Assignment Operator called" << std::endl;
     return *this;
@@ -29,7 +29,7 @@ Dog	&Dog::operator=(const Dog &other) {
 
 Dog::~Dog() {
 	std::cout << "Dog Destructor called" << std::endl;
-	// delete B_ptr;
+	delete B_ptr;
 }
 
 // 			######################################################

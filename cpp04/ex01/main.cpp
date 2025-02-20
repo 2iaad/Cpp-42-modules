@@ -7,16 +7,19 @@
  * 
  */
 
+void f(){system("leaks ex01");}
+
 int main()
 {
+	atexit(f);
     Dog	*dogBrain = new Dog();
 
 	std::cout << std::endl;
 
 	dogBrain->makeSound();
 
-
-	dogBrain->setIdea("eat");
+	std::string allo = "eat";
+	dogBrain->setIdea(allo);
 	std::cout << dogBrain->getIdea(0) << std::endl;
 
 	std::cout << std::endl;
