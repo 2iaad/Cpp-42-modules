@@ -1,6 +1,6 @@
 NAME = ex01
 
-FILES = main.cpp Animal.cpp Cat.cpp Dog.cpp \
+FILES = main.cpp Animal.cpp Cat.cpp Dog.cpp Brain.cpp\
 
 SRCS = $(FILES:.cpp=.o)
 
@@ -13,7 +13,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 		@$(CC) $(CPPFLAGS) $^ -o $@
 
-%.o: %.cpp Animal.hpp Cat.hpp Dog.hpp
+%.o: %.cpp Animal.hpp Cat.hpp Dog.hpp Brain.hpp
 		@$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:

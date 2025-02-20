@@ -26,14 +26,14 @@ Brain::~Brain() {
 
 // 			######################################################
 
-const std::string	&Brain::getIdea(size_t index)
+const std::string	&Brain::getIdea(size_t index) const
 {
 	// if (index >= 100)
 	// 	return std::cout << "Can't have that!" << std::endl;
 	return ideas[index];
 }
 
-void	Brain::setIdea(std::string &idea) const
+void	Brain::setIdea(std::string &idea)
 {
 	for (int i = 0; i < 100; i++)
 		this->ideas[i] = idea;

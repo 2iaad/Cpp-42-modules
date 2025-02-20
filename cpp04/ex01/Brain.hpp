@@ -3,15 +3,15 @@
 #include <iostream>
 
 class Brain {
-public:
+private:
 	std::string ideas[100];
+public:
 
 	Brain();
-	Brain(std::string _type);
 	Brain(const Brain &other);
 	Brain	&operator=(const Brain &other);
 	virtual	~Brain();
 
-	const std::string	&getIdea(size_t index);
-	void setIdea(std::string &idea) const;
+	const std::string	&getIdea(size_t index) const;
+	void setIdea(std::string &idea);
 };

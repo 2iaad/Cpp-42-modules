@@ -2,7 +2,6 @@
 
 #include "Animal.hpp"
 #include "Brain.hpp"
-#include <iostream>
 
 class Cat : public Animal {
 private:
@@ -13,6 +12,9 @@ public:
 	Cat(const Cat &other);
 	Cat	&operator=(const Cat &other);
 	virtual ~Cat();
+
+	const std::string	&getIdea(size_t index) const;
+	void setIdea(std::string &idea);
 
 	void	makeSound() const;
 };

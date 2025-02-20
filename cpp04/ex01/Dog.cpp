@@ -2,7 +2,7 @@
 
 Dog::Dog() : Animal() {
 	this->type = "Dog";
-	// this->B_ptr = new Brain();
+	this->B_ptr = new Brain();
 	std::cout << "Dog Default Constructor called" << std::endl;
 }
 
@@ -36,4 +36,14 @@ Dog::~Dog() {
 
 void	Dog::makeSound() const {
     std::cout << "Dog makeSound() called." << std::endl;
+}
+
+const std::string	&Dog::getIdea(size_t index) const
+{
+	return B_ptr->getIdea(index);
+}
+
+void Dog::setIdea(std::string &idea)
+{
+	B_ptr->setIdea(idea);
 }
