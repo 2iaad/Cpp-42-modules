@@ -1,65 +1,46 @@
 #include <iostream>
-#include <stdio.h>
 
 using namespace std;
 
-class tmp {
-	public:
-		string tmp_string = "hi";
-		tmp() { cout << "Constructing tmp" << endl;}
-		~tmp() { cout << "Destructing tmp" << endl;}
-
+class Base {
+public:
+	Base() { cout << "Constructing Base" << endl;}
+	virtual ~Base() { cout << "Destructing Base" << endl;}
 };
 
-class A {
+class tmp {
+	std::string attri = "Gold";
 public:
-	int *a;
+	tmp() { cout << "Constructing tmp" << endl;}
+	virtual ~tmp() { cout << "Destructing tmp" << endl;}
+
+	std::string	getAttri() const {
+			return this->attri;
+		}
+};
+
+class A : public Base {
+public:
 	tmp *_obj;
 
-	A() {
-			cout << "Constructing A" << endl;
+	A() {	cout << "Constructing A" << endl;
 			_obj = new tmp();
-			// tmp name;
-			// _obj = &name;;
-
-			a = (int *) malloc (sizeof(int));
-			*a = 1337;
 		}
 
-	A(const A &other) {
-						cout << "Copy Constructing A" << endl;
-						this->a = (int *) malloc (sizeof(int));
-						this->_obj = new tmp();
-						// tmp name;
-						// _obj = &name;
-
-						*(this->a) = *other.a; }
-
-	~A() {
+	~A() {	delete _obj;
 			cout << "Destructing A" << endl;
-			free(a);
-			delete _obj;
-			}
+		 }
 };
-
-/**
- * @brief Showing how the Deep copy is actually implemented using heap allocation. 
- * 
- * @return int 
- */
 
 int main()
 {
-	A _1;
-	A _2(_1);
+	Base *B_obj = new A();
 
-	printf("%d|%p\n", *_1.a , _1.a);
-	printf("%d|%p\n", *_2.a , _2.a);
+    std::cout << std::endl;
 
-	cout << "********************" << endl;
+	cout << ((tmp *)B_obj)->getAttri() << endl;
 
-	printf("%p\n", _1._obj);
-	printf("%p\n", _2._obj);
+    std::cout << std::endl;
 
-	cout << "********************" << endl;
+	delete B_obj;
 }
