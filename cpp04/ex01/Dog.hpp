@@ -13,7 +13,6 @@ public:
 	virtual	~Dog();
 
 	const std::string	getIdea(size_t index) const;
-	void setIdeas();
 
 	void	makeSound() const;
 };

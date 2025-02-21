@@ -36,8 +36,3 @@ const std::string	Dog::getIdea(size_t index) const
 {
 	return B_ptr->getIdea(index);
 }
-
-void Dog::setIdeas()
-{
-	B_ptr->setIdeas();
-}

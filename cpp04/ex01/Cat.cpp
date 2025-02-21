@@ -36,8 +36,3 @@ const std::string	Cat::getIdea(size_t index) const
 {
 	return B_ptr->getIdea(index);
 }
-
-void Cat::setIdeas()
-{
-	B_ptr->setIdeas();
-}
