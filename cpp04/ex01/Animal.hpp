@@ -1,6 +1,5 @@
 #pragma once
 
-#include "Brain.hpp"
 #include <iostream>
 
 class Animal {

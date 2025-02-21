@@ -2,13 +2,6 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
 
-/**
- * what is deep copy and shallow copy
- * 
- */
-
-void f(){system("leaks ex01");}
-
 int main() {
     Animal* _animal[2];
 	_animal[0] = new Dog();
@@ -16,8 +9,7 @@ int main() {
 
     std::cout << std::endl;
 
-	std::string idea("Grab the bone");
-	((Dog *)_animal[0])->setIdea(idea);
+	((Dog *)_animal[0])->setIdea("Grab the bone");
 	std::cout << ((Dog *)_animal[0])->getIdea(99) << std::endl;
 
     std::cout << std::endl;

@@ -43,7 +43,7 @@ const std::string	&Cat::getIdea(size_t index) const
 	return B_ptr->getIdea(index);
 }
 
-void Cat::setIdea(std::string &idea)
+void Cat::setIdea(std::string idea)
 {
 	B_ptr->setIdea(idea);
 }
