@@ -23,3 +23,6 @@ fclean: clean
 		rm -rf $(NAME)
 
 re: fclean all
+
+test:
+	c++ -fsanitize=address,leak,undefined z.cpp
