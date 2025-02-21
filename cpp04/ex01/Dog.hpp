@@ -8,7 +8,6 @@ private:
 	Brain *B_ptr;
 public:
 	Dog();
-	Dog(std::string _type);
 	Dog(const Dog &other);
 	Dog	&operator=(const Dog &other);
 	virtual	~Dog();

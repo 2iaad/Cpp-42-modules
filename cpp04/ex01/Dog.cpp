@@ -6,12 +6,6 @@ Dog::Dog() : Animal() {
 	this->B_ptr = new Brain();
 }
 
-Dog::Dog(std::string _type) : Animal(_type) {
-	std::cout << "Dog Parametrized Constructor called" << std::endl;
-	this->type = _type;
-	this->B_ptr = new Brain();
-}
-
 Dog::Dog(const Dog &other) : Animal(other) {
 	std::cout << "Dog Copy Constructor called" << std::endl;
     this->B_ptr = new Brain(*other.B_ptr);
@@ -28,8 +22,8 @@ Dog	&Dog::operator=(const Dog &other) {
 }
 
 Dog::~Dog() {
-	std::cout << "Dog Destructor called" << std::endl;
 	delete B_ptr;
+	std::cout << "Dog Destructor called" << std::endl;
 }
 
 // 			######################################################
