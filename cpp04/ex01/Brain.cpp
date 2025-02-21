@@ -2,6 +2,7 @@
 
 Brain::Brain() {
 	std::cout << "Brain Default Constructor called" << std::endl;
+	this->setIdeas();
 }
 
 Brain::Brain(const Brain &other)  {
@@ -35,8 +36,15 @@ const std::string	&Brain::getIdea(size_t index) const
 	return ideas[index];
 }
 
-void	Brain::setIdea(std::string &idea)
+void	Brain::setIdeas()
 {
+	unsigned short int j;
+	std::string arr[3] = {eat, sleep, play};
+
 	for (int i = 0; i < 100; i++)
-		this->ideas[i] = idea;
+	{
+		j = rand() % 3;
+		this->ideas[i] = arr[j];
+	}
+
 }

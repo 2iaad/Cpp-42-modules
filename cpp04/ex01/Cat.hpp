@@ -13,7 +13,7 @@ public:
 	virtual ~Cat();
 
 	const std::string	&getIdea(size_t index) const;
-	void setIdea(std::string idea);
+	void setIdeas();
 
 	void	makeSound() const;
 };

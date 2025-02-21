@@ -1,6 +1,11 @@
 #pragma once
 
 #include <iostream>
+#include<cstdlib>
+
+#define eat "I need to eat"
+#define sleep "I need to sleep"
+#define play "I need to play"
 
 class Brain {
 private:
@@ -13,5 +18,5 @@ public:
 	virtual	~Brain();
 
 	const std::string	&getIdea(size_t index) const;
-	void setIdea(std::string &idea);
+	void setIdeas();
 };
