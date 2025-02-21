@@ -32,7 +32,7 @@ void	Dog::makeSound() const {
     std::cout << "Dog makeSound() called." << std::endl;
 }
 
-const std::string	&Dog::getIdea(size_t index) const
+const std::string	Dog::getIdea(size_t index) const
 {
 	return B_ptr->getIdea(index);
 }

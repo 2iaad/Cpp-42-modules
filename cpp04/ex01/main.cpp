@@ -30,8 +30,13 @@ int main() {
 
     std::cout << std::endl;
 
-	std::cout << ((Dog *)_animal[0])->getIdea(99) << std::endl;
-	std::cout << ((Dog *)_animal[0])->getIdea(98) << std::endl;
+	std::cout << _animal[0]->getType() << std::endl;
+	std::cout << _animal[1]->getType() << std::endl;
+
+    std::cout << std::endl;
+
+	std::cout << ((Dog *)_animal[0])->getIdea(95) << std::endl;
+	std::cout << ((Cat *)_animal[1])->getIdea(95) << std::endl;
 
     std::cout << std::endl;
 

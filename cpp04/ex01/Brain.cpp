@@ -27,12 +27,10 @@ Brain::~Brain() {
 
 // 			######################################################
 
-const std::string	&Brain::getIdea(size_t index) const
+const std::string	Brain::getIdea(size_t index) const
 {
 	if (index >= 100)
-	{
-		std::cout << index << std::endl;
-	}
+		return "";
 	return ideas[index];
 }
 

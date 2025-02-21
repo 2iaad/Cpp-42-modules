@@ -32,7 +32,7 @@ void	Cat::makeSound() const {
     std::cout << "Cat makeSound() called." << std::endl;
 }
 
-const std::string	&Cat::getIdea(size_t index) const
+const std::string	Cat::getIdea(size_t index) const
 {
 	return B_ptr->getIdea(index);
 }

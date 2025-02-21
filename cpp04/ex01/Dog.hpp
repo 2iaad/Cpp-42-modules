@@ -12,7 +12,7 @@ public:
 	Dog	&operator=(const Dog &other);
 	virtual	~Dog();
 
-	const std::string	&getIdea(size_t index) const;
+	const std::string	getIdea(size_t index) const;
 	void setIdeas();
 
 	void	makeSound() const;

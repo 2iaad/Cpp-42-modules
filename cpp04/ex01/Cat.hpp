@@ -12,7 +12,7 @@ public:
 	Cat	&operator=(const Cat &other);
 	virtual ~Cat();
 
-	const std::string	&getIdea(size_t index) const;
+	const std::string	getIdea(size_t index) const;
 	void setIdeas();
 
 	void	makeSound() const;
