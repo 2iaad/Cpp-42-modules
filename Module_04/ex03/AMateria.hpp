@@ -1,11 +1,15 @@
 #pragma once
 
+#include "ICharacter.hpp"
+#include <iostream>
+
 class AMateria
 {
 protected:
 	std::string	type;
 public:
-	AMateria(std::string const &type);
+	AMateria();
+	AMateria(std::string const &_type);
 	AMateria(AMateria const &other);
 	AMateria	&operator=(AMateria const &other);
 	~AMateria();
