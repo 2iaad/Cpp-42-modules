@@ -1,5 +1,5 @@
-#include "Amateria.hpp"
+#include "AMateria.hpp"
 
 int main() {
-	Amateria x;
+	AMateria x;
 }

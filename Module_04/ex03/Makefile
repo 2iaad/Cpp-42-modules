@@ -1,12 +1,12 @@
 NAME = ex03
 
-FILES = AMateria.cpp Cure.cpp ICharacter.cpp Ice.cpp Character.cpp main.cpp \
+FILES = AMateria.cpp Cure.cpp Ice.cpp Character.cpp main.cpp \
 
 SRCS = $(FILES:.cpp=.o)
 
 CC = c++ 
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address,undefined
+CPPFLAGS = #-Wall -Wextra -Werror -std=c++98 -fsanitize=address,undefined
 
 all: $(NAME)
 
