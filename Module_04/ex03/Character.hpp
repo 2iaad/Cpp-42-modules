@@ -9,9 +9,9 @@ private:
 	std::string	name;
 	AMateria	*inventory[4];
 public:
-	Character( std::string );
-	Character( Character const & );
-	Character& operator=( Character const & );
+	Character(std::string _name);
+	Character(Character const &other);
+	Character& operator=(Character const &other);
 	~Character();
 
     std::string const&  getName() const;
