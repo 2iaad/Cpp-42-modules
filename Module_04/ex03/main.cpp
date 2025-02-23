@@ -1,5 +1,6 @@
 #include "AMateria.hpp"
+#include "Cure.hpp"
 
 int main() {
-	AMateria x;
+	Cure x;
 }
