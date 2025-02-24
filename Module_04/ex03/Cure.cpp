@@ -1,10 +1,10 @@
 #include "Cure.hpp"
 
-Cure::Cure() : AMateria("Cure") {
+Cure::Cure() : AMateria("cure") {
 	std::cout << "Cure Default Constructor called" << std::endl;
 }
 
-Cure::Cure(const Cure &other) : AMateria("Cure") {
+Cure::Cure(const Cure &other) : AMateria("cure") {
 	std::cout << "Cure Copy Constructor called" << std::endl;
 	*this = other;
 }
@@ -23,7 +23,8 @@ Cure::~Cure() {
 // 			######################################################
 
 AMateria*	Cure::clone() const {
-	return NULL;
+	AMateria _clone;
+	return _clone;
 }
 
 void	Cure::use(ICharacter& target) {

@@ -2,45 +2,34 @@
 
 using namespace std;
 
-class Base {
+class Interface {
 public:
-	Base() { cout << "Constructing Base" << endl;}
-	virtual ~Base() { cout << "Destructing Base" << endl;}
+	Interface() { std::cout << "Interface Constructor called !" << std::endl;}
+	~Interface() { std::cout << "Interface Destructor called !" << std::endl;}
+
+	virtual void	f() = 0;
 };
 
-class tmp {
-	std::string attri = "Gold";
+class Derived : public Interface {
+private:
+	void (*Derived::ptr)(void);
 public:
-	tmp() { cout << "Constructing tmp" << endl;}
-	virtual ~tmp() { cout << "Destructing tmp" << endl;}
-
-	std::string	getAttri() const {
-			return this->attri;
-		}
+	void	f() { std::cout << "Im f() in Derived" << std::endl; }
+	void	set_ptr() { this->ptr = f; }
+	void	get_ptr() { printf("%p", *ptr); }
 };
 
-class A : public Base {
+class Derived_2 : public Derived {
 public:
-	tmp *_obj;
-
-	A() {	cout << "Constructing A" << endl;
-			_obj = new tmp();
-		}
-
-	~A() {	delete _obj;
-			cout << "Destructing A" << endl;
-		 }
+	// void	f() { std::cout << "Im f() in Derived_2" << std::endl; }
 };
+
+#include <stdio.h>
 
 int main()
 {
-	Base *B_obj = new A();
+	Derived_2 obj_1;
 
-    std::cout << std::endl;
-
-	cout << ((tmp *)B_obj)->getAttri() << endl;
-
-    std::cout << std::endl;
-
-	delete B_obj;
+	obj_1.set_ptr();
+	obj_1.get_ptr();
 }

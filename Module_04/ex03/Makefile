@@ -25,4 +25,4 @@ fclean: clean
 re: fclean all
 
 test:
-	c++ -fsanitize=address,undefined z.cpp
+	c++ -fsanitize=address,undefined ../z.cpp

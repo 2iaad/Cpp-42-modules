@@ -27,5 +27,4 @@ AMateria*	Ice::clone() const {
 }
 
 void	Ice::use(ICharacter& target) {
-	
 }
