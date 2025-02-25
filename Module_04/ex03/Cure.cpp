@@ -23,8 +23,7 @@ Cure::~Cure() {
 // 			######################################################
 
 AMateria*	Cure::clone() const {
-	AMateria _clone;
-	return _clone;
+	return (AMateria *)this;
 }
 
 void	Cure::use(ICharacter& target) {

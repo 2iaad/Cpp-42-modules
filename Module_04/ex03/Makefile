@@ -1,6 +1,6 @@
 NAME = ex03
 
-FILES = AMateria.cpp Cure.cpp Ice.cpp Character.cpp main.cpp \
+FILES = AMateria.cpp MateriaSource.cpp Cure.cpp Ice.cpp Character.cpp main.cpp \
 
 SRCS = $(FILES:.cpp=.o)
 
@@ -25,4 +25,4 @@ fclean: clean
 re: fclean all
 
 test:
-	c++ -fsanitize=address,undefined ../z.cpp
+	c++ -fsanitize=address,undefined ../z.cpp -std=c++98

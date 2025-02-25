@@ -3,33 +3,42 @@
 using namespace std;
 
 class Interface {
+protected:
+	int variable = 1337;
 public:
+	#define dick "zbi"
 	Interface() { std::cout << "Interface Constructor called !" << std::endl;}
 	~Interface() { std::cout << "Interface Destructor called !" << std::endl;}
 
-	virtual void	f() = 0;
+	inline virtual int	f() = 0;
 };
 
 class Derived : public Interface {
 private:
-	void (*Derived::ptr)(void);
+	int variable;
 public:
-	void	f() { std::cout << "Im f() in Derived" << std::endl; }
-	void	set_ptr() { this->ptr = f; }
-	void	get_ptr() { printf("%p", *ptr); }
+	Derived() { std::cout << "Derived Constructor called !" << std::endl;}
+	~Derived() { std::cout << "Derived Destructor called !" << std::endl;}
+
+	inline int	f() {
+						std::cout << "Definition of f() in Derived" << std::endl;
+						std::cout << dick << std::endl;
+						return this->variable;
+					}
 };
 
-class Derived_2 : public Derived {
+class _c {
 public:
-	// void	f() { std::cout << "Im f() in Derived_2" << std::endl; }
-};
+	#define x "zbi"
+	_c() = default;
+	~_c() = default;
 
-#include <stdio.h>
+	
+};
 
 int main()
 {
-	Derived_2 obj_1;
+	_c obj;
 
-	obj_1.set_ptr();
-	obj_1.get_ptr();
+	std::cout << sizeof(obj) << std::endl;
 }
