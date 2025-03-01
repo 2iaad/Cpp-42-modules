@@ -2,8 +2,7 @@
 
 Character::Character(std::string _name) : name(_name) {
 
-	for (int i = 0; i < 4; i++)
-        this->inventory[i] = NULL;
+	this->inventory[4] = {NULL, NULL, NULL, NULL};
 	std::cout << "Character Default Constructor called" << std::endl;
 }
 
