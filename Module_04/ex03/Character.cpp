@@ -37,13 +37,33 @@ std::string const&  Character::getName() const {
 }
 
 void	Character::equip(AMateria* m) {
-
+    for (int i = 0; i < 4; i++)
+        if (!this->inventory[i])
+        {
+            this->inventory[i] = m;
+            std::cout << "Character " << this->name << " equipped with " << m->getType() << std::endl;
+            return;
+        }
+    std::cout << "Character " << this->name << " can't equip " << m->getType() << std::endl;
 }
 
-void	Character::unequip(int idx) {
-
+void	Character::unequip(int index) {
+	if (this->inventory[index])
+    {
+        delete this->inventory[index];
+        this->inventory[index] = NULL;
+        std::cout << "Character " << this->name << " unequipped" << std::endl;
+    }
+    else
+        std::cout << "Character " << this->name << " can't unequip" << std::endl;
 }
 
-void	Character::use(int idx, ICharacter& target) {
-
+void	Character::use(int index, ICharacter& target) {
+	if (this->inventory[index])
+    {
+        this->inventory[index]->use(target);
+        std::cout << "Character " << this->name << " using " << this->inventory[index]->getType() << std::endl;
+    }
+    else
+        std::cout << "Character " << this->name << " can't use" << std::endl;
 }

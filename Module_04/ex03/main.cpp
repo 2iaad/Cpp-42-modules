@@ -1,9 +1,9 @@
-#include "Character.hpp"
-#include "ICharacter.hpp"
-#include "IMateriaSource.hpp"
-#include "MateriaSource.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
+#include "Character.hpp"
+#include "ICharacter.hpp"
+#include "MateriaSource.hpp"
+#include "IMateriaSource.hpp"
 
 int main()
 {
@@ -12,6 +12,8 @@ int main()
 	src->learnMateria(new Cure());
 
 	ICharacter* me = new Character("me");
+
+	std::cout << std::endl;
 
 	AMateria* tmp;
 	tmp = src->createMateria("ice");
@@ -24,6 +26,8 @@ int main()
 
 	me->use(0, *bob);
 	me->use(1, *bob);
+
+	std::cout << std::endl;
 
 	delete bob;
 	delete me;
