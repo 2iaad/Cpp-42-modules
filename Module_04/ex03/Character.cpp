@@ -1,8 +1,8 @@
 #include "Character.hpp"
 
 Character::Character(std::string _name) : name(_name) {
-
-	this->inventory[4] = {NULL, NULL, NULL, NULL};
+	for (int i = 0; i < 4; i++)
+		inventory[i] = NULL;
 	std::cout << "Character Default Constructor called" << std::endl;
 }
 
