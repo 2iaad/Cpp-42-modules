@@ -1,9 +1,8 @@
 #include "Character.hpp"
 
 Character::Character(std::string _name) : name(_name) {
-
 	for (int i = 0; i < 4; i++)
-        this->inventory[i] = NULL;
+		inventory[i] = NULL;
 	std::cout << "Character Default Constructor called" << std::endl;
 }
 
@@ -37,39 +36,33 @@ std::string const&  Character::getName() const {
 }
 
 void	Character::equip(AMateria* m) {
-	if (index < 0 || index > 49)
-	{
-		std::cout << "Invalid floor index!" << std::endl;
-		return;
-	}
+    for (int i = 0; i < 4; i++)
+        if (!this->inventory[i])
+        {
+            this->inventory[i] = m;
+            std::cout << "Character " << this->name << " equipped with " << m->getType() << std::endl;
+            return;
+        }
+    std::cout << "Character " << this->name << " can't equip " << m->getType() << std::endl;
 }
 
 void	Character::unequip(int index) {
-	if (index < 0 || index > 3)
-	{
-		std::cout << "Invalid inventory index!" << std::endl;
-		return ;
-	}
-	if (!this->inventory[index])
-	{
-		std::cout << "Inventory slot already empty!" << std::endl;
-		return ;
-	}
+	if (this->inventory[index])
+    {
+        delete this->inventory[index];
+        this->inventory[index] = NULL;
+        std::cout << "Character " << this->name << " unequipped" << std::endl;
+    }
+    else
+        std::cout << "Character " << this->name << " can't unequip" << std::endl;
 }
 
 void	Character::use(int index, ICharacter& target) {
-	if (index < 0 || index > 3)
-	{
-		std::cout << "Invalid inventory index!" << std::endl;
-		return ;
-	}
-	if (!this->inventory[index])
-	{
-		std::cout << "Slot " << index << " is empty!" << std::endl;
-		return;
-	}
-	std::cout << name << ": ";
-	this->inventory[index]->use(target);
-	delete this->inventory[index];
-	this->inventory[index] = NULL;
+	if (this->inventory[index])
+    {
+        this->inventory[index]->use(target);
+        std::cout << "Character " << this->name << " using " << this->inventory[index]->getType() << std::endl;
+    }
+    else
+        std::cout << "Character " << this->name << " can't use" << std::endl;
 }
