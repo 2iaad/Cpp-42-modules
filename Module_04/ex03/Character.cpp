@@ -47,22 +47,26 @@ void	Character::equip(AMateria* m) {
 }
 
 void	Character::unequip(int index) {
-	if (this->inventory[index])
-    {
-        delete this->inventory[index];
-        this->inventory[index] = NULL;
-        std::cout << "Character " << this->name << " unequipped" << std::endl;
-    }
-    else
-        std::cout << "Character " << this->name << " can't unequip" << std::endl;
+	if ((index < 0 || index > 3) || !this->inventory[index])
+	{
+		std::cout << "Character " << this->name << " can't unequip the slot!" << std::endl;
+		return ;
+	}
+
+	delete this->inventory[index];
+	this->inventory[index] = NULL;
+	std::cout << "Character " << this->name << " unequipped the slot." << std::endl;
 }
 
 void	Character::use(int index, ICharacter& target) {
-	if (this->inventory[index])
-    {
-        this->inventory[index]->use(target);
-        std::cout << "Character " << this->name << " using " << this->inventory[index]->getType() << std::endl;
-    }
-    else
-        std::cout << "Character " << this->name << " can't use" << std::endl;
+	if ((index < 0 || index > 3) || !this->inventory[index])
+	{
+		std::cout << "Character " << this->name << " can't use slot!" << std::endl;
+		return ;
+	}
+
+	this->inventory[index]->use(target);
+	delete this->inventory[index]; // delete after using the slot.
+	this->inventory[index] = NULL;
+	std::cout << "Character " << this->name << " using " << this->inventory[index]->getType() << std::endl;
 }

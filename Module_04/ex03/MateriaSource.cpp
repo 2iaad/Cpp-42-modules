@@ -14,7 +14,18 @@ MateriaSource	&MateriaSource::operator=(MateriaSource const & other) {
     if (this != &other)
     {
         for (int i = 0; i < 4; i++)
-            materias[i] = other.materias[i];
+		{
+			if (!this->materias[i])
+			{
+				if (other.materias[i])
+					this->materias[i] = other.materias[i]->clone();
+			}
+			else
+			{
+				delete this->materias[i];
+				this->materias[i] = other.materias[i]->clone();
+			}
+		}
     }
     return *this;
 }
@@ -52,5 +63,6 @@ AMateria*   MateriaSource::createMateria(std::string const& type) {
     for (int i = 0; i < 4; i++)
         if (materias[i] && materias[i]->getType() == type)
             return materias[i]->clone(); 
+	std::cout << "Materia source can't create " << type << ". Not learned." << std::endl;
     return NULL;
 }
