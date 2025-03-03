@@ -36,12 +36,14 @@ std::string const&  Character::getName() const {
 }
 
 void	Character::equip(AMateria* m) {
+	if (!m)
+		return (void)(std::cout << "Can't equip Matria!" << std::endl);
     for (int i = 0; i < 4; i++)
         if (!this->inventory[i])
         {
             this->inventory[i] = m;
             std::cout << "Character " << this->name << " equipped with " << m->getType() << std::endl;
-            return;
+            return ;
         }
     std::cout << "Character " << this->name << " can't equip " << m->getType() << std::endl;
 }
@@ -65,8 +67,8 @@ void	Character::use(int index, ICharacter& target) {
 		return ;
 	}
 
+	std::cout << "Character " << this->name << " using " << this->inventory[index]->getType() << std::endl;
 	this->inventory[index]->use(target);
 	delete this->inventory[index]; // delete after using the slot.
 	this->inventory[index] = NULL;
-	std::cout << "Character " << this->name << " using " << this->inventory[index]->getType() << std::endl;
 }

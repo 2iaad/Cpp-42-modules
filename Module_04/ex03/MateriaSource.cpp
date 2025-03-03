@@ -49,6 +49,8 @@ AMateria*	MateriaSource::getMateria(std::string const &other)
 
 void	MateriaSource::learnMateria(AMateria* m)
 {
+	if (!m)
+		return (void)(std::cout << "Can't learn Matria!" << std::endl);
     for (int i = 0; i < 4; i++)
         if (!materias[i])
         {
