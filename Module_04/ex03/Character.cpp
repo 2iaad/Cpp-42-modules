@@ -13,12 +13,21 @@ Character::Character(const Character &other) : name(other.name) {
 
 Character	&Character::operator=(const Character &other) {
 	std::cout << "Character Copy Assignment Operator called" << std::endl;
-	if (this != &other)
-    {
-        this->name = other.name;
-        for (int i = 0; i < 4; i++)
-            this->inventory[i] = other.inventory[i];
-    }
+	
+	this->name = other.name;
+    if (this != &other)
+	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (this->inventory[i])
+			{
+				delete this->inventory[i];
+				this->inventory[i] = NULL;
+			}
+			if (other.inventory[i])
+				this->inventory[i] = other.inventory[i]->clone();
+		}
+	}
     return *this;
 }
 
@@ -26,7 +35,7 @@ Character::~Character() {
 	std::cout << "Character Destructor called" << std::endl;
 	    for (int i = 0; i < 4; i++)
 			if (this->inventory[i])
-				delete this->inventory[i];
+				delete this->inventory[i]; // no need to init slot to null since we do so in the constructor
 }
 
 // 			######################################################
