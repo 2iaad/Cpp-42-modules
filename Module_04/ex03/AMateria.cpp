@@ -8,9 +8,8 @@ AMateria::AMateria(std::string const &_type) : type(_type) {
 	std::cout << "AMateria Parameterized Constructor called" << std::endl;
 }
 
-AMateria::AMateria(const AMateria &other)  {
+AMateria::AMateria(const AMateria &other) : type(other.type) {
 	std::cout << "AMateria Copy Constructor called" << std::endl;
-	*this = other;
 }
 
 AMateria	&AMateria::operator=(const AMateria &other) {
