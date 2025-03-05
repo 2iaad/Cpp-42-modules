@@ -10,7 +10,7 @@ public:
 	Cat();
 	Cat(const Cat &other);
 	Cat	&operator=(const Cat &other);
-	virtual ~Cat();
+	~Cat();
 
 	const std::string	getIdea(size_t index) const;
 

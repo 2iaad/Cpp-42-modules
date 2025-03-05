@@ -5,16 +5,14 @@ Cat::Cat() : Animal() {
 	std::cout << "Cat Default Constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat &other) : Animal(other.type) {
+Cat::Cat(const Cat &other) : Animal() {
 	this->type = other.type;
 	std::cout << "Cat Copy Constructor called" << std::endl;
 }
 
 Cat	&Cat::operator=(const Cat &other) {
     if (this != &other)
-	{
 		type = other.type;
-    }
 	std::cout << "Cat Copy Assignment Operator called" << std::endl;
     return *this;
 }
@@ -30,5 +28,5 @@ const	std::string	 	&Cat::getType() const {
 }
 
 void	Cat::makeSound() const {
-    std::cout << "Cat makeSound() called." << std::endl;
+    std::cout << "Meow!" << std::endl;
 }

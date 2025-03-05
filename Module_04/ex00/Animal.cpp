@@ -11,9 +11,7 @@ Animal::Animal(const Animal &other) : type(other.type) {
 
 Animal	&Animal::operator=(const Animal &other) {
     if (this != &other)
-	{
 		type = other.type;
-    }
 	std::cout << "Animal Copy Assignment Operator called" << std::endl;
     return *this;
 }

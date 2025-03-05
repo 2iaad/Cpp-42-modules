@@ -28,6 +28,3 @@ const	std::string	 	&Animal::getType() const {
     return this->type;
 }
 
-void	Animal::makeSound() const {
-    std::cout << "Animal makeSound() called." << std::endl;
-}

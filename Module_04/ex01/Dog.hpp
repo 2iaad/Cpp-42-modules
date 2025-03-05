@@ -10,7 +10,7 @@ public:
 	Dog();
 	Dog(const Dog &other);
 	Dog	&operator=(const Dog &other);
-	virtual	~Dog();
+	~Dog();
 
 	const std::string	getIdea(size_t index) const;
 

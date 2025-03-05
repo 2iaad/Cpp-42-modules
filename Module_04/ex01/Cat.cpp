@@ -13,8 +13,8 @@ Cat::Cat(const Cat &other) : Animal(other) {
 
 Cat	&Cat::operator=(const Cat &other) {
 	std::cout << "Cat Copy Assignment Operator called" << std::endl;
-    if (this != &other) {
-        Animal::operator=(other);
+    if (this != &other)
+	{
         delete B_ptr;
         B_ptr = new Brain(*other.B_ptr);
     }
@@ -29,7 +29,7 @@ Cat::~Cat() {
 // 			######################################################
 
 void	Cat::makeSound() const {
-    std::cout << "Cat makeSound() called." << std::endl;
+    std::cout << "Meow!" << std::endl;
 }
 
 const std::string	Cat::getIdea(size_t index) const

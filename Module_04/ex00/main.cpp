@@ -5,15 +5,25 @@
 int main()
 {
 	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	const Animal* _cat = new Cat();
+	const Animal* _dog = new Dog();
 
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl;
+	std::cout << "******" << std::endl;
+
+	std::cout << _cat->getType() << " " << std::endl;
+	std::cout << _dog->getType() << " " << std::endl;
 	
-	i->makeSound(); //will output the cat sound!
-	j->makeSound();
+	std::cout << "******" << std::endl;
+
 	meta->makeSound();
+	_cat->makeSound();
+	_dog->makeSound();
+	
+	std::cout << "******" << std::endl;
+
+	delete meta;
+	delete _cat;
+	delete _dog;
 
 	return 0;
 }
