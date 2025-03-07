@@ -3,6 +3,8 @@
 Character::Character(std::string _name) : name(_name) {
 	for (int i = 0; i < 4; i++)
 		inventory[i] = NULL;
+	for (int i = 0; i < 4; i++)
+		unequipped[i] = NULL;
 	std::cout << "Character Default Constructor called" << std::endl;
 }
 
@@ -34,8 +36,18 @@ Character	&Character::operator=(const Character &other) {
 Character::~Character() {
 	std::cout << "Character Destructor called" << std::endl;
 	    for (int i = 0; i < 4; i++)
+		{
 			if (this->inventory[i])
-				delete this->inventory[i]; // no need to init slot to null since we do so in the constructor
+			{
+				delete this->inventory[i];
+				this->inventory[i] = NULL;
+			}
+			if (this->unequipped[i])
+			{
+				delete this->unequipped[i];
+				this->unequipped[i] = NULL;
+			}
+		}
 }
 
 // 			######################################################
@@ -44,9 +56,29 @@ std::string const&  Character::getName() const {
 	return this->name;
 }
 
+bool	Character::dupCheck(AMateria *m, AMateria *ptr[4]) const {
+	for (int i = 0; i < 4; i++)
+		if (m == ptr[i])
+			return true;
+	return false;
+}
+
+void	Character::freeUnequipped() {
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->unequipped[i])
+		{
+			delete this->unequipped[i];
+			this->unequipped[i] = NULL;
+		}
+	}
+}
+
 void	Character::equip(AMateria* m) {
-	if (!m)
+	if (!m || dupCheck(m, this->inventory))
 		return (void)(std::cout << "Can't equip Matria!" << std::endl);
+
+	freeUnequipped();
     for (int i = 0; i < 4; i++)
         if (!this->inventory[i])
         {
@@ -64,8 +96,11 @@ void	Character::unequip(int index) {
 		return ;
 	}
 
-	delete this->inventory[index];
-	this->inventory[index] = NULL;
+	if (!dupCheck(this->inventory[index], this->unequipped)) // ila maknch f unequipped inventory nzido
+	{
+		this->unequipped[index] = this->inventory[index];
+		this->inventory[index] = NULL;
+	}
 	std::cout << "Character " << this->name << " unequipped the slot." << std::endl;
 }
 

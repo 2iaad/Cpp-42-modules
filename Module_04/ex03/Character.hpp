@@ -8,6 +8,10 @@ class Character : public ICharacter
 private:
 	std::string	name;
 	AMateria	*inventory[4];
+	AMateria	*unequipped[4];
+
+	void				freeUnequipped();
+	bool				dupCheck(AMateria *m, AMateria *ptr[4]) const;
 public:
 	Character(std::string _name);
 	Character(Character const &other);
