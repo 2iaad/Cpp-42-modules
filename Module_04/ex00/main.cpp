@@ -26,7 +26,7 @@ int main()
 		delete _cat;
 		delete _dog;
 	}
-
+	std::cout << "*******************************" << std::endl;
 	{
 		WrongAnimal* meta = new WrongAnimal();
 		WrongAnimal* _cat = new WrongCat();

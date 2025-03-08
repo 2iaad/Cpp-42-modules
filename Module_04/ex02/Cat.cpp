@@ -29,7 +29,7 @@ Cat::~Cat() {
 // 			######################################################
 
 void	Cat::makeSound() const {
-    std::cout << "Cat makeSound() called." << std::endl;
+    std::cout << "Meow!" << std::endl;
 }
 
 const std::string	Cat::getIdea(size_t index) const

@@ -9,13 +9,15 @@ int main() {
  * 
  */
 
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
+	{
+		const Animal* j = new Dog();
+		const Animal* i = new Cat();
 
-	std::cout << std::endl;
+		std::cout << std::endl;
 
-	delete j; //should not create a leak
-	delete i;
+		delete j; //should not create a leak
+		delete i;
+	}
 
 	std::cout << "\n*********************\n" << std::endl;
 
@@ -43,4 +45,27 @@ int main() {
     for (int i = 0; i < 2; i++)
         delete _animal[i];
     return 0;
+
+/**
+ * @brief testing the deep copy
+ * 
+ */
+	{
+		Dog basic;
+		{
+			Dog tmp;
+
+			std::cout << "******\n";
+			std::cout << basic.getIdea(0) << std::endl;
+			std::cout << tmp.getIdea(0) << std::endl;
+			std::cout << "******\n";
+
+			tmp = basic;
+
+			std::cout << "******\n";
+			std::cout << tmp.getIdea(0) << std::endl;
+			std::cout << basic.getIdea(0) << std::endl;
+			std::cout << "******\n";
+		}
+	}
 }

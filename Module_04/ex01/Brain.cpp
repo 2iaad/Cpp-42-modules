@@ -38,11 +38,9 @@ void	Brain::setIdeas()
 {
 	unsigned short int j;
 	std::string arr[3] = {eat, sleep, play};
-
 	for (int i = 0; i < 100; i++)
 	{
 		j = rand() % 3;
 		this->ideas[i] = arr[j];
 	}
-
 }

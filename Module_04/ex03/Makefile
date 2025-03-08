@@ -1,19 +1,19 @@
 NAME = ex03
 
-FILES = AMateria.cpp MateriaSource.cpp Cure.cpp Ice.cpp Character.cpp main.cpp \
+FILES = AMateria.cpp  Character.cpp  Cure.cpp  Ice.cpp  main.cpp  MateriaSource.cpp \
 
 SRCS = $(FILES:.cpp=.o)
 
 CC = c++ 
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g3 -fsanitize=address,undefined,leak
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 
 $(NAME): $(SRCS)
 		@$(CC) $(CPPFLAGS) $^ -o $@
 
-%.o: %.cpp AMateria.hpp Cure.hpp ICharacter.hpp Ice.hpp Character.hpp
+%.o: %.cpp	AMateria.hpp  Character.hpp  Cure.hpp  Ice.hpp  ICharacter.hpp  IMateriaSource.hpp  MateriaSource.hpp
 		@$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
@@ -23,6 +23,3 @@ fclean: clean
 		rm -rf $(NAME)
 
 re: fclean all
-
-test:
-	c++ -fsanitize=address,undefined ../z.cpp -std=c++98

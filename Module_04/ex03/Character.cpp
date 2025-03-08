@@ -10,6 +10,10 @@ Character::Character(std::string _name) : name(_name) {
 
 Character::Character(const Character &other) : name(other.name) {
 	std::cout << "Character Copy Constructor called" << std::endl;
+	for (int i = 0; i < 4; i++)
+		inventory[i] = NULL;
+	for (int i = 0; i < 4; i++)
+		unequipped[i] = NULL;
 	*this = other;
 }
 

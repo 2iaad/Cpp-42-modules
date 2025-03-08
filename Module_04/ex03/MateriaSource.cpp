@@ -7,6 +7,8 @@ MateriaSource::MateriaSource() {
 
 
 MateriaSource::MateriaSource(MateriaSource const &other) {
+	for (int i = 0; i < 4; i++)
+		materias[i] = NULL;
     *this = other;
 }
 
