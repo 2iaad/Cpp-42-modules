@@ -10,6 +10,8 @@ CC = c++
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
+LEAKER_HEHE = #-g3 -fsanitize=address,leak,undefined 
+
 all: $(NAME)
 
 $(NAME): $(SRCS)
@@ -26,5 +28,5 @@ fclean: clean
 
 re: fclean all
 
-test: ../z.cpp
-	c++ -std=c++98 ../z.cpp -g3 -fsanitize=address,undefined,leak -o test
+test: ../z.cpp Makefile
+	c++ -std=c++98 ../z.cpp -o test $(LEAKER_HEHE)

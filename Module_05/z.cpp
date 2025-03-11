@@ -2,22 +2,29 @@
 #include <exception>
 #include <cassert>
 
-#define _name "z.cpp";
+// using namespace ;
 
-using namespace std;
 
-int main()
-{
-	#line 1 _name
-		cout << "salam" << endl;
+
+void createArray(int N) 
+{ 
+    try { 
+        // int* array = new int[N]; 
+  
+        std::cout << "Array created successfully" << " of length " << N << " \n"; 
+    }
+  
+    catch (std::bad_alloc& e) { 
+  
+        std::cout << e.what() << std::endl; 
+    }
 }
-
-
-
-
-
-
-
+  
+int main() 
+{
+    createArray(-1); 
+    return 0; 
+}
 
 
 
