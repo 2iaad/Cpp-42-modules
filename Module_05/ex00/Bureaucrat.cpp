@@ -33,12 +33,12 @@ Bureaucrat::~Bureaucrat()
 
 /*								#######################								*/
 
-const std::string	&Bureaucrat::getName()
+const std::string	&Bureaucrat::getName() const
 {
 	return this->name;
 }
 
-int			Bureaucrat::getGrade()
+int			Bureaucrat::getGrade() const
 {
 	return this->grade;
 }
@@ -47,4 +47,14 @@ std::ostream	&operator<<(std::ostream &out, Bureaucrat &b )
 {
 	out << b.getName() << ", bureaucrat grade " << b.getGrade() << "." << std::endl;
 	return out;
+}
+
+void			Bureaucrat::incrementGrade()
+{
+	this->grade--;
+}
+
+void			Bureaucrat::decrementGrade()
+{
+	this->grade++;
 }
