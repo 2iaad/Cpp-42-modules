@@ -31,6 +31,8 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Destructor called" << std::endl;
 }
 
+/*								#######################								*/
+
 const std::string	&Bureaucrat::getName()
 {
 	return this->name;
@@ -39,4 +41,10 @@ const std::string	&Bureaucrat::getName()
 int			Bureaucrat::getGrade()
 {
 	return this->grade;
+}
+
+std::ostream	&operator<<(std::ostream &out, Bureaucrat &b )
+{
+	out << b.getName() << ", bureaucrat grade " << b.getGrade() << "." << std::endl;
+	return out;
 }

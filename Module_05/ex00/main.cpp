@@ -8,9 +8,12 @@ int main()
 
 	std::cout << std::endl;
 	x2 = x1;
+
 	std::cout << std::endl;
 
-	std::cout << x.getGrade() << std::endl;
-	std::cout << x1.getGrade() << std::endl;
-	std::cout << x2.getGrade() << std::endl;
+	std::cout << x1;
+	std::cout << x2;
+
+	std::cout << std::endl;
+
 }

@@ -29,3 +29,5 @@ public:
 	const std::string	&getName();
 	int					getGrade();
 };
+
+std::ostream	&operator<<(std::ostream &out, Bureaucrat &b );
