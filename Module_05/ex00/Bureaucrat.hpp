@@ -31,11 +31,23 @@ public:
 	void				incrementGrade();
 	void				decrementGrade();
 
-	/*
-		hna ghadi n7ot lclass deyal:
-			Bureaucrat::GradeTooHighException
-			Bureaucrat::GradeTooLowException
-	*/
+	class GradeTooLowException : public std::exception {
+		// std::string	message;
+		public:
+			const char*		what() const _NOEXCEPT {
+				return "my what() GradeTooLowException";
+			}; // "noexcept" assures that this function wont throw an exception later on.
+	};
+
+/*							########							*/
+	 
+	class GradeTooHighException : public std::exception {
+		// std::string	message;
+		public:
+			const char*		what() const _NOEXCEPT {
+				return "my what() GradeTooHighException";
+			};
+	};
 };
 
 std::ostream	&operator<<(std::ostream &out, Bureaucrat &b );
