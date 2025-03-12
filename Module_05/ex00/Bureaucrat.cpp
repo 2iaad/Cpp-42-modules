@@ -7,11 +7,11 @@ Bureaucrat::Bureaucrat() : name("Default"), grade(0)
 
 Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name), grade(_grade)
 {
+	std::cout << "Parameterized Constructor called" << std::endl;
 	if (this->grade > 150)
 		throw Bureaucrat::GradeTooHighException();
 	if (this->grade < 1)
 		throw Bureaucrat::GradeTooLowException();
-	std::cout << "Parameterized Constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name), grade(other.grade)

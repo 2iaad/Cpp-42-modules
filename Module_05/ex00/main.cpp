@@ -2,19 +2,30 @@
 
 int main()
 {
-	Bureaucrat x("ziad", 150);
-	try
 	{
-		x.decrementGrade();
+		Bureaucrat x("ziad", 150);
+		try {
+			std::cout << x;
+			x.decrementGrade();
+		}
+		catch(std::exception &e) {
+			std::cerr << e.what() << std::endl;
+		}
 	}
-	catch(std::exception &e)
+
+	std::cout << std::endl;
+	/*			initing Bureaucrat with invalide Grade			*/
+
 	{
-		std::cerr << e.what() << std::endl;
+		try  {
+			Bureaucrat x("ziad", 151);
+			std::cout << x;
+		}
+		catch(std::exception &e) {
+			std::cerr << e.what() << std::endl;
+		}
 	}
 }
-
-
-
 
 
 
