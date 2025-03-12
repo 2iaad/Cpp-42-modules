@@ -2,18 +2,25 @@
 
 int main()
 {
-	Bureaucrat x;
-	Bureaucrat x1("ziad", 19);
-	Bureaucrat x2("walid", 1);
+	// Bureaucrat x;
+	try
+	{
+		Bureaucrat x1("ziad", 150);
+		x1.decrementGrade();
+	}
+	catch(std::string)
+	{
+		std::cerr << "in main" << '\n';
+	}
 
-	std::cout << std::endl;
-	x2 = x1;
+	// Bureaucrat x2("walid", 1);
 
-	std::cout << std::endl;
+	// std::cout << std::endl;
+	// x2 = x1;
+	// std::cout << std::endl;
 
-	std::cout << x1;
-	std::cout << x2;
+	// std::cout << x1;
+	// std::cout << x2;
 
-	std::cout << std::endl;
-
+	// std::cout << std::endl;
 }

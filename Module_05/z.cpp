@@ -2,19 +2,34 @@
 #include <exception>
 #include <cassert>
 
-// using namespace ;
+/*
+virtual const char*		what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW;
+*/
 
 
+class my_exception : public std::exception
+{
+public:
+	const char*		what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW;
+}
+
+const char	*my_exception::what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW
+{
+	return "MY EXCEPTION RETURNED THIS (const char *)";
+}
 
 void createArray(int N) 
 { 
-    try { 
-        // int* array = new int[N]; 
-  
+    try
+	{ 
+		my_exception obj_;
+	
+        int* array = new int[N]; 
+
         std::cout << "Array created successfully" << " of length " << N << " \n"; 
     }
   
-    catch (std::bad_alloc& e) { 
+    catch (std::exception& e) { 
   
         std::cout << e.what() << std::endl; 
     }

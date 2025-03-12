@@ -3,7 +3,7 @@
 #include <iostream>
 
 /**
- * @brief i should throw an exception if i try to init the grade with invalide grade
+ * @brief I should throw an exception if i try to init the grade with invalide grade
  * Bureaucrat::GradeTooHighException
  * Bureaucrat::GradeTooLowException
  * getName()
@@ -30,6 +30,12 @@ public:
 	int					getGrade() const;
 	void				incrementGrade();
 	void				decrementGrade();
+
+	/*
+		hna ghadi n7ot lclass deyal:
+			Bureaucrat::GradeTooHighException
+			Bureaucrat::GradeTooLowException
+	*/
 };
 
 std::ostream	&operator<<(std::ostream &out, Bureaucrat &b );

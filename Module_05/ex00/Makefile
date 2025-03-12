@@ -15,10 +15,10 @@ LEAKER_HEHE = #-g3 -fsanitize=address,leak,undefined
 all: $(NAME)
 
 $(NAME): $(SRCS)
-	@$(CC) $(CPPFLAGS) $^ -o $@
+	$(CC) $(LEAKER_HEHE) $(CPPFLAGS) $^ -o $@
 
 %.o: %.cpp Bureaucrat.hpp
-	@$(CC) $(CPPFLAGS) -c $< -o $@
+	$(CC) $(LEAKER_HEHE) $(CPPFLAGS) -c $< -o $@
 
 clean:
 	rm -rf $(SRCS)
