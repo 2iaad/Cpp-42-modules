@@ -1,8 +1,8 @@
-NAME = ex00
+NAME = ex01
 
 TEST_NAME = test
 
-FILES = Bureaucrat.cpp main.cpp
+FILES = Bureaucrat.cpp Form.cpp main.cpp
 
 SRCS = $(FILES:.cpp=.o)
 
@@ -17,7 +17,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 	$(CC) $(LEAKER_HEHE) $(CPPFLAGS) $^ -o $@
 
-%.o: %.cpp Bureaucrat.hpp
+%.o: %.cpp Bureaucrat.hpp Form.hpp
 	$(CC) $(LEAKER_HEHE) $(CPPFLAGS) -c $< -o $@
 
 clean:
