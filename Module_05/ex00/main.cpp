@@ -2,17 +2,15 @@
 
 int main()
 {
-	// Bureaucrat x;
+	Bureaucrat x("ziad", 150);
 	try
 	{
-		Bureaucrat x1("ziad", 150);
-		x1.decrementGrade();
+		x.decrementGrade();
 	}
-	catch(std::string)
+	catch(std::exception &e)
 	{
-		std::cerr << "in main" << '\n';
+		std::cerr << e.what() << std::endl;
 	}
-
 }
 
 
