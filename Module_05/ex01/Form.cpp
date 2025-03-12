@@ -47,8 +47,9 @@ int			Form::getEGrade() const {
 
 void				Form::beSigned(Bureaucrat &b)
 {
-	(void)b;
-	this->_signed = true;
+    if ( b.getGrade() > this->S_grade )
+        throw Form::GradeTooLowException();
+    _signed = true;
 }
 
 std::ostream	&operator<<(std::ostream &out, Form &f)
