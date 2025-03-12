@@ -5,15 +5,13 @@ Bureaucrat::Bureaucrat() : name("Default"), grade(0)
 	std::cout << "Default Constructor called" << std::endl;
 }
 
-Bureaucrat::Bureaucrat(std::string _name, int _grade) try : name(_name), grade(_grade)
+Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name), grade(_grade)
 {
-	if (this->grade > 150 || this->grade < 1)
-		throw (std::string)"Grade is either too high or too low";
+	if (this->grade > 150)
+		throw Bureaucrat::GradeTooHighException();
+	if (this->grade < 1)
+		throw Bureaucrat::GradeTooLowException();
 	std::cout << "Parameterized Constructor called" << std::endl;
-}
-catch(std::string)
-{
-	std::cout << "In constructor catch" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name), grade(other.grade)
@@ -37,46 +35,31 @@ Bureaucrat::~Bureaucrat()
 	std::cout << "Destructor called" << std::endl;
 }
 
-/*								#######################								*/
+/*---------------#		Member Funtions  	#---------------*/
 
-const std::string	&Bureaucrat::getName() const
-{
+const std::string	&Bureaucrat::getName() const {
 	return this->name;
 }
 
-int			Bureaucrat::getGrade() const
-{
+int			Bureaucrat::getGrade() const {
 	return this->grade;
 }
 
 void			Bureaucrat::incrementGrade()
 {
-	try
-	{
-		this->grade--;
-		std::cout << this->grade << std::endl;
-		throw (std::string)"Can't increment grade";
-	}
-	catch(std::string)
-	{
-		std::cout << "First catch" << std::endl;
-	}
+	if (this->grade - 1 < 1)
+		throw Bureaucrat::GradeTooLowException();
+	this->grade--;
 }
 
 void			Bureaucrat::decrementGrade()
 {
-	try
-	{
-		this->grade++;
-		throw (std::string)"Can't decrement grade";
-	}
-	catch(std::string)
-	{
-		std::cout << "First catch" << std::endl;
-	}
+	if (this->grade + 1 > 150)
+		throw Bureaucrat::GradeTooHighException();
+	this->grade++;
 }
 
-std::ostream	&operator<<(std::ostream &out, Bureaucrat &b )
+std::ostream	&operator<<(std::ostream &out, Bureaucrat &b)
 {
 	out << b.getName() << ", bureaucrat grade " << b.getGrade() << "." << std::endl;
 	return out;

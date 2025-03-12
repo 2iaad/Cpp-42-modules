@@ -31,23 +31,18 @@ public:
 	void				incrementGrade();
 	void				decrementGrade();
 
-	class GradeTooLowException : public std::exception {
-		// std::string	message;
-		public:
-			const char*		what() const _NOEXCEPT {
-				return "my what() GradeTooLowException";
-			}; // "noexcept" assures that this function wont throw an exception later on.
-	};
+/*---------------#		Classes  	#---------------*/
 
-/*							########							*/
+	class GradeTooLowException : public std::exception {
+		public:
+			const char*		what() const throw() { return "Grade Too Low"; }
+			 // "noexcept" assures that this function wont throw an exception later on.
+	};
 	 
 	class GradeTooHighException : public std::exception {
-		// std::string	message;
 		public:
-			const char*		what() const _NOEXCEPT {
-				return "my what() GradeTooHighException";
-			};
+			const char*		what() const throw() { return "Grade Too High"; }
 	};
 };
 
-std::ostream	&operator<<(std::ostream &out, Bureaucrat &b );
+std::ostream	&operator<<(std::ostream &out, Bureaucrat &b);
