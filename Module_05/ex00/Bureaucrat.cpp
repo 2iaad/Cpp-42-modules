@@ -9,9 +9,9 @@ Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name), grade(_grad
 {
 	std::cout << "Parameterized Constructor called" << std::endl;
 	if (this->grade > 150)
-		throw Bureaucrat::GradeTooHighException();
-	if (this->grade < 1)
 		throw Bureaucrat::GradeTooLowException();
+	if (this->grade < 1)
+		throw Bureaucrat::GradeTooHighException();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name), grade(other.grade)
@@ -48,14 +48,14 @@ int			Bureaucrat::getGrade() const {
 void			Bureaucrat::incrementGrade()
 {
 	if (this->grade - 1 < 1)
-		throw Bureaucrat::GradeTooLowException();
+		throw Bureaucrat::GradeTooHighException();
 	this->grade--;
 }
 
 void			Bureaucrat::decrementGrade()
 {
 	if (this->grade + 1 > 150)
-		throw Bureaucrat::GradeTooHighException();
+		throw Bureaucrat::GradeTooLowException();
 	this->grade++;
 }
 

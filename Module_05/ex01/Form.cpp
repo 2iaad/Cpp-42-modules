@@ -4,9 +4,9 @@ Form::Form(std::string _name, int grade) : name(_name), _signed(false), S_grade(
 {
 	std::cout << "Parameterized Constructor called" << std::endl;
 	if (this->S_grade > 150)
-		throw Form::GradeTooHighException();
-	if (this->S_grade < 1)
 		throw Form::GradeTooLowException();
+	if (this->S_grade < 1)
+		throw Form::GradeTooHighException();
 }
 
 Form::Form(const Form &other) : name(other.name), _signed(other._signed), S_grade(other.S_grade), E_grade(other.E_grade)
@@ -47,7 +47,7 @@ int			Form::getEGrade() const {
 
 void				Form::beSigned(Bureaucrat &b)
 {
-    if ( b.getGrade() > this->S_grade )
+    if (b.getGrade() > this->S_grade)
         throw Form::GradeTooLowException();
     _signed = true;
 }
