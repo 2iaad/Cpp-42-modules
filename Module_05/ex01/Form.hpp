@@ -1,11 +1,9 @@
 #pragma once
 
 #include "Bureaucrat.hpp"
+#include <iostream>
 
-/**
- * @brief need to finish beSigned()
- * 
- */
+class	Bureaucrat;
 
 class Form {
 private:
