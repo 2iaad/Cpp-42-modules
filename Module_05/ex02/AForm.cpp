@@ -1,20 +1,20 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form(std::string _name, int grade) : name(_name), _signed(false), S_grade(grade), E_grade(0)
+AForm::AForm(std::string _name, int grade) : name(_name), _signed(false), S_grade(grade), E_grade(0)
 {
 	std::cout << "Parameterized Constructor called" << std::endl;
 	if (this->S_grade > 150)
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	if (this->S_grade < 1)
-		throw Form::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 }
 
-Form::Form(const Form &other) : name(other.name), _signed(other._signed), S_grade(other.S_grade), E_grade(other.E_grade)
+AForm::AForm(const AForm &other) : name(other.name), _signed(other._signed), S_grade(other.S_grade), E_grade(other.E_grade)
 {
 	std::cout << "Copy Constructor called" << std::endl;
 }
 
-Form	&Form::operator=(const Form &other)
+AForm	&AForm::operator=(const AForm &other)
 {
 	if (this != &other)
 		this->_signed = other._signed;
@@ -22,39 +22,39 @@ Form	&Form::operator=(const Form &other)
 	return *this;
 }
 
-Form::~Form()
+AForm::~AForm()
 {
 	std::cout << "Destructor called" << std::endl;
 }
 
 /*---------------#		Member Funtions  	#---------------*/
 
-const std::string	&Form::getName() const {
+const std::string	&AForm::getName() const {
 	return this->name;
 }
 
-bool				Form::getSigned() const {
+bool				AForm::getSigned() const {
 	return this->_signed;
 }
 
-int			Form::getSGrade() const {
+int			AForm::getSGrade() const {
 	return this->S_grade;
 }
 
-int			Form::getEGrade() const {
+int			AForm::getEGrade() const {
 	return this->E_grade;
 }
 
-void				Form::beSigned(Bureaucrat &b)
+void				AForm::beSigned(Bureaucrat &b)
 {
     if (b.getGrade() > this->S_grade)
-        throw Form::GradeTooLowException();
+        throw AForm::GradeTooLowException();
     _signed = true;
 }
 
-std::ostream	&operator<<(std::ostream &out, Form &f)
+std::ostream	&operator<<(std::ostream &out, AForm &f)
 {
-    out	<< "Form name: " << f.getName() << std::endl
+    out	<< "AForm name: " << f.getName() << std::endl
     	<< "Grade to sign: " << f.getSGrade() << std::endl
     	<< "Grade to execute: " << f.getEGrade() << std::endl;
 	if (f.getSigned())

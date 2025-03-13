@@ -5,17 +5,17 @@
 
 class	Bureaucrat;
 
-class Form {
+class AForm {
 private:
 	const std::string	name;
 	bool				_signed;
 	const int			S_grade;
 	const int			E_grade;
 public:
-	Form(std::string _name, int grade);
-	Form(const Form &other);
-	Form	&operator=(const Form &other);
-	~Form();
+	AForm(std::string _name, int grade);
+	AForm(const AForm &other);
+	AForm	&operator=(const AForm &other);
+	virtual	~AForm();
 
 	const std::string	&getName() const;
 	bool				getSigned() const;
@@ -23,6 +23,8 @@ public:
 	int					getEGrade() const;
 
 	void				beSigned(Bureaucrat &b);
+
+	virtual	void		execute(Bureaucrat const &executor) = 0;
 
 /*---------------#		Classes  	#---------------*/
 
@@ -36,6 +38,10 @@ public:
 		public:
 			const char*		what() const throw() { return "Grade Too High"; }
 	};
+	class ExecuteException : public std::exception {
+        public:
+            virtual const char* what() const throw() { return "Form not signed"; }
+    };
 };
 
-std::ostream	&operator<<(std::ostream &out, Form &f);
+std::ostream	&operator<<(std::ostream &out, AForm &f);
