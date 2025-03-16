@@ -1,12 +1,9 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string& _target) : AForm("RobotomyRequestForm", 25, 5), target(_target) {
+RobotomyRequestForm::RobotomyRequestForm(const std::string& _target) : AForm("RobotomyRequestForm", 72, 45), target(_target) {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& src) : Form(src), _target(src._target) {
-}
-
-RobotomyRequestForm::~RobotomyRequestForm() {
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other) : AForm(other), target(other.target) {
 }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &other) {
@@ -14,6 +11,10 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &o
     return *this;
 }
 
+RobotomyRequestForm::~RobotomyRequestForm() {
+}
+
 void RobotomyRequestForm::execute(const Bureaucrat &executor) const
 {
+	(void)executor;
 }

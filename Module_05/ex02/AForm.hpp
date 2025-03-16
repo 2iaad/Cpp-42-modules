@@ -12,7 +12,7 @@ private:
 	const int			S_grade;
 	const int			E_grade;
 public:
-	AForm(std::string _name, int grade);
+	AForm(std::string _name, int Sgrade, int Egrade);
 	AForm(const AForm &other);
 	AForm	&operator=(const AForm &other);
 	virtual	~AForm();

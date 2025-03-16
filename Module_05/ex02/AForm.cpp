@@ -1,6 +1,6 @@
 #include "AForm.hpp"
 
-AForm::AForm(std::string _name, int grade) : name(_name), _signed(false), S_grade(grade), E_grade(0)
+AForm::AForm(std::string _name, int Sgrade, int Egrade) : name(_name), _signed(false), S_grade(Sgrade), E_grade(Egrade)
 {
 	std::cout << "Parameterized Constructor called" << std::endl;
 	if (this->S_grade > 150)

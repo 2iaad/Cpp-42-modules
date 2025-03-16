@@ -8,42 +8,24 @@ virtual const char*		what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW;
 */
 
 
-class my_exception : public std::exception
-{
+class Base {
 public:
-	const char*		what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW;
-}
+	virtual void f() { std::cout << "in Base!" << std::endl; }
+};
 
-const char	*my_exception::what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW
+class Derived : public Base {
+private:
+public:
+	void	f() { std::cout << "f But in the derived!" << std::endl; }
+	void	f2() { std::cout << "in Derived!" << std::endl; }
+};
+
+#include <stdio.h>
+
+int main()
 {
-	return "MY EXCEPTION RETURNED THIS (const char *)";
+	printf("{%p}\n", &Base::f);	
 }
-
-void createArray(int N) 
-{ 
-    try
-	{ 
-		my_exception obj_;
-	
-        int* array = new int[N]; 
-
-        std::cout << "Array created successfully" << " of length " << N << " \n"; 
-    }
-  
-    catch (std::exception& e) { 
-  
-        std::cout << e.what() << std::endl; 
-    }
-}
-  
-int main() 
-{
-    createArray(-1); 
-    return 0; 
-}
-
-
-
 
 
 

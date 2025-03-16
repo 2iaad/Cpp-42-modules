@@ -16,7 +16,7 @@
  * 
  */
 
-class	Form;
+class	AForm;
 
 class Bureaucrat {
 private:
@@ -34,7 +34,7 @@ public:
 	void				incrementGrade();
 	void				decrementGrade();
 
-	void				signForm(Form &f);
+	void				signForm(AForm &f);
 /*---------------#		Classes  	#---------------*/
 
 	class GradeTooLowException : public std::exception {
