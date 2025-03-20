@@ -3,7 +3,7 @@ NAME = ex03
 TEST_NAME = test
 
 FILES = AForm.cpp Bureaucrat.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp \
-		ShrubberyCreationForm.cpp main.cpp
+		ShrubberyCreationForm.cpp Intern.cpp main.cpp
 
 SRCS = $(FILES:.cpp=.o)
 
@@ -18,7 +18,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 	$(CC) $(LEAKER_HEHE) $(CPPFLAGS) $^ -o $@
 
-%.o: %.cpp AForm.hpp Bureaucrat.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp
+%.o: %.cpp AForm.hpp Bureaucrat.hpp PresidentialPardonForm.hpp RobotomyRequestForm.hpp ShrubberyCreationForm.hpp Intern.hpp
 	$(CC) $(LEAKER_HEHE) $(CPPFLAGS) -c $< -o $@
 
 clean:
