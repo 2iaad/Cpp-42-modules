@@ -24,7 +24,7 @@ public:
 
 	void				beSigned(Bureaucrat &b);
 
-	virtual	void		execute(Bureaucrat const &executor) = 0;
+	virtual	void		execute(Bureaucrat const &executor) const = 0;
 
 /*---------------#		Classes  	#---------------*/
 
@@ -38,7 +38,7 @@ public:
 		public:
 			const char*		what() const throw() { return "Grade Too High"; }
 	};
-	class ExecuteException : public std::exception {
+	class NotSignedException : public std::exception {
         public:
             virtual const char* what() const throw() { return "Form not signed"; }
     };

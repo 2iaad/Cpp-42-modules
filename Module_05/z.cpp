@@ -24,7 +24,7 @@ public:
 
 int main()
 {
-	printf("{%p}\n", &Base::f);	
+	
 }
 
 
