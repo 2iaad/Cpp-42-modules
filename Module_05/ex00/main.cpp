@@ -3,10 +3,12 @@
 int main()
 {
 	{
-		Bureaucrat x("ziad", 150);
+		Bureaucrat x("ziad", 149);
 		try {
 			std::cout << x;
 			x.decrementGrade();
+			std::cout << x;
+			x.decrementGrade(); // this will trigger the throw
 		}
 		catch(std::exception &e) {
 			std::cerr << e.what() << std::endl;

@@ -2,23 +2,10 @@
 
 #include <iostream>
 
-/**
- * @brief I should throw an exception if i try to init the grade with invalide grade
- * Bureaucrat::GradeTooHighException
- * Bureaucrat::GradeTooLowException
- * getName()
- * getGrade()
- * Im-plement also two member functions to increment or decrement the bureaucrat grade.
- * If the grade is out of range, both of them will throw the same exceptions as the constructor.
- * Incrementing a grade 3 should give a grade 2 to the bureaucrat.
- * Implement overload of the insertion (<<) that prints this-> (<name>, bureaucrat grade <grade>.)
- * 
- */
-
 class Bureaucrat {
 private:
 	const std::string	name;
-	int					grade; // ---> this should range between 1-150
+	int					grade;
 public:
 	Bureaucrat();
 	Bureaucrat(std::string _name, int _grade);
