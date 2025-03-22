@@ -1,28 +1,31 @@
-#include <iostream>
-#include <exception>
-#include <cassert>
+#include "ex00/ScalarConverter.hpp"
 
-class A {
-public:
-	A() { std::cout << "A CONSTRUCTOR!\n"; }
-	~A() { std::cout << "A Des!\n"; }
-};
+class Base {};
 
-class B {
-public:
-	B() { std::cout << "B CONSTRUCTOR!\n"; }
-	~B() { std::cout << "B Des!\n"; }
-};
+class Other {};
 
-void f() { system("leaks test");}
+int main() {
+    Base base;
+    
+    Other* try1 = (Other*)(&base); // this will work
+	Other* try2 = static_cast<Other*>(&base); // this will cause compile-time error
 
-void my_terminate() {std::cout << "TERMINATE DEYALI!" << std::endl;}
+    std::cout << "Other object at: " << try1 << std::endl;
+    std::cout << "Other object at: " << try2 << std::endl;
 
-int main()
-{
-	void *ptr = (void *)"salam";
-
+    return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
