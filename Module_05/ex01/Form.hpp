@@ -29,7 +29,6 @@ public:
 	class GradeTooLowException : public std::exception {
 		public:
 			const char*		what() const throw() { return "Grade Too Low"; }
-			 // "noexcept" assures that this function wont throw an exception later on.
 	};
 	 
 	class GradeTooHighException : public std::exception {
