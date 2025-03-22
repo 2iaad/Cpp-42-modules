@@ -2,29 +2,26 @@
 #include <exception>
 #include <cassert>
 
-
-/*
-virtual const char*		what() const _GLIBCXX_TXN_SAFE_DYN _GLIBCXX_NOTHROW;
-*/
-
-
-class Base {
+class A {
 public:
-	virtual void f() { std::cout << "in Base!" << std::endl; }
+	A() { std::cout << "A CONSTRUCTOR!\n"; }
+	~A() { std::cout << "A Des!\n"; }
 };
 
-class Derived : public Base {
-private:
+class B {
 public:
-	void	f() { std::cout << "f But in the derived!" << std::endl; }
-	void	f2() { std::cout << "in Derived!" << std::endl; }
+	B() { std::cout << "B CONSTRUCTOR!\n"; }
+	~B() { std::cout << "B Des!\n"; }
 };
 
-#include <stdio.h>
+void f() { system("leaks test");}
+
+void my_terminate() {std::cout << "TERMINATE DEYALI!" << std::endl;}
 
 int main()
 {
-	
+	void *ptr = (void *)"salam";
+
 }
 
 
@@ -32,7 +29,20 @@ int main()
 
 
 
+	// try {
+	// 	A* p1 = new A();
+	// 	B* p2 = new B();
+	// 	throw p1;
+	// } catch (A *e) {
+	// 	// std::cout << e << std::endl;
+	// 	delete e;
+	// }
+	// std::cout << "Both object are destroyed!\n";
 
+	// delete B;
+
+	// std::set_terminate(my_terminate);
+	// std::terminate();
 
 
 // class Base {

@@ -18,10 +18,10 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
     if (!this->getSigned()) // check that the form is signed
         throw AForm::NotSignedException();
-    else if (executor.getGrade() > this->getEGrade()) // chack that bureaucrat's grade is high enough
+    else if (executor.getGrade() > this->getEGrade()) // check that bureaucrat's grade is high enough
         throw AForm::GradeTooLowException();
 	
-	std::ofstream outfile(this->getName() + "_shrubbery");
+	std::ofstream outfile(this->target + "_shrubbery");
     outfile << "                      ___" << std::endl;
     outfile << "                _,-'\"\"   \"\"\"\"`--." << std::endl;
     outfile << "             ,-'          __,,-- \\" << std::endl;

@@ -16,23 +16,24 @@ Intern &Intern::operator=(const Intern& other) {
 
 AForm	*Intern::makeForm(std::string name, std::string target) {
 
-    std::string	formNames[] = {
-        "presidential pardon",
-        "robotomy request",
-        "shrubbery creation"
-    };
-    AForm	*forms[] = {
-        new PresidentialPardonForm(target),
-        new RobotomyRequestForm(target),
-        new ShrubberyCreationForm(target)
-    };
-    
-    for (int i = 0; i < 3; i++) {
-        if (name == formNames[i]) {
-            std::cout << "Intern creates " << name << std::endl;
-            return forms[i];
-        }
-    }
-    std::cout << "Intern cannot create " << name << " form" << std::endl;
+	short i = -1;
+	const std::string	type[] = {
+		"shrubbery creation",
+		"robotomy request",
+		"presidential pardon"
+		};
+
+	while (++i < 3)
+		if (name == type[i]) {
+			std::cout << "Intern creates " << name << std::endl;
+			break ;
+		}
+	switch (i)
+	{
+		case 0:	return (new ShrubberyCreationForm(target));
+		case 1: return (new RobotomyRequestForm(target));
+		case 2: return (new PresidentialPardonForm(target));
+	}
+	std::cout << "Intern can't create " << name << " form" << std::endl;
     return NULL;
 }

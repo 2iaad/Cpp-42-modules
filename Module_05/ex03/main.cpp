@@ -2,38 +2,39 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 #include "AForm.hpp"
+
+void f() { system("leaks ex03"); }
 
 int main()
 {
-	Bureaucrat b1("buro1", 2);
-	// Bureaucrat b2("buro2", 141);
-	
+	atexit(f);
 
-	PresidentialPardonForm obj1("P");
-	// ShrubberyCreationForm  obj2("S");
+	Intern FirstIntern;
+	Bureaucrat b1("*HIGH*", 10);
+	Bureaucrat b2("*LOW*", 130);
 
-	// AForm *x1 = &obj1;
-	// AForm *x2 = &obj2;
+	AForm *form1 = FirstIntern.makeForm("shrubbery creation", "home");
+	AForm *form2 = FirstIntern.makeForm("presidential pardon", "jail");
 
 
-	// try { x1->beSigned(b1); } // this will make the form signed
-	// catch (std::exception &e) { std::cout << e.what() << std::endl; }
 
-	// std::cout << std::endl;
-	// std::cout << x1; // printing x1 infos
-	// std::cout << std::endl;
-	
-	// std::cout << "-------------------" << std::endl;
-	
-	// std::cout << std::endl;
-	// try { x2->beSigned(b2); } // this will throw an exception
-	// catch (std::exception &e) { 
-	// 	std::cout << "Exception thrown by " << x2->getName() << ": " << e.what() << std::endl; }
+	std::cout << "------------------------" << std::endl;
+	AForm *form3 = FirstIntern.makeForm("unavailable form", "jail");
+	(void)form3;
+	std::cout << "------------------------" << std::endl;
+	b1.signForm(*form1);
+	std::cout << "	->" << *form1;
+	b1.executeForm(*form1);
+	std::cout << "\n------------------------" << std::endl;
+	b2.signForm(*form2);
+	std::cout << "	->" << *form2;
+	b2.executeForm(*form2);
+	std::cout << "------------------------" << std::endl;
 
-	// std::cout << std::endl;
-	// std::cout << x2; // printing x2 infos
-	// std::cout << std::endl;
+	delete form1;
+	delete form2;
 
-	
+	return EXIT_SUCCESS;
 }

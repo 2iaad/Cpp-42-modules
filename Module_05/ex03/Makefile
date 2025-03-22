@@ -25,7 +25,7 @@ clean:
 	rm -rf $(SRCS)
 
 fclean: clean
-	rm -rf $(NAME) $(TEST_NAME)
+	rm -rf $(NAME) $(TEST_NAME) *_shrubbery
 
 re: fclean all
 
