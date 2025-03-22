@@ -16,15 +16,15 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 
 void RobotomyRequestForm::execute(const Bureaucrat &executor) const
 {
-	if (executor.getGrade() > this->getEGrade())
+	if (!this->getSigned()) // check that the form is signed
+        throw AForm::NotSignedException();
+    if (executor.getGrade() > this->getEGrade()) // chack that bureaucrat's grade is high enough
         throw AForm::GradeTooLowException();
-    else
-	{
-        static int  i;
-        if (i % 2 == 0)
-            std::cout << "BZZZZZT! " << target << " has been robotomized!" << std::endl;
-        else
-            std::cout << "Robotomy failed! " << target << " is still alive." << std::endl;
-        i++;
-    }
+
+	static int  i;
+	if (i % 2 == 0)
+		std::cout << "BZZZZZT! " << target << " has been robotomized!" << std::endl;
+	else
+		std::cout << "Robotomy failed! " << target << " is still alive." << std::endl;
+	i++;
 }

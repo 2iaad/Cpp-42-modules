@@ -2,7 +2,7 @@
 
 Form::Form(std::string _name, int grade) : name(_name), _signed(false), S_grade(grade), E_grade(0)
 {
-	std::cout << "Parameterized Constructor called" << std::endl;
+	std::cout << "Form Parameterized Constructor called" << std::endl;
 	if (this->S_grade > 150)
 		throw Form::GradeTooLowException();
 	if (this->S_grade < 1)
@@ -11,20 +11,20 @@ Form::Form(std::string _name, int grade) : name(_name), _signed(false), S_grade(
 
 Form::Form(const Form &other) : name(other.name), _signed(other._signed), S_grade(other.S_grade), E_grade(other.E_grade)
 {
-	std::cout << "Copy Constructor called" << std::endl;
+	std::cout << "Form Copy Constructor called" << std::endl;
 }
 
 Form	&Form::operator=(const Form &other)
 {
 	if (this != &other)
 		this->_signed = other._signed;
-	std::cout << "Copy Assignment Operator called" << std::endl;
+	std::cout << "Form Copy Assignment Operator called" << std::endl;
 	return *this;
 }
 
 Form::~Form()
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "Form Destructor called" << std::endl;
 }
 
 /*---------------#		Member Funtions  	#---------------*/

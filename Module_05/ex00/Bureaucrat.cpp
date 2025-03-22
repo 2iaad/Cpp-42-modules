@@ -2,12 +2,12 @@
 
 Bureaucrat::Bureaucrat() : name("Default"), grade(0)
 {
-	std::cout << "Default Constructor called" << std::endl;
+	std::cout << "Bureaucrat Default Constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name), grade(_grade)
 {
-	std::cout << "Parameterized Constructor called" << std::endl;
+	std::cout << "Bureaucrat Parameterized Constructor called" << std::endl;
 	if (this->grade > 150)
 		throw Bureaucrat::GradeTooLowException();
 	if (this->grade < 1)
@@ -16,7 +16,7 @@ Bureaucrat::Bureaucrat(std::string _name, int _grade) : name(_name), grade(_grad
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : name(other.name), grade(other.grade)
 {
-	std::cout << "Copy Constructor called" << std::endl;
+	std::cout << "Bureaucrat Copy Constructor called" << std::endl;
 }
 
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &other)
@@ -26,13 +26,13 @@ Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &other)
 		// this->name = other.name; // can't be done since name is a const
 		this->grade = other.grade;
 	}
-	std::cout << "Copy Assignment Operator called" << std::endl;
+	std::cout << "Bureaucrat Copy Assignment Operator called" << std::endl;
 	return *this;
 }
 
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << "Destructor called" << std::endl;
+	std::cout << "Bureaucrat Destructor called" << std::endl;
 }
 
 /*---------------#		Member Funtions  	#---------------*/
