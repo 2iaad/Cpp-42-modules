@@ -2,10 +2,6 @@
 
 ScalarConverter::ScalarConverter()
 {
-	this->_c = 0;
-	this->_i = 0;
-	this->_f = 0.0f;
-	this->_d = 0;
 	std::cout << "ScalarConverter Constructor called" << std::endl;
 }
 
@@ -18,10 +14,6 @@ ScalarConverter::ScalarConverter(const ScalarConverter &other)
 ScalarConverter	&ScalarConverter::operator=(const ScalarConverter &other)
 {
 	if (this != &other) {
-		this->_c = other._c;
-		this->_i = other._i;
-		this->_f = other._f;
-		this->_d = other._d;
 	}
 	std::cout << "ScalarConverter Copy Assignment Operator called" << std::endl;
 	return *this;
@@ -37,14 +29,20 @@ ScalarConverter::~ScalarConverter()
 	|#-----------------------------------------------------#|
 */
 
-void	ScalarConverter::convert(std::string	toConvert)
+void	identifyType(std::string	&arg, Scalar	*type)
 {
-	(void)toConvert;
+	if (CheckChar(arg))			*type = Character;
+	else if (CheckInt(arg))		*type = Integer;
+	else if (CheckFloat(arg))	*type = Float;
+	else if (CheckDouble(arg))	*type = Double;
+	else if (CheckLiteral(arg))	*type = Literal;
+	else
+		std::cout << "Walou !" << std::endl;
 }
 
 bool	CheckChar(std::string	&arg)
 {
-    return arg.size() == 1 && std::isalpha(arg[0]) && std::isprint(arg[0]);
+    return arg.size() == 1 && !std::isdigit(arg[0]);
 }
 
 bool	CheckInt(std::string	&arg)
@@ -118,13 +116,10 @@ bool	CheckLiteral(std::string	&arg)
 	return false ;
 }
 
-void	identifyType(std::string	arg, Scalar	*type)
+void	ScalarConverter::convert(std::string	toConvert)
 {
-	if (CheckChar(arg))			*type = Character;
-	else if (CheckInt(arg))		*type = Integer;
-	else if (CheckFloat(arg))	*type = Float;
-	else if (CheckDouble(arg))	*type = Double;
-	else if (CheckLiteral(arg))	*type = Literal;
-	else
-		std::cout << "Walou !" << std::endl;
+	Scalar type;
+
+	identifyType(toConvert, &type);
+	std::cout << type << std::endl;
 }

@@ -11,11 +11,6 @@ enum Scalar { // sizeof enums huwa 4 Bytes.
 };
 
 class ScalarConverter {
-private:
-	char	_c;
-	int		_i;
-	float	_f;
-	double	_d;
 public:
 	ScalarConverter();
 	ScalarConverter(const ScalarConverter &other);
@@ -30,7 +25,8 @@ public:
 	 *
 	 * 2 - convert it from string to its actual type.
 	 * then convert it explicitly to the three other data types.
-	 * Lastly, display the results.
+	 * 
+	 * 3 - Lastly, display the results.
 	 * 
 	 * @param toConvert is the string i will need to convert
 	 */
@@ -46,4 +42,4 @@ bool	CheckFloat(std::string	&arg);
 bool	CheckDouble(std::string	&arg);
 bool	CheckLiteral(std::string	&arg);
 
-void	identifyType(std::string arg, Scalar *type);
+void	identifyType(std::string &arg, Scalar *type);
