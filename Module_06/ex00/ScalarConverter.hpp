@@ -21,7 +21,24 @@ public:
 	ScalarConverter	&operator=(const ScalarConverter &other);
 	~ScalarConverter();
 
+	/**
+	 * @brief convert function;
+	 * 
+	 * detect the type of the literal passed as a parameter.
+	 * 		-> i do this using the identifyType()
+	 * convert it from string to its actual type.
+	 * then convert it explicitly to the three other data types.
+	 * Lastly, display the results.
+	 * 
+	 * @param toConvert is the string i will need to convert
+	 */
+
 	static	void	convert(std::string	toConver);
 };
 
-void	identifyType(std::string &arg, Scalar *type);
+bool	CheckChar(std::string	&arg);
+bool	CheckInt(std::string	&arg);
+bool	CheckFloat(std::string	&arg);
+bool	CheckDouble(std::string	&arg);
+
+void	identifyType(std::string arg, Scalar *type);
