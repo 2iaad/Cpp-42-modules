@@ -8,9 +8,9 @@ SRCS = $(FILES:.cpp=.o)
 
 CC = c++ 
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+CPPFLAGS = -std=c++98 -Wall -Wextra -Werror
 
-LEAKER_HEHE = #-g3 -fsanitize=address,leak,undefined 
+LEAKER_HEHE = #-g3 -fsanitize=address,undefined 
 
 all: $(NAME)
 

@@ -25,17 +25,17 @@ ScalarConverter::~ScalarConverter()
 }
 
 /*	|#-----------------------------------------------------#|
-	|#						Functions 					   #|
+	|#						Identifyer 					   #|
 	|#-----------------------------------------------------#|
 */
 
-void	identifyType(std::string	&arg, Scalar	*type)
+void	identifyType(std::string	&arg, t_data	*s)
 {
-	if (CheckChar(arg))			*type = Character;
-	else if (CheckInt(arg))		*type = Integer;
-	else if (CheckFloat(arg))	*type = Float;
-	else if (CheckDouble(arg))	*type = Double;
-	else if (CheckLiteral(arg))	*type = Literal;
+	if (CheckChar(arg))			s->type = Character;
+	else if (CheckInt(arg))		s->type = Integer;
+	else if (CheckFloat(arg))	s->type = Float;
+	else if (CheckDouble(arg))	s->type = Double;
+	else if (CheckLiteral(arg))	s->type = Literal;
 	else
 		std::cout << "Walou !" << std::endl;
 }
@@ -55,7 +55,7 @@ bool	CheckInt(std::string	&arg)
         if (!std::isdigit(arg[i++]))
             return false ;
 	
-	std::cout << "Int" << std::endl;
+	std::cout << "{Int}\n" << std::endl;
     return true ;
 }
 
@@ -73,12 +73,12 @@ bool	CheckFloat(std::string	&arg)
 
     if (arg[i] == '-' || arg[i] == '+')
         i++;
-    while (i < arg.size() - 1)
+    while (i < arg.size() - 1) // loop 9bl manwsl l last 'f', 7it deja checkit 3liha
 	{
-        if ((!std::isdigit(arg[i]) && arg[i] != '.' )) return false ;
+        if (!std::isdigit(arg[i]) && arg[i] != '.' ) return false ;
 		i++;
     }
-	std::cout << "Float" << std::endl;
+	std::cout << "{Float}\n" << std::endl;
     return true ;
 }
 
@@ -100,7 +100,7 @@ bool	CheckDouble(std::string	&arg)
         if ((!std::isdigit(arg[i]) && arg[i] != '.' )) return false ;
 		i++;
     }
-	std::cout << "Double" << std::endl;
+	std::cout << "{Double}\n" << std::endl;
     return true ;
 }
 
@@ -110,16 +110,74 @@ bool	CheckLiteral(std::string	&arg)
 		|| arg == "+inff" || arg == "+inf"
 		|| arg == "nanf"  || arg == "nan" )
 		{
-			std::cout << "Literal" << std::endl;
+			std::cout << "{Literal}\n" << std::endl;
 			return true ;
 		}
 	return false ;
 }
 
+/*	|#-----------------------------------------------------#|
+	|#						Printers 					   #|
+	|#-----------------------------------------------------#|
+*/
+
+	// errno = 0;
+	// double result = std::strtod(str.c_str(), NULL);
+
+	// if (errno == ERANGE || ((Scalar.type != 2 && Scalar.type != 5) && *rest != '\0'))
+	// 	std::cerr << "HERE!\n";
+
+void	printLiteral(t_data s)
+{
+	std::cout << "char: impossible!" << std::endl;
+	std::cout << "int: impossible!" << std::endl;
+	std::cout << "float: " << s.Float << 'f' << std::endl;
+	std::cout << "double: " << s.Double << std::endl;
+}
+
+void	printNumber(t_data s)
+{
+
+	if (std::isprint(s.Char))
+		std::cout << "char: '" << s.Char << "'" << std::endl;
+	else
+		std::cout << "char: " << "Non displayable" << std::endl;
+	std::cout << "int: " << s.Integer << std::endl;
+	std::cout << "float: " << s.Float << 'f' << std::endl;
+	std::cout << "double: " << s.Double << std::endl;
+}
+
+void	printer(std::string	&str, t_data *s)
+{
+	s->Double = std::strtod(str.c_str(), NULL);
+
+	if (s->Double < INT_MIN || s->Double > INT_MAX)
+		s->type = Literal;
+	s->Float = static_cast< float > (s->Double);
+	s->Integer = static_cast< int > (s->Double);
+	s->Char = static_cast< char > (s->Double);
+
+	switch (s->type)
+	{
+		case 0 :	return printNumber(*s);
+		case 1 :	return printNumber(*s);
+		case 2 :	return printNumber(*s);
+		case 3 :	return printNumber(*s);
+		case 4 :	return printLiteral(*s);
+		default :
+			return (void) (std::cout << "Unknown type !" << std::endl);
+	}
+}
+
+/*	|#-----------------------------------------------------#|
+	|#						Converter 					   #|
+	|#-----------------------------------------------------#|
+*/
+
 void	ScalarConverter::convert(std::string	toConvert)
 {
-	Scalar type;
+	t_data	s;
 
-	identifyType(toConvert, &type);
-	std::cout << type << std::endl;
+	identifyType(toConvert, &s);
+	printer(toConvert, &s);
 }

@@ -1,21 +1,17 @@
 #include "ex00/ScalarConverter.hpp"
 
-class Base {};
+#include <cstdlib>  // For std::strtod
+#include <cerrno>
 
-class Other {};
+int main()
+{
+	errno = 0;
+	double	result = 0;
 
-int main() {
-    Base base;
-    
-    Other* try1 = (Other*)(&base); // this will work
-	Other* try2 = static_cast<Other*>(&base); // this will cause compile-time error
-
-    std::cout << "Other object at: " << try1 << std::endl;
-    std::cout << "Other object at: " << try2 << std::endl;
-
-    return 0;
+	result = std::strtod("d", NULL);
+	if (errno)
+		std::cerr << "HERE!\n";
 }
-
 
 
 
