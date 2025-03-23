@@ -55,10 +55,10 @@ bool	CheckInt(std::string	&arg)
         i++;
     while (i < arg.size())
         if (!std::isdigit(arg[i++]))
-            return false;
+            return false ;
 	
 	std::cout << "Int" << std::endl;
-    return true;
+    return true ;
 }
 
 bool	CheckFloat(std::string	&arg)
@@ -71,17 +71,17 @@ bool	CheckFloat(std::string	&arg)
 		|| point == arg.size() - 2  // ila kant -> ".f"
 		|| arg.back() != 'f' 	   // ila makantch f flkhr
 		|| count > 1) 			  // kayn kter mn '.'
-        return false;
+        return false ;
 
     if (arg[i] == '-' || arg[i] == '+')
         i++;
     while (i < arg.size() - 1)
 	{
-        if ((!std::isdigit(arg[i]) && arg[i] != '.' )) return false;
+        if ((!std::isdigit(arg[i]) && arg[i] != '.' )) return false ;
 		i++;
     }
 	std::cout << "Float" << std::endl;
-    return true;
+    return true ;
 }
 
 bool	CheckDouble(std::string	&arg)
@@ -93,17 +93,29 @@ bool	CheckDouble(std::string	&arg)
 		|| point == 0
 		|| point == arg.size() - 1
 		|| count > 1)
-        return false;
+        return false ;
 
     if (arg[i] == '-' || arg[i] == '+')
         i++;
     while (i < arg.size())
 	{
-        if ((!std::isdigit(arg[i]) && arg[i] != '.' )) return false;
+        if ((!std::isdigit(arg[i]) && arg[i] != '.' )) return false ;
 		i++;
     }
 	std::cout << "Double" << std::endl;
-    return true;
+    return true ;
+}
+
+bool	CheckLiteral(std::string	&arg)
+{
+	if (   arg == "-inff" || arg == "-inf"
+		|| arg == "+inff" || arg == "+inf"
+		|| arg == "nanf"  || arg == "nan" )
+		{
+			std::cout << "Literal" << std::endl;
+			return true ;
+		}
+	return false ;
 }
 
 void	identifyType(std::string	arg, Scalar	*type)
@@ -112,6 +124,7 @@ void	identifyType(std::string	arg, Scalar	*type)
 	else if (CheckInt(arg))		*type = Integer;
 	else if (CheckFloat(arg))	*type = Float;
 	else if (CheckDouble(arg))	*type = Double;
+	else if (CheckLiteral(arg))	*type = Literal;
 	else
 		std::cout << "Walou !" << std::endl;
 }
