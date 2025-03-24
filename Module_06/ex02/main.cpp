@@ -53,8 +53,7 @@ int main()
 	}
 	std::cout << std::endl;
 	{
-		A	obj;
-		(Base)obj;
+		Base	obj;
 
 		identify(&obj);
 		identify(obj);

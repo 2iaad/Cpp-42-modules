@@ -1,19 +1,46 @@
-#include "ex00/ScalarConverter.hpp"
+#include <iostream>
 
-#include <cstdlib>  // For std::strtod
-#include <cerrno>
+int main() {
 
-int main()
-{
-	errno = 0;
-	double	result = 0;
-
-	result = std::strtod("d", NULL);
-	if (errno)
-		std::cerr << "HERE!\n";
+	std::cout << sizeof(uintptr_t);
+	
+	return 0;
 }
 
 
+/**
+ * @brief use of reinterpret_cast
+ * 
+ */
+
+// int main() {
+
+// 	const char *str = "hello world!";
+
+// 	int	*ptr1 = (int *)&str;
+
+// 	int	*ptr2 = reinterpret_cast< int* >(&str);
+	
+// 	return 0;
+// }
+
+
+// int main() {
+//     double pi = 3.14159;
+
+// /*	C-Style cast
+// 		attemting to read pi adress with int(4 bytes) so we ignore the other 4 bytes,
+// 		since double has 8 bytes of memory
+// */
+// 	int *ptr1 = (int *)&pi; 
+
+// /*	C++ cast
+// 		This will cause a compile-time error
+// */
+//     int	*ptr2 = reinterpret_cast<int*>(&pi);  // ❌ Compilation error!
+
+//     return 0;
+// }
 
 
 
@@ -21,10 +48,12 @@ int main()
 
 
 
+	// errno = 0;
+	// double	result = 0;
 
-
-
-
+	// result = std::strtod("d", NULL);
+	// if (errno)
+	// 	std::cerr << "HERE!\n";
 
 
 
