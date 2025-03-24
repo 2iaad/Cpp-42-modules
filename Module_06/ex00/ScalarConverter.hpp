@@ -45,13 +45,3 @@ public:
 
 	static	void	convert(std::string	toConver);
 };
-
-/* -----------#  Type Checkers  #----------- */
-
-bool	CheckChar(std::string	&arg);
-bool	CheckInt(std::string	&arg);
-bool	CheckFloat(std::string	&arg);
-bool	CheckDouble(std::string	&arg);
-bool	CheckLiteral(std::string	&arg);
-
-void	identifyType(std::string &arg, Scalar *type);
