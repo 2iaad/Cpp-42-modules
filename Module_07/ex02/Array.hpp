@@ -12,7 +12,7 @@ public:
 	Array(unsigned int	n)		: arr( new T[n] ), _size( n )	{}
 	Array(const Array &other)	: arr( new T[other.size()] ), _size( other.size() )
 	{
-		for (int i = 0; i < _size; i++)
+		for (unsigned int i = 0; i < _size; i++)
 			arr[i] = other.arr[i];
 	}
 	Array	&operator=(const Array &other)
