@@ -24,8 +24,8 @@ typedef	struct	s_data {
 class ScalarConverter {
 private:
 	ScalarConverter();
-public:
 	ScalarConverter(const ScalarConverter &other);
+public:
 	ScalarConverter	&operator=(const ScalarConverter &other);
 	~ScalarConverter();
 
