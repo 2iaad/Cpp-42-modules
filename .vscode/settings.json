@@ -73,7 +73,11 @@
 		"queue": "cpp",
 		"stack": "cpp",
 		"variant": "cpp",
-		"__config": "cpp"
+		"__config": "cpp",
+		"__availability": "cpp",
+		"filesystem": "cpp",
+		"complex": "cpp",
+		"format": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }
