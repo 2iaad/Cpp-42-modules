@@ -5,6 +5,9 @@
 /**
  * @brief 
  * 
+ * @details typename: katgoul lcompiler bli T & Container rah wahd data type li mzl
+ * ma3arfinouch chno huwa bdebt
+ * 
  * @param T: means that the type thats going to be held is unknow until
  * the compile time. the compiler replace the T with the data type of the object
  * declared.
