@@ -4,7 +4,7 @@ int main( void ) {
 
 	MutantStack < int > obj;
 
-	obj.push(13);
+	obj.push(1);
 	obj.push(0);
 	obj.push(3);
 	
