@@ -6,6 +6,8 @@
 
 #define ARG_ERR		"Wrong  number of arguments"
 #define OPEN_ERR	"Can't open file"
+#define EMPTY_ERR	"Empty Date or Price"
+#define COMMA_ERR	"Error related to comma"
 
 /**
  * @brief what to start with:
