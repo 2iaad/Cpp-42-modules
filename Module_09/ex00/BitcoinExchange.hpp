@@ -11,6 +11,8 @@
 #define EMPTY_ERR	"Empty Date or Price"
 #define COMMA_ERR	"Error related to comma"
 #define	DATE_ERR	"Error related to Date"
+#define	PRICE_ERR	"Error related to Price"
+
 
 /**
  * @brief what to start with:

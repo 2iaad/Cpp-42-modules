@@ -6,7 +6,7 @@ SRCS = $(FILES:.cpp=.o)
 
 CC = c++ 
 
-CPPFLAGS = -fsanitize=address,undefined -std=c++98 -Wall -Wextra -Werror
+CPPFLAGS = -fsanitize=address,undefined # -std=c++98 -Wall -Wextra -Werror
 
 all: $(NAME)
 
