@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+
+#include <algorithm>
 #include <fstream>
 #include <map>
 
@@ -8,6 +10,7 @@
 #define OPEN_ERR	"Can't open file"
 #define EMPTY_ERR	"Empty Date or Price"
 #define COMMA_ERR	"Error related to comma"
+#define	DATE_ERR	"Error related to Date"
 
 /**
  * @brief what to start with:

@@ -1,14 +1,30 @@
+#include <stdio.h>
 #include "BitcoinExchange.hpp"
 
-/**
- * @brief	khass tkoun ',' w7da --> count
- * 			
- */
+bool	dateParser(std::string &buf)
+{
+	std::cout << "\n------dateParser------\n";
 
-// bool	dateParser(std::string &buf)
-// {
+	size_t		old_ret = 0;
+	size_t		ret = 0;
+	short int	index = 0;
+	std::string	date[3];
 
-// }
+	while ((ret = buf.find('-', ret)) != std::string::npos)  //  2022-03-25
+	{
+		date[index++] = buf.substr(old_ret, ret - old_ret);
+		old_ret = ++ret; // increment->to skip the '-' in old_ret + to start from the charachter that follows '-' in find()
+	}
+	date[index] = buf.substr(old_ret, ret - old_ret);
+
+	std::cout << "date [0]:" << date[0] << std::endl;
+	std::cout << "date [1]:" << date[1] << std::endl;
+	std::cout << "date [2]:" << date[2] << std::endl;
+
+	if (date[0].empty() || date[1].empty() || date[2].empty())
+		return false ;
+	return true ;
+}
 
 bool	Spliter(std::string &buf, std::string &date,
 				std::string &price, size_t ret)
@@ -35,10 +51,15 @@ void	Parser(std::string &buf)
 	if ((ret = buf.find(',')) == std::string::npos ||
 			std::count(buf.begin(), buf.end(), ',') != 1)
 		return (void) (std::cout << COMMA_ERR << std::endl);
+	
+	if (std::count(buf.begin(), buf.end(), '-') != 2)
+		return (void) (std::cout << DATE_ERR << std::endl);
+
 
 	if (!Spliter(buf, date, price, ret)) // split key & price
 		return (void) (std::cout << EMPTY_ERR << std::endl);
-	// dateParser(date); // parse the key
+	if (!dateParser(date)) // parse the key
+		return (void)(std::cout << DATE_ERR << std::endl);
 	// priceParser(price) // parse the price 
 }
 
@@ -58,7 +79,7 @@ int main( int ac, char **av )
 	// while (std::getline(infile, buffer))
 	// 	Parser(buffer);
 
-	buffer = "2022-03-25,,42222.32";
+	buffer = "2022-11-33,42222.32";
 	Parser(buffer);
 
 	infile.close();
