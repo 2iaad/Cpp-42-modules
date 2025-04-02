@@ -1,21 +1,19 @@
-#include <stdio.h>
 #include "BitcoinExchange.hpp"
 
 bool	dateParser(std::string &buf)
 {
 	std::cout << "\n------dateParser------\n";
 
-	size_t		old_ret = 0;
-	size_t		ret = 0;
-	short int	index = 0;
+	std::size_t	ret(0);
+	std::size_t	old_ret(0);
 	std::string	date[3];
 
-	while ((ret = buf.find('-', ret)) != std::string::npos)  //  2022-03-25
+	for (int i = 0; i < 3; i++)
 	{
-		date[index++] = buf.substr(old_ret, ret - old_ret);
+		ret = buf.find('-', ret);
+		date[i] = buf.substr(old_ret, ret - old_ret);
 		old_ret = ++ret; // increment->to skip the '-' in old_ret + to start from the charachter that follows '-' in find()
 	}
-	date[index] = buf.substr(old_ret, ret - old_ret);
 
 	std::cout << "date [0]:" << date[0] << std::endl;
 	std::cout << "date [1]:" << date[1] << std::endl;
@@ -56,9 +54,9 @@ void	Parser(std::string &buf)
 		return (void) (std::cout << DATE_ERR << std::endl);
 
 
-	if (!Spliter(buf, date, price, ret)) // split key & price
+	if (!Spliter(buf, date, price, ret))						// split key & price
 		return (void) (std::cout << EMPTY_ERR << std::endl);
-	if (!dateParser(date)) // parse the key
+	if (!dateParser(date))										// parse the key
 		return (void)(std::cout << DATE_ERR << std::endl);
 	// priceParser(price) // parse the price 
 }
@@ -79,7 +77,7 @@ int main( int ac, char **av )
 	// while (std::getline(infile, buffer))
 	// 	Parser(buffer);
 
-	buffer = "2022-11-33,42222.32";
+	buffer = "2222-11-33,42222.32";
 	Parser(buffer);
 
 	infile.close();
