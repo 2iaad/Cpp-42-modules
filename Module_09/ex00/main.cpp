@@ -1,17 +1,42 @@
 #include "BitcoinExchange.hpp"
 
-bool	digitChecker(std::string &buf)
+bool	priceDigitChecker(std::string &price)
 {
-	if (std::count(buf.begin(), buf.end(), '.') > 1)	return false;
-	for (auto c : buf) // fhad case c rah *char*
-		if (!std::isdigit(c) && c != '.')				return false ;
+	if (std::count(price.begin(), price.end(), '.') > 1)	return false;
+	for (auto c : price) // fhad case c rah *char*
+		if (!std::isdigit(c) && c != '.')					return false ;
+	return true ;
+}
+
+bool	dateDigitChecker(std::string date[3])
+{
+	for (size_t	i = 0; i < 3; i++)
+	{
+		for (size_t	j = 0; j < date[i].size(); j++)
+			if (!std::isdigit(date[i][j]))					return false ;
+	}
 	return true ;
 }
 
 bool	priceParser(std::string &buf)
 {
 	std::cout << "\n#-------------# priceParser #-------------#\n\n";
-	if (!digitChecker(buf))	return false ;
+	if (!priceDigitChecker(buf))	return false ;
+	return true ;
+}
+
+bool	dateChecker(std::string date[3]) // check if DD-MM-YYYY makes sence or not
+{
+	double Y = std::strtod(date[0].c_str(), NULL);
+	double M = std::strtod(date[1].c_str(), NULL);
+	double D = std::strtod(date[2].c_str(), NULL);
+
+	std::cout << D << "-" << M << "-" << Y << std::endl;
+
+	if (M == 2 && D > 29) // sana kabisa hh
+		return false ;
+	if ((D < 0 || D > 31) || (M < 0 || M > 12) || (Y < 0 || Y > FLT_MAX))
+		return false ;
 	return true ;
 }
 
@@ -34,7 +59,9 @@ bool	dateParser(std::string &buf)
 	std::cout << "date [1]:" << date[1] << std::endl;
 	std::cout << "date [2]:" << date[2] << std::endl;
 
-	if (date[0].empty() || date[1].empty() || date[2].empty()) return false ;
+	if (date[0].empty() || date[1].empty() || date[2].empty())	return false ;
+	if (!dateDigitChecker(date))								return false ;
+	if (!dateChecker(date))										return false ;
 	return true ;
 }
 
@@ -67,10 +94,10 @@ void	Parser(std::string &buf)
 
 	if (!Spliter(buf, date, price, ret))						// split key & price
 		return (void) (std::cout << EMPTY_ERR << std::endl);
-	if (!dateParser(date))										// parse the key
-		return (void) (std::cout << DATE_ERR << std::endl);
 	if (!priceParser(price))									// parse the price
 		return (void) (std::cout << PRICE_ERR << std::endl);
+	if (!dateParser(date))										// parse the key
+		return (void) (std::cout << DATE_ERR << std::endl);
 }
 
 int main( int ac, char **av )
@@ -86,11 +113,9 @@ int main( int ac, char **av )
 
 	std::map <std::string , float> _map;
 
-	// while (std::getline(infile, buffer))
-	// 	Parser(buffer);
-
-	buffer = "2222-11-33,42222..32";
-	Parser(buffer);
+	std::getline(infile, buffer);
+	while (std::getline(infile, buffer))
+		Parser(buffer);
 
 	infile.close();
 	return 0;

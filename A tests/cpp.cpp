@@ -1,4 +1,5 @@
 #include<iostream>
+#include<limits>
 
 void	spliter(std::string &buf)
 {
@@ -28,9 +29,7 @@ void	spliter(std::string &buf)
 	printf("date[index]:{%s}\n\n", date[index].c_str());
 }
 
+#include <stdio.h>
 int main() {
 
-	std::string str("2022-03-16");
-
-	spliter(str);
 }

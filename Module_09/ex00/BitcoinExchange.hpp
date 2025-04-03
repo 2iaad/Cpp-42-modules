@@ -1,17 +1,19 @@
 #pragma once
 
 #include <iostream>
-
+#include <cfloat>
 #include <algorithm>
 #include <fstream>
 #include <map>
 
-#define ARG_ERR		"Wrong  number of arguments"
-#define OPEN_ERR	"Can't open file"
-#define EMPTY_ERR	"Empty Date or Price"
-#define COMMA_ERR	"Error related to comma"
-#define	DATE_ERR	"Error related to Date"
-#define	PRICE_ERR	"Error related to Price"
+#include <stdio.h>
+
+#define ARG_ERR		"			->>		Wrong number of arguments"
+#define OPEN_ERR	"			->>		Can't open file"
+#define EMPTY_ERR	"			->>		Empty Date or Price"
+#define COMMA_ERR	"			->>		Error related to comma"
+#define	DATE_ERR	"			->>		Error related to Date"
+#define	PRICE_ERR	"			->>		Error related to Price"
 
 
 /**
