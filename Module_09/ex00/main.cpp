@@ -1,13 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-bool	priceDigitChecker(std::string &price)
-{
-	if (std::count(price.begin(), price.end(), '.') > 1)	return false;
-	for (auto c : price) // fhad case c rah *char*
-		if (!std::isdigit(c) && c != '.')					return false ;
-	return true ;
-}
-
 bool	dateDigitChecker(std::string date[3])
 {
 	for (size_t	i = 0; i < 3; i++)
@@ -18,10 +10,17 @@ bool	dateDigitChecker(std::string date[3])
 	return true ;
 }
 
-bool	priceParser(std::string &buf)
+bool	priceParser(std::string &price)
 {
 	std::cout << "\n#-------------# priceParser #-------------#\n\n";
-	if (!priceDigitChecker(buf))	return false ;
+	
+	if (std::count(price.begin(), price.end(), '.') > 1)	return false ;
+	for (auto c : price) // fhad case c rah *char*
+		if (!std::isdigit(c) && c != '.')					return false ;
+
+	double	value = std::strtod(price.c_str(), NULL);
+	if (value < 0 || value > 1000)							return false ;
+
 	return true ;
 }
 
@@ -31,7 +30,7 @@ bool	dateChecker(std::string date[3]) // check if DD-MM-YYYY makes sence or not
 	double M = std::strtod(date[1].c_str(), NULL);
 	double D = std::strtod(date[2].c_str(), NULL);
 
-	std::cout << D << "-" << M << "-" << Y << std::endl;
+	std::cout << Y << "-" << M << "-" << D << std::endl;
 
 	if (M == 2 && D > 29) // sana kabisa hh
 		return false ;
@@ -55,11 +54,12 @@ bool	dateParser(std::string &buf)
 		old_ret = ++ret; // increment->to skip the '-' in old_ret + to start from the charachter that follows '-' in find()
 	}
 
-	std::cout << "date [0]:" << date[0] << std::endl;
-	std::cout << "date [1]:" << date[1] << std::endl;
-	std::cout << "date [2]:" << date[2] << std::endl;
+	std::cout << "date [0]:	{" << date[0] << "}" << std::endl;
+	std::cout << "date [1]:	{" << date[1] << "}" << std::endl;
+	std::cout << "date [2]:	{" << date[2] << "}" << std::endl;
 
 	if (date[0].empty() || date[1].empty() || date[2].empty())	return false ;
+	if (std::count(buf.begin(), buf.end(), '-') != 2)			return false ;
 	if (!dateDigitChecker(date))								return false ;
 	if (!dateChecker(date))										return false ;
 	return true ;
@@ -70,13 +70,13 @@ bool	Spliter(std::string &buf, std::string &date,
 {
 	std::cout << "\n#-------------# Spliter #-------------#\n\n";
 
-	date = buf.substr(0, ret);
-	price = buf.substr(ret + 1, buf.size() - 1);
+	date = buf.substr(0, ret - 1);
+	price = buf.substr(ret + 2, buf.size() - 1);
 
 	if (date.empty() || price.empty()) return false ;
 
-	std::cout << "date is:	" << date << std::endl;
-	std::cout << "price is:	" << price << std::endl;
+	std::cout << "date is:	{" << date << "}" << std::endl;
+	std::cout << "price is:	{" << price << "}"<< std::endl;
 	return true ;
 }
 
@@ -86,11 +86,9 @@ void	Parser(std::string &buf)
 	std::string	date;
 	std::string	price;
 
-	if ((ret = buf.find(',')) == std::string::npos ||
-			std::count(buf.begin(), buf.end(), ',') != 1)
-		return (void) (std::cout << COMMA_ERR << std::endl);
-	if (std::count(buf.begin(), buf.end(), '-') != 2)
-		return (void) (std::cout << DATE_ERR << std::endl);
+	if ((ret = buf.find('|')) == std::string::npos ||
+			std::count(buf.begin(), buf.end(), '|') != 1)
+		return (void) (std::cout << PIPE_ERR << std::endl);
 
 	if (!Spliter(buf, date, price, ret))						// split key & price
 		return (void) (std::cout << EMPTY_ERR << std::endl);
@@ -103,7 +101,7 @@ void	Parser(std::string &buf)
 int main( int ac, char **av )
 {
 	std::fstream	infile;
-	std::string		buffer;
+	std::string		input;
 
 	if (ac != 2)
 		return std::cout << ARG_ERR << std::endl, 1;
@@ -113,9 +111,9 @@ int main( int ac, char **av )
 
 	std::map <std::string , float> _map;
 
-	std::getline(infile, buffer);
-	while (std::getline(infile, buffer))
-		Parser(buffer);
+	std::getline(infile, input);
+	while (std::getline(infile, input))
+		Parser(input);
 
 	infile.close();
 	return 0;

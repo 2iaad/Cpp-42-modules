@@ -11,7 +11,7 @@
 #define ARG_ERR		"			->>		Wrong number of arguments"
 #define OPEN_ERR	"			->>		Can't open file"
 #define EMPTY_ERR	"			->>		Empty Date or Price"
-#define COMMA_ERR	"			->>		Error related to comma"
+#define PIPE_ERR	"			->>		Error related to pipe"
 #define	DATE_ERR	"			->>		Error related to Date"
 #define	PRICE_ERR	"			->>		Error related to Price"
 
