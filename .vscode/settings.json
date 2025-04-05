@@ -77,7 +77,9 @@
 		"__availability": "cpp",
 		"filesystem": "cpp",
 		"complex": "cpp",
-		"format": "cpp"
+		"format": "cpp",
+		"map": "cpp",
+		"span": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

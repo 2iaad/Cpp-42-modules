@@ -8,6 +8,8 @@
 
 #include <stdio.h>
 
+
+// #define std::map<std::string,float> MAP
 #define ARG_ERR		"			->>		Wrong number of arguments"
 #define OPEN_ERR	"			->>		Can't open file"
 #define EMPTY_ERR	"			->>		Empty Date or Price"

@@ -70,8 +70,10 @@ bool	Spliter(std::string &buf, std::string &date,
 {
 	std::cout << "\n#-------------# Spliter #-------------#\n\n";
 
-	date = buf.substr(0, ret - 1);
-	price = buf.substr(ret + 2, buf.size() - 1);
+	try {
+		date = buf.substr(0, ret - 1);
+		price = buf.substr(ret + 2, buf.size() - 1);
+	} catch(const std::exception& e) { return false ;}
 
 	if (date.empty() || price.empty()) return false ;
 
@@ -98,23 +100,73 @@ void	Parser(std::string &buf)
 		return (void) (std::cout << DATE_ERR << std::endl);
 }
 
-int main( int ac, char **av )
+void	inputFileReader(char *file)
 {
 	std::fstream	infile;
 	std::string		input;
 
-	if (ac != 2)
-		return std::cout << ARG_ERR << std::endl, 1;
-	infile.open(av[1]);
+	infile.open(file);
 	if (!infile)
-		return std::cerr << OPEN_ERR << std::endl, 1;
-
-	std::map <std::string , float> _map;
-
+		return (void) (std::cerr << OPEN_ERR << std::endl);
+	
 	std::getline(infile, input);
 	while (std::getline(infile, input))
 		Parser(input);
 
 	infile.close();
+}
+
+void	mapPrinter(std::map <std::string , float> Base)
+{
+	printf("\n\n\n				#####				\n\n\n");
+
+	std::map < std::string, float >::iterator it;
+	for (it = Base.begin(); it != Base.end(); it++)
+	{
+		std::cout << it->first << " _ " << it->second << std::endl;
+	}
+}
+
+void	dataBaseReader(std::map<std::string , float> dataBase)
+{
+	std::size_t		ret;
+	std::string		line;
+	std::string		date;
+	std::string		valueStr;
+	float			valueFlt;
+	std::fstream	infile;
+
+	infile.open("data.csv");
+	if (!infile)
+		return (void) (std::cerr << OPEN_ERR << std::endl);
+
+	std::getline(infile, line);
+	while (std::getline(infile, line))
+	{
+		date = line.substr(0, 10);
+		valueStr = line.substr(10 + 1, line.size() - 1);
+		// printf("{%s}", valueStr.c_str());
+		valueFlt = static_cast < float >(std::strtod(valueStr.c_str(), NULL));
+
+		dataBase[date] = valueFlt;
+	}
+
+	infile.close();
+}
+
+int main( int ac, char **av )
+{
+	std::map <std::string , float> dataBase;
+	std::map <std::string , float> inputBase;
+
+
+	if (ac != 2)
+		return std::cout << ARG_ERR << std::endl, 1;
+	inputFileReader(av[1]);
+
+	dataBaseReader(dataBase);
+
+	mapPrinter(dataBase);
+
 	return 0;
 }
