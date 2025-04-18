@@ -12,9 +12,8 @@ bool	dateDigitChecker(std::string date[3])
 
 bool	priceParser(std::string &price)
 {
-	std::cout << "\n#-------------# priceParser #-------------#\n\n";
-	
-	if (std::count(price.begin(), price.end(), '.') > 1)	return false ;
+	if (std::count(price.begin(), price.end(), '.') > 1)						return false ; // ila kant kter mn '.'
+	if (std::count(price.begin(), price.end(), '.') == 1 && price.size() < 3)	return false ; // ila kant matalan '.1' || '1.' || '.'
 	for (auto c : price) // fhad case c rah *char*
 		if (!std::isdigit(c) && c != '.')					return false ;
 
@@ -24,13 +23,13 @@ bool	priceParser(std::string &price)
 	return true ;
 }
 
-bool	dateChecker(std::string date[3]) // check if DD-MM-YYYY makes sence or not
+bool	dateChecker(std::string date[3]) // checking if DD-MM-YYYY makes sence or not
 {
 	double Y = std::strtod(date[0].c_str(), NULL);
 	double M = std::strtod(date[1].c_str(), NULL);
 	double D = std::strtod(date[2].c_str(), NULL);
 
-	std::cout << Y << "-" << M << "-" << D << std::endl;
+	// std::cout << Y << "-" << M << "-" << D << std::endl;
 
 	if (M == 2 && D > 29) // sana kabisa hh
 		return false ;
@@ -41,8 +40,6 @@ bool	dateChecker(std::string date[3]) // check if DD-MM-YYYY makes sence or not
 
 bool	dateParser(std::string &buf)
 {
-	std::cout << "\n#-------------# dateParser #-------------#\n\n";
-
 	std::size_t	ret(0);
 	std::size_t	old_ret(0);
 	std::string	date[3];
@@ -54,9 +51,9 @@ bool	dateParser(std::string &buf)
 		old_ret = ++ret; // increment->to skip the '-' in old_ret + to start from the charachter that follows '-' in find()
 	}
 
-	std::cout << "date [0]:	{" << date[0] << "}" << std::endl;
-	std::cout << "date [1]:	{" << date[1] << "}" << std::endl;
-	std::cout << "date [2]:	{" << date[2] << "}" << std::endl;
+	// std::cout << "date [0]:	{" << date[0] << "}" << std::endl;
+	// std::cout << "date [1]:	{" << date[1] << "}" << std::endl;
+	// std::cout << "date [2]:	{" << date[2] << "}" << std::endl;
 
 	if (date[0].empty() || date[1].empty() || date[2].empty())	return false ;
 	if (std::count(buf.begin(), buf.end(), '-') != 2)			return false ;
@@ -65,75 +62,69 @@ bool	dateParser(std::string &buf)
 	return true ;
 }
 
-bool	Spliter(std::string &buf, std::string &date,
-				std::string &price, size_t ret)
+bool	Spliter(std::string &line, std::string &date,
+				std::string &amount)
 {
-	std::cout << "\n#-------------# Spliter #-------------#\n\n";
+	size_t			ret;
+
+	if ((ret = line.find('|')) == std::string::npos ||
+			std::count(line.begin(), line.end(), '|') != 1)
+		return false;
 
 	try {
-		date = buf.substr(0, ret - 1);
-		price = buf.substr(ret + 2, buf.size() - 1);
-	} catch(const std::exception& e) { return false ;}
+		date = line.substr(0, ret - 1);
+		amount = line.substr(ret + 2, line.size() - 1);
+	} catch(const std::exception& e)  { return false ;}
 
-	if (date.empty() || price.empty()) return false ;
-
-	std::cout << "date is:	{" << date << "}" << std::endl;
-	std::cout << "price is:	{" << price << "}"<< std::endl;
+	if (date.empty() || amount.empty())	return false ;
 	return true ;
 }
 
-void	Parser(std::string &buf)
+void	Executer(std::string &date, std::string &amount, std::map<std::string,float> &dataBase)
 {
-	size_t		ret;
-	std::string	date;
-	std::string	price;
+	float amountf = static_cast<float>(std::strtod(amount.c_str(), NULL));
 
-	if ((ret = buf.find('|')) == std::string::npos ||
-			std::count(buf.begin(), buf.end(), '|') != 1)
-		return (void) (std::cout << PIPE_ERR << std::endl);
+	std::map<std::string,float>::iterator it = dataBase.find(date);
+	if (it == dataBase.end())
+		return ;
 
-	if (!Spliter(buf, date, price, ret))						// split key & price
-		return (void) (std::cout << EMPTY_ERR << std::endl);
-	if (!priceParser(price))									// parse the price
-		return (void) (std::cout << PRICE_ERR << std::endl);
-	if (!dateParser(date))										// parse the key
-		return (void) (std::cout << DATE_ERR << std::endl);
+	/*
+		ila kant date == dataBase->date andir this:
+	*/
+	std::cout << date << " => " << amount << " = " << amountf * (it->second) << std::endl;
 }
 
-void	inputFileReader(char *file)
+void	inputFileReader(char *file, std::map<std::string,float> &dataBase)
 {
+	std::string		line;
+	std::string		date;
+	std::string		amount;
 	std::fstream	infile;
-	std::string		input;
 
 	infile.open(file);
 	if (!infile)
 		return (void) (std::cerr << OPEN_ERR << std::endl);
-	
-	std::getline(infile, input);
-	while (std::getline(infile, input))
-		Parser(input);
 
-	infile.close();
-}
-
-void	mapPrinter(std::map <std::string , float> Base)
-{
-	printf("\n\n\n				#####				\n\n\n");
-
-	std::map < std::string, float >::iterator it;
-	for (it = Base.begin(); it != Base.end(); it++)
+	std::getline(infile, line);
+	while (std::getline(infile, line))
 	{
-		std::cout << it->first << " _ " << it->second << std::endl;
+		if (!Spliter(line, date, amount))							// split key & amount
+			{	std::cerr << EMPTY_ERR << std::endl; continue;	}
+		if (!priceParser(amount))									// parse the amount
+			{	std::cerr << PRICE_ERR << std::endl; continue;	}
+		if (!dateParser(date))										// parse the key
+			{	std::cerr << DATE_ERR << date<< std::endl; continue; }
+
+		Executer(date, amount, dataBase);
 	}
 }
 
-void	dataBaseReader(std::map<std::string , float> dataBase)
+void	dataBaseReader(std::map<std::string , float> &dataBase)
 {
 	std::size_t		ret;
 	std::string		line;
 	std::string		date;
 	std::string		valueStr;
-	float			valueFlt;
 	std::fstream	infile;
 
 	infile.open("data.csv");
@@ -145,28 +136,31 @@ void	dataBaseReader(std::map<std::string , float> dataBase)
 	{
 		date = line.substr(0, 10);
 		valueStr = line.substr(10 + 1, line.size() - 1);
-		// printf("{%s}", valueStr.c_str());
-		valueFlt = static_cast < float >(std::strtod(valueStr.c_str(), NULL));
-
-		dataBase[date] = valueFlt;
+		dataBase[date] = static_cast < float >(std::strtod(valueStr.c_str(), NULL));
 	}
-
 	infile.close();
 }
 
-int main( int ac, char **av )
+template < typename T >
+void	mapPrinter(T Base)
+{
+	typename T::iterator it;
+	for (it = Base.begin(); it != Base.end(); it++)
+	{
+		std::cout << it->first << " _ " << it->second << std::endl;
+	}
+}
+
+int main(int ac, char **av)
 {
 	std::map <std::string , float> dataBase;
-	std::map <std::string , float> inputBase;
-
 
 	if (ac != 2)
-		return std::cout << ARG_ERR << std::endl, 1;
-	inputFileReader(av[1]);
+		return std::cout << OPEN_ERR << std::endl, 1;
 
 	dataBaseReader(dataBase);
+	inputFileReader(av[1], dataBase);
 
-	mapPrinter(dataBase);
-
+	// mapPrinter(dataBase);
 	return 0;
 }
