@@ -85,8 +85,12 @@ void	Executer(std::string &date, std::string &amount, std::map<std::string,float
 	float amountf = static_cast<float>(std::strtod(amount.c_str(), NULL));
 
 	std::map<std::string,float>::iterator it = dataBase.find(date);
+
+	/*
+		ila makantch date --> nkhdm b lower bound
+	*/
 	if (it == dataBase.end())
-		return ;
+		return (void)(std::cout << "UNKNOWN DATE <need to handle this>" << std::endl);
 
 	/*
 		ila kant date == dataBase->date andir this:
