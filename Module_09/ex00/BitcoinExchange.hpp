@@ -14,13 +14,28 @@
 #define	DATE_ERR	"Error: bad input => "
 #define	PRICE_ERR	"Error: related to Price."
 
-/**
- * @brief what to start with:
- * 		
- * 		1- read line by line
- * 		2- each line that have been read nsplitih b ,
- * 		3- date = key && value = value.
- * 		4- parse date
- * 		5- get previous date if invalide date
- * 
- */
+// typedef std::map <std::string, float> BitcoinDB;
+
+class BitcoinExchange 
+{
+private:
+	std::map <std::string, float> dataBase;
+
+	bool	Spliter(std::string &, std::string &, std::string &);
+	bool	priceParser(std::string &);
+
+	bool	dateDigitChecker(std::string [3]);
+	bool	dateChecker(std::string [3]);
+	bool	dateParser(std::string &);
+
+	void	Executer(std::string &date, std::string& amount);
+	
+public:
+	BitcoinExchange();
+	BitcoinExchange(const BitcoinExchange &other);
+	BitcoinExchange &operator=(const BitcoinExchange &other);
+	~BitcoinExchange();
+
+	void	dataBaseReader(void);
+	void	inputFileReader(char *file);
+};
