@@ -1,6 +1,6 @@
 NAME = RPN
 
-FILES = main.cpp BitcoinExchange.cpp
+FILES = main.cpp RPN.cpp
 
 SRCS = $(FILES:.cpp=.o)
 
@@ -13,7 +13,7 @@ all: $(NAME)
 $(NAME): $(SRCS)
 	$(CC) $(CPPFLAGS) $^ -o $@
 
-%.o: %.cpp BitcoinExchange.hpp
+%.o: %.cpp RPN.hpp
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
