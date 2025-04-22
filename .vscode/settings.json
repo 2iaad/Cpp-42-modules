@@ -79,7 +79,8 @@
 		"complex": "cpp",
 		"format": "cpp",
 		"map": "cpp",
-		"span": "cpp"
+		"span": "cpp",
+		"__tree": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

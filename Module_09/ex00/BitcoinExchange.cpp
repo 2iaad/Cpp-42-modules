@@ -28,17 +28,12 @@ void	BitcoinExchange::Executer(std::string &date, std::string &amount)
 {
 	float amountf = static_cast<float>(std::strtod(amount.c_str(), NULL));
 
-	std::map<std::string,float>::iterator it = dataBase.find(date);
-
+	std::map<std::string,float>::const_iterator it = dataBase.lower_bound(date);
 	/*
-		ila makantch date --> nkhdm b lower bound
+		there is a fix needed here
 	*/
-	if (it == dataBase.end())
-		return (void)(std::cout << "UNKNOWN DATE <need to handle this>" << std::endl);
-
-	/*
-		ila kant date == dataBase->date andir this:
-	*/
+	if (it == dataBase.end() || it->first != date)
+		--it;
 	std::cout << date << " => " << amount << " = " << amountf * (it->second) << std::endl;
 }
 
@@ -159,7 +154,9 @@ void	BitcoinExchange::inputFileReader(char *file)
 	infile.open(file);
 	if (!infile)
 		return (void) (std::cerr << OPEN_ERR << std::endl);
-
+	if (infile.peek() == EOF) // Returns next character without extracting it.
+		return (void) (std::cerr << READ_ERR<< std::endl);
+	
 	std::getline(infile, line);
 	while (std::getline(infile, line))
 	{
