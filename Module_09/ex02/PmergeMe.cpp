@@ -54,8 +54,8 @@ void	PmergeMe::sortVector( void )
 	std::vector<int> bigElements, smallElements;
 	splitVectorPairs(pairs, bigElements, smallElements);
 
-	std::cout << "big elements:   " << std::endl; printer(bigElements);
-	std::cout << "small elements:   " << std::endl; printer(smallElements);
+	std::cout << "\033[1;31mbig elements:   " << std::endl; printer(bigElements);
+	std::cout << "\033[1;31msmall elements:   " << std::endl; printer(smallElements);
 
 	//		3	-	Sort bigElements
 	fusionSortVector(bigElements.begin(), bigElements.end());
@@ -65,7 +65,7 @@ void	PmergeMe::sortVector( void )
 
 	this->vec = bigElements;
 
-	std::cout << "#######----> Final result:   " << std::endl; printer(this->vec);
+	std::cout << "\033[1;31m#######----> Final result:   " << std::endl; printer(this->vec);
 
 }
 
@@ -74,18 +74,18 @@ void	PmergeMe::sortVector( void )
 	|#------------------------------------------------------#|
 */
 
-std::vector	<std::pair<int, int> >	PmergeMe::makeVectorPairs( void )
+std::vector <std::pair<int, int> >	PmergeMe::makeVectorPairs( void )
 {
+	int	first, second;
 	std::vector <std::pair<int, int> > pairs;
 
 	for (size_t i = 0; i + 1 < this->vec.size(); i += 2)
 	{
-		int first = this->vec[i];
-		int second = this->vec[i + 1];
+		first = this->vec[i];
+		second = this->vec[i + 1];
 		if (first > second)
-		{
 			std::swap(first, second);
-		}
+
 		pairs.push_back(std::make_pair(first, second));
 	}
 
