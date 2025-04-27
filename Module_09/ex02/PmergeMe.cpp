@@ -1,0 +1,138 @@
+#include "PmergeMe.hpp"
+
+PmergeMe::PmergeMe() {
+	std::cout << "PmergeMe Constructor called!" << std::endl;
+}
+
+PmergeMe::PmergeMe(const PmergeMe &other) : vec(other.vec), deq(other.deq) {
+	std::cout << "PmergeMe Copy Constructor called" << std::endl;
+}
+
+PmergeMe	&PmergeMe::operator=(const PmergeMe &other) {
+    if (this != &other) {
+		vec = other.vec;
+		deq = other.deq;
+	}
+	std::cout << "PmergeMe Copy Assignment Operator called" << std::endl;
+    return *this;
+}
+
+PmergeMe::~PmergeMe() {
+	std::cout << "PmergeMe Destructor called" << std::endl;
+}
+
+/*	|#------------------------------------------------------#|
+	|#			 		Public Member functions    			#|
+	|#------------------------------------------------------#|
+*/
+
+void	PmergeMe::init_data(int ac, char **av)
+{
+	double	tmp = 0;
+	char	*end = NULL;
+
+	for (int i = 1; i < ac; i++)
+	{
+		tmp = std::strtod(av[i], &end);
+
+		if (!(*av[i]) || *end || tmp < 0 || tmp > std::numeric_limits<int>::max()) // ila kant number negative ola invalide arg
+			throw std::invalid_argument("Error");
+		this->vec.push_back(tmp);
+		this->deq.push_back(tmp);
+	}
+
+	printer(vec);
+	// printer(deq);
+}
+
+void	PmergeMe::sortVector( void )
+{
+	//		1	-	Make the pairs
+	std::vector <std::pair<int, int> > pairs = makeVectorPairs();
+
+	//		2	-	Split big and small
+	std::vector<int> bigElements, smallElements;
+	splitVectorPairs(pairs, bigElements, smallElements);
+
+	std::cout << "big elements:   " << std::endl; printer(bigElements);
+	std::cout << "small elements:   " << std::endl; printer(smallElements);
+
+	//		3	-	Sort bigElements
+	fusionSortVector(bigElements.begin(), bigElements.end());
+
+	//		4	-	Insert small
+	insertSmallElementsVec(bigElements, smallElements);
+
+	this->vec = bigElements;
+
+	std::cout << "#######----> Final result:   " << std::endl; printer(this->vec);
+
+}
+
+/*	|#------------------------------------------------------#|
+	|#			 	Private Member functions    			#|
+	|#------------------------------------------------------#|
+*/
+
+std::vector	<std::pair<int, int> >	PmergeMe::makeVectorPairs( void )
+{
+	std::vector <std::pair<int, int> > pairs;
+
+	for (size_t i = 0; i + 1 < this->vec.size(); i += 2)
+	{
+		int first = this->vec[i];
+		int second = this->vec[i + 1];
+		if (first > second)
+		{
+			std::swap(first, second);
+		}
+		pairs.push_back(std::make_pair(first, second));
+	}
+
+	if (this->vec.size() % 2 != 0) // if odd number of elements -> push struggler with -1
+		pairs.push_back(std::make_pair(this->vec.back(), -1));
+
+	return pairs;
+}
+
+void	PmergeMe::splitVectorPairs	(	std::vector <std::pair<int, int> > &pairs,
+										std::vector <int> &bigElements,
+										std::vector <int> &smallElements
+									)
+{
+	for (size_t i = 0; i < pairs.size(); ++i)
+	{
+		smallElements.push_back(pairs[i].first);
+		if (pairs[i].second != -1) // ila makanch struggler
+		{
+			bigElements.push_back(pairs[i].second);
+		}
+	}
+}
+
+void	PmergeMe::fusionSortVector	(	std::vector<int>::iterator begin,
+										std::vector<int>::iterator end
+									)
+{
+	if (std::distance(begin, end) <= 1)
+		return;
+
+	std::vector<int>::iterator mid = begin + std::distance(begin, end) / 2;
+
+	fusionSortVector(begin, mid);
+	fusionSortVector(mid, end);
+
+	std::inplace_merge(begin, mid, end);
+}
+
+void	PmergeMe::insertSmallElementsVec	(	std::vector<int> &bigElements,
+												const std::vector<int> &smallElements
+											)
+{
+	for (size_t i = 0; i < smallElements.size(); ++i)
+	{
+		std::vector<int>::iterator insertionPoint = std::lower_bound(bigElements.begin(), bigElements.end(), smallElements[i]);
+		bigElements.insert(insertionPoint, smallElements[i]);
+	}
+}
+
