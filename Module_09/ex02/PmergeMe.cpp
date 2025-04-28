@@ -49,6 +49,7 @@ void	PmergeMe::sortVector( void )
 {
 	//		1	-	Make the pairs
 	std::vector <std::pair<int, int> > pairs = makeVectorPairs();
+	printer(pairs);
 
 	//		2	-	Split big and small
 	std::vector<int> bigElements, smallElements;
@@ -102,11 +103,9 @@ void	PmergeMe::splitVectorPairs	(	std::vector <std::pair<int, int> > &pairs,
 {
 	for (size_t i = 0; i < pairs.size(); ++i)
 	{
-		smallElements.push_back(pairs[i].first);
+		smallElements.push_back(pairs[i].first); // .first huwa small element mn koula pair
 		if (pairs[i].second != -1) // ila makanch struggler
-		{
-			bigElements.push_back(pairs[i].second);
-		}
+			bigElements.push_back(pairs[i].second); // .second huwa big element mn koula pair
 	}
 }
 
