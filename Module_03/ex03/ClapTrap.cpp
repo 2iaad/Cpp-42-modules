@@ -73,7 +73,10 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		return ;
 	}
 	this->Energy_points--;
-	Hit_points += amount;
+	if (this->Hit_points + amount > INT_MAX)
+		this->Hit_points = INT_MAX;
+	else
+		Hit_points += amount;
 	std::cout << "ClapTrap " << this->name << " repairs itself with " << amount << " points. My HitPoints: " << \
 	this->Hit_points << ", And my EnergyPoints: " << this->Energy_points << std::endl;
 }
