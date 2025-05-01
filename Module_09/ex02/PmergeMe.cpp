@@ -40,7 +40,6 @@ void	PmergeMe::init_data(int ac, char **av)
 		this->vec.push_back(tmp);
 		this->deq.push_back(tmp);
 	}
-
 	// printer(vec);
 	// printer(deq);
 }
@@ -62,12 +61,10 @@ void	PmergeMe::sortVector( void )
 	fusionSortVector(bigElements.begin(), bigElements.end());
 
 	// //		4	-	Insert small
-	// insertSmallElementsVec(bigElements, smallElements);
+	insertSmallElementsVec(bigElements, smallElements);
 
 	this->vec = bigElements;
-
 	std::cout << "\033[1;31m#######----> Final result:   " << std::endl; printer(this->vec);
-
 }
 
 /*	|#------------------------------------------------------#|
@@ -109,18 +106,31 @@ void	PmergeMe::splitVectorPairs	(	std::vector <std::pair<int, int> > &pairs,
 	}
 }
 
+/*
+	FusionSortVector on this : {14, 11, 3, 12, 1, 4, 25, 24, 30, 2}
+
+				[14 12 4 25 30]
+				/              \
+		[14 12]                 [4 25 30]
+		/      \                /       \
+	[14]     [12]          [4]         [25 30]
+									/     \
+								[25]     [30]
+*/
+
 void	PmergeMe::fusionSortVector	(	std::vector<int>::iterator begin,
 										std::vector<int>::iterator end
 									)
 {
-	if (std::distance(begin, end) <= 1) // how many elements are between begin & end
+	std::cout << std::endl;
+	if (std::distance(begin, end) <= 1) // Base case: yb9a element wa7d f vector
 		return;
 
 	std::vector<int>::iterator mid = begin + std::distance(begin, end) / 2;
-	std::cout << "{" << *mid<< "}" << std::endl;
+	// std::cout << "{" << *mid<< "}" << std::endl;
 
 	fusionSortVector(begin, mid);
-	// fusionSortVector(mid, end);
+	fusionSortVector(mid, end);
 
 	std::inplace_merge(begin, mid, end);
 }
@@ -135,4 +145,3 @@ void	PmergeMe::insertSmallElementsVec	(	std::vector<int> &bigElements,
 		bigElements.insert(insertionPoint, smallElements[i]);
 	}
 }
-
