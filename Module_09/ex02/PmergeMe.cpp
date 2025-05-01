@@ -113,22 +113,34 @@ void	PmergeMe::splitVectorPairs	(	std::vector <std::pair<int, int> > &pairs,
 				/              \
 		[14 12]                 [4 25 30]
 		/      \                /       \
-	[14]     [12]          [4]         [25 30]
+	[14]       [12]			 [4]    [25 30]
 									/     \
 								[25]     [30]
+
+	Recursion while going back :
+
+	[12, 14]						[25, 30]
+	[12, 14]				[4]		[25, 30]
+	[12, 14]					[4, 25, 30]
+	[4, 12, 14, 25, 30]	
 */
 
 void	PmergeMe::fusionSortVector	(	std::vector<int>::iterator begin,
 										std::vector<int>::iterator end
 									)
 {
-	std::cout << std::endl;
 	if (std::distance(begin, end) <= 1) // Base case: yb9a element wa7d f vector
 		return;
 
 	std::vector<int>::iterator mid = begin + std::distance(begin, end) / 2;
-	// std::cout << "{" << *mid<< "}" << std::endl;
-
+	// std::cout << "{" << *mid << "}\t --- > Range: {";
+	// std::vector<int>::iterator tmp(begin);
+	// while (tmp != end)
+	// {
+	// 	std::cout << " " << *tmp << " ";
+	// 	tmp++;
+	// }
+	// std::cout << "}" << std::endl;
 	fusionSortVector(begin, mid);
 	fusionSortVector(mid, end);
 
@@ -139,9 +151,29 @@ void	PmergeMe::insertSmallElementsVec	(	std::vector<int> &bigElements,
 												const std::vector<int> &smallElements
 											)
 {
-	for (size_t i = 0; i < smallElements.size(); ++i)
+	std::vector<int>::iterator insertionPoint;
+
+	for (unsigned int i = 0; i < smallElements.size(); ++i)
 	{
-		std::vector<int>::iterator insertionPoint = std::lower_bound(bigElements.begin(), bigElements.end(), smallElements[i]);
-		bigElements.insert(insertionPoint, smallElements[i]);
+		insertionPoint = std::lower_bound(	bigElements.begin(), // look for the smallest element in the bigElement
+											bigElements.end(),
+											smallElements[i]);
+		bigElements.insert(insertionPoint, smallElements[i]);	// then insert the small element right before it
 	}
 }
+
+/*
+	FusionSortVector on this : [14 12 4 25 30]
+
+		 [14 12 4 25 30]
+				|
+			 [14 12]        
+			 /      \       
+		 [14]        [12]
+
+			[4 25 30]
+			/       \
+		 [4]	   [25 30]
+				   /     \
+		    	[25]     [30]
+*/

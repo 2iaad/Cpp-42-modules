@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <algorithm> // inplace_merge()
+#include <cstdlib> // std::strtod()
 #include <limits>
 #include <vector>
 #include <deque>
