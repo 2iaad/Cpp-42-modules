@@ -41,7 +41,7 @@ void	PmergeMe::init_data(int ac, char **av)
 		this->deq.push_back(tmp);
 	}
 
-	printer(vec);
+	// printer(vec);
 	// printer(deq);
 }
 
@@ -61,8 +61,8 @@ void	PmergeMe::sortVector( void )
 	//		3	-	Sort bigElements
 	fusionSortVector(bigElements.begin(), bigElements.end());
 
-	//		4	-	Insert small
-	insertSmallElementsVec(bigElements, smallElements);
+	// //		4	-	Insert small
+	// insertSmallElementsVec(bigElements, smallElements);
 
 	this->vec = bigElements;
 
@@ -113,13 +113,14 @@ void	PmergeMe::fusionSortVector	(	std::vector<int>::iterator begin,
 										std::vector<int>::iterator end
 									)
 {
-	if (std::distance(begin, end) <= 1)
+	if (std::distance(begin, end) <= 1) // how many elements are between begin & end
 		return;
 
 	std::vector<int>::iterator mid = begin + std::distance(begin, end) / 2;
+	std::cout << "{" << *mid<< "}" << std::endl;
 
 	fusionSortVector(begin, mid);
-	fusionSortVector(mid, end);
+	// fusionSortVector(mid, end);
 
 	std::inplace_merge(begin, mid, end);
 }

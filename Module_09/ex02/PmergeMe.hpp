@@ -30,7 +30,7 @@ void printer(const Container& c) {
         printElement(*it);
         ++it;
         if (it != c.end())
-			std::cout << " ";
+			std::cout << "\t";
         else
 			std::cout << std::endl;
     }
