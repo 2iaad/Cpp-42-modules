@@ -167,3 +167,32 @@ void	PmergeMe::insertSmallElementsVec	(	std::vector<int> &bigElements,
 		bigElements.insert(insertionPoint, smallElements[i]);	// then insert the small element right before it
 	}
 }
+
+
+// template <typename Container>
+// int_vector PmergeMe<Container>::generate_indexes(size_t size) {
+//     int_vector indexes;
+//     int jacobsthalSequence[size + 1];
+
+//     jacobsthalSequence[0] = 0;
+//     jacobsthalSequence[1] = 1;
+//     int lastJacobsthalNumber = 2;
+
+//     for (size_t i = 2; indexes.size() < size; i++)
+//     {
+			// Eror mzl f had loop!
+//         // Generate the next Jacobsthal number
+//         jacobsthalSequence[i] = jacobsthalSequence[i - 1] + 2 * jacobsthalSequence[i - 2];
+
+//         // Push the jacobsthal number
+//         if (i != 2) indexes.push_back(jacobsthalSequence[i]);
+
+//         // Push back the indexes between the last Jacobsthal number and the current one
+//         for (int j = jacobsthalSequence[i] - 1; j > lastJacobsthalNumber; j--)
+//             indexes.push_back(j);
+
+//         // Update akhir Jacobsthal number
+//         lastJacobsthalNumber = jacobsthalSequence[i];
+//     }
+//     return (indexes);
+// }
