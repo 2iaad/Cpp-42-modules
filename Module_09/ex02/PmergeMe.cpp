@@ -109,13 +109,19 @@ void	PmergeMe::splitVectorPairs	(	std::vector <std::pair<int, int> > &pairs,
 /*
 	FusionSortVector on this : {14, 11, 3, 12, 1, 4, 25, 24, 30, 2}
 
-				[14 12 4 25 30]
-				/              \
-		[14 12]                 [4 25 30]
-		/      \                /       \
-	[14]       [12]			 [4]    [25 30]
-									/     \
-								[25]     [30]
+	FusionSortVector on this : [14 12 4 25 30]
+
+		 [14 12 4 25 30]
+				|
+			 [14 12]        
+			 /      \       
+		 [14]        [12]
+
+			[4 25 30]
+			/       \
+		 [4]	   [25 30]
+				   /     \
+		    	[25]     [30]
 
 	Recursion while going back :
 
@@ -161,19 +167,3 @@ void	PmergeMe::insertSmallElementsVec	(	std::vector<int> &bigElements,
 		bigElements.insert(insertionPoint, smallElements[i]);	// then insert the small element right before it
 	}
 }
-
-/*
-	FusionSortVector on this : [14 12 4 25 30]
-
-		 [14 12 4 25 30]
-				|
-			 [14 12]        
-			 /      \       
-		 [14]        [12]
-
-			[4 25 30]
-			/       \
-		 [4]	   [25 30]
-				   /     \
-		    	[25]     [30]
-*/
