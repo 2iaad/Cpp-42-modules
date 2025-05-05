@@ -1,8 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include <algorithm> // inplace_merge()
-#include <cstdlib> // std::strtod()
+#include <algorithm>	// inplace_merge()
+#include <cstdlib>		// std::strtod()
+#include <cmath>		// std::pow()
 #include <limits>
 #include <vector>
 #include <deque>

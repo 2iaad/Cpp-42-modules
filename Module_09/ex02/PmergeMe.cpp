@@ -168,31 +168,29 @@ void	PmergeMe::insertSmallElementsVec	(	std::vector<int> &bigElements,
 	}
 }
 
+// int tmp = (std::pow(2,n) - std::pow(-1, n)) / 3; // this will work perfectly
 
-// template <typename Container>
-// int_vector PmergeMe<Container>::generate_indexes(size_t size) {
-//     int_vector indexes;
-//     int jacobsthalSequence[size + 1];
 
-//     jacobsthalSequence[0] = 0;
-//     jacobsthalSequence[1] = 1;
-//     int lastJacobsthalNumber = 2;
+std::vector<int> JacobSthalSequence(size_t size)
+{
+    std::vector<int>	JSequence;
+	size_t	n = 0, Jn = 0, JnPlus1 = 0, LastJsN = 0;
 
-//     for (size_t i = 2; indexes.size() < size; i++)
-//     {
-			// Eror mzl f had loop!
-//         // Generate the next Jacobsthal number
-//         jacobsthalSequence[i] = jacobsthalSequence[i - 1] + 2 * jacobsthalSequence[i - 2];
+	JSequence.push_back(0); // J(n)
 
-//         // Push the jacobsthal number
-//         if (i != 2) indexes.push_back(jacobsthalSequence[i]);
+	for (size_t i = 0; i < size; i++)
+	{
+		JnPlus1 = std::pow(2,n++) - Jn; // J (n + 1) = 2^(n) - J(n)
 
-//         // Push back the indexes between the last Jacobsthal number and the current one
-//         for (int j = jacobsthalSequence[i] - 1; j > lastJacobsthalNumber; j--)
-//             indexes.push_back(j);
+		LastJsN = Jn; // Remember akhir JacobSthal Number
+		JSequence.push_back(JnPlus1);
+		Jn = JSequence.back(); // next loop Jn
 
-//         // Update akhir Jacobsthal number
-//         lastJacobsthalNumber = jacobsthalSequence[i];
-//     }
-//     return (indexes);
-// }
+		for (size_t j = JSequence.back() - 1; j > LastJsN; j--) // insert Jacobsthal sequence
+		{
+			if (JSequence.size() >= size)	break;
+			JSequence.push_back(j);
+		}
+	}
+    return JSequence.resize(size), JSequence; // 3lach katb9a chyata ila madrtch resize() ?
+}
