@@ -31,6 +31,7 @@ void	PmergeMe::init_data(int ac, char **av)
 	double	tmp = 0;
 	char	*end = NULL;
 
+	this->ArrSize = ac - 1;
 	for (int i = 1; i < ac; i++)
 	{
 		tmp = std::strtod(av[i], &end);
@@ -139,14 +140,7 @@ void	PmergeMe::fusionSortVector	(	std::vector<int>::iterator begin,
 		return;
 
 	std::vector<int>::iterator mid = begin + std::distance(begin, end) / 2;
-	// std::cout << "{" << *mid << "}\t --- > Range: {";
-	// std::vector<int>::iterator tmp(begin);
-	// while (tmp != end)
-	// {
-	// 	std::cout << " " << *tmp << " ";
-	// 	tmp++;
-	// }
-	// std::cout << "}" << std::endl;
+
 	fusionSortVector(begin, mid);
 	fusionSortVector(mid, end);
 
@@ -157,28 +151,28 @@ void	PmergeMe::insertSmallElementsVec	(	std::vector<int> &bigElements,
 												const std::vector<int> &smallElements
 											)
 {
-	std::vector<int>::iterator insertionPoint;
+	std::vector<int>::iterator	insertionPoint;
+	std::vector<int>			JSequence = JacobSthalSequence();
 
 	for (unsigned int i = 0; i < smallElements.size(); ++i)
 	{
 		insertionPoint = std::lower_bound(	bigElements.begin(), // look for the smallest element in the bigElement
 											bigElements.end(),
-											smallElements[i]);
-		bigElements.insert(insertionPoint, smallElements[i]);	// then insert the small element right before it
+											smallElements[JSequence[i]]);
+		bigElements.insert(insertionPoint, smallElements[JSequence[i]]);	// then insert the small element right before it
 	}
 }
 
 // int tmp = (std::pow(2,n) - std::pow(-1, n)) / 3; // this will work perfectly
 
-
-std::vector<int> JacobSthalSequence(size_t size)
+std::vector<int> PmergeMe::JacobSthalSequence()
 {
     std::vector<int>	JSequence;
 	size_t	n = 0, Jn = 0, JnPlus1 = 0, LastJsN = 0;
 
 	JSequence.push_back(0); // J(n)
 
-	for (size_t i = 0; i < size; i++)
+	for (size_t i = 0; i < ArrSize; i++)
 	{
 		JnPlus1 = std::pow(2,n++) - Jn; // J (n + 1) = 2^(n) - J(n)
 
@@ -188,9 +182,10 @@ std::vector<int> JacobSthalSequence(size_t size)
 
 		for (size_t j = JSequence.back() - 1; j > LastJsN; j--) // insert Jacobsthal sequence
 		{
-			if (JSequence.size() >= size)	break;
+			if (JSequence.size() >= ArrSize)	break;
 			JSequence.push_back(j);
 		}
 	}
-    return JSequence.resize(size), JSequence; // 3lach katb9a chyata ila madrtch resize() ?
+
+    return JSequence.resize(ArrSize), JSequence; // 3lach katb9a chyata ila madrtch resize() ?
 }

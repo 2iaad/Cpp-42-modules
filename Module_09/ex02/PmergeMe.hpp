@@ -43,6 +43,7 @@ void printer(const Container& c) {
 class PmergeMe
 {
 private:
+	size_t				ArrSize;
 	std::vector	< int >	vec;
 	std::deque	< int >	deq;
 
@@ -58,6 +59,7 @@ private:
 	void	insertSmallElementsVec	(	std::vector<int> &bigElements,
 										const std::vector<int> &smallElements
 									);
+	std::vector<int>	JacobSthalSequence( void );
 
 public:
 	PmergeMe();
