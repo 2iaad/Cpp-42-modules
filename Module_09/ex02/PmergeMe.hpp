@@ -56,10 +56,10 @@ private:
 								std::vector<int>::iterator begin,
 								std::vector<int>::iterator end
 							);
+ 	std::vector<int>	JacobSthalSequence( void );
 	void	insertSmallElementsVec	(	std::vector<int> &bigElements,
 										const std::vector<int> &smallElements
 									);
-	std::vector<int>	JacobSthalSequence( void );
 
 public:
 	PmergeMe();
