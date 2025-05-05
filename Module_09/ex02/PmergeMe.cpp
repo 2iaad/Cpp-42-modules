@@ -168,7 +168,7 @@ void	PmergeMe::insertSmallElementsVec	(	std::vector<int> &bigElements,
 std::vector<int> PmergeMe::JacobSthalSequence()
 {
     std::vector<int>	JSequence;
-	size_t	n = 0, Jn = 0, JnPlus1 = 0, LastJsN = 0;
+	size_t	n = 0, Jn = 0, JnPlus1 = 0, LastJsn = 0;
 
 	JSequence.push_back(0); // J(n)
 
@@ -176,16 +176,15 @@ std::vector<int> PmergeMe::JacobSthalSequence()
 	{
 		JnPlus1 = std::pow(2,n++) - Jn; // J (n + 1) = 2^(n) - J(n)
 
-		LastJsN = Jn; // Remember akhir JacobSthal Number
+		LastJsn = Jn; // Remember akhir JacobSthal Number
 		JSequence.push_back(JnPlus1);
 		Jn = JSequence.back(); // next loop Jn
 
-		for (size_t j = JSequence.back() - 1; j > LastJsN; j--) // insert Jacobsthal sequence
-		{
-			if (JSequence.size() >= ArrSize)	break;
+		//	Jn		=	li 9bel l'2akhir Fibo number
+		//	LastJsN	=	Akhir Fibo number
+		//	this so i can insert all the elements between [LastJsn, Jn] 
+		for (size_t j = Jn - 1; j > LastJsn; j--, i++)
 			JSequence.push_back(j);
-		}
 	}
-
-    return JSequence.resize(ArrSize), JSequence; // 3lach katb9a chyata ila madrtch resize() ?
+	return JSequence;
 }
