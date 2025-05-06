@@ -178,7 +178,7 @@ std::vector<int> PmergeMe::JacobSthalSequence()
 
 		LastJsn = Jn; // Remember akhir JacobSthal Number
 		JSequence.push_back(JnPlus1);
-		Jn = JSequence.back(); // next loop Jn
+		Jn = JnPlus1; // next loop Jn
 
 		//	Jn		=	li 9bel l'2akhir Fibo number
 		//	LastJsN	=	Akhir Fibo number
