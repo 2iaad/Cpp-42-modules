@@ -61,7 +61,7 @@ void	PmergeMe::sortVector( void )
 	//		3	-	Sort bigElements
 	fusionSortVector(bigElements.begin(), bigElements.end());
 
-	// //		4	-	Insert small
+	//		4	-	Insert small
 	insertSmallElementsVec(bigElements, smallElements);
 
 	this->vec = bigElements;
@@ -168,23 +168,18 @@ void	PmergeMe::insertSmallElementsVec	(	std::vector<int> &bigElements,
 std::vector<int> PmergeMe::JacobSthalSequence()
 {
     std::vector<int>	JSequence;
-	size_t	n = 0, Jn = 0, JnPlus1 = 0, LastJsn = 0;
+	size_t	n = 0, PreviousN = 0, CurrentN = 0;
 
-	JSequence.push_back(0); // J(n)
+	JSequence.push_back(0);
+	// JSequence.push_back(1);
 
-	for (size_t i = 0; i < ArrSize; i++)
+	for (size_t i = 0; i < ArrSize; i++, n++)
 	{
-		JnPlus1 = std::pow(2,n++) - Jn; // J (n + 1) = 2^(n) - J(n)
-
-		LastJsn = Jn; // Remember akhir JacobSthal Number
-		JSequence.push_back(JnPlus1);
-		Jn = JnPlus1; // next loop Jn
-
-		//	Jn		=	li 9bel l'2akhir Fibo number
-		//	LastJsN	=	Akhir Fibo number
-		//	this so i can insert all the elements between [LastJsn, Jn] 
-		for (size_t j = Jn - 1; j > LastJsn; j--, i++)
+		CurrentN = std::pow(2,n) - PreviousN; // J (n + 1) = 2^(n) - J(n)
+ 
+		for (size_t j = CurrentN; j > PreviousN; j--, i++)
 			JSequence.push_back(j);
+		PreviousN = CurrentN; // next loop PreviousN
 	}
 	return JSequence;
 }
