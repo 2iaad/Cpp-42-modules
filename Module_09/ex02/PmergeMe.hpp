@@ -52,7 +52,7 @@ private:
 								std::vector <int> &,
 								std::vector <int> &
 							);
-	void	fusionSortVector(
+	void	mergeSortVector(
 								std::vector<int>::iterator begin,
 								std::vector<int>::iterator end
 							);

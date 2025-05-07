@@ -59,7 +59,7 @@ void	PmergeMe::sortVector( void )
 	std::cout << "\033[1;31msmall elements:   " << std::endl; printer(smallElements);
 
 	//		3	-	Sort bigElements
-	fusionSortVector(bigElements.begin(), bigElements.end());
+	mergeSortVector(bigElements.begin(), bigElements.end());
 
 	//		4	-	Insert small
 	insertSmallElementsVec(bigElements, smallElements);
@@ -108,9 +108,9 @@ void	PmergeMe::splitVectorPairs	(	std::vector <std::pair<int, int> > &pairs,
 }
 
 /*
-	FusionSortVector on this : {14, 11, 3, 12, 1, 4, 25, 24, 30, 2}
+	mergeSortVector on this : {14, 11, 3, 12, 1, 4, 25, 24, 30, 2}
 
-	FusionSortVector on this : [14 12 4 25 30]
+	mergeSortVector on this : [14 12 4 25 30]
 
 		 [14 12 4 25 30]
 				|
@@ -132,7 +132,7 @@ void	PmergeMe::splitVectorPairs	(	std::vector <std::pair<int, int> > &pairs,
 	[4, 12, 14, 25, 30]	
 */
 
-void	PmergeMe::fusionSortVector	(	std::vector<int>::iterator begin,
+void	PmergeMe::mergeSortVector	(	std::vector<int>::iterator begin,
 										std::vector<int>::iterator end
 									)
 {
@@ -141,8 +141,8 @@ void	PmergeMe::fusionSortVector	(	std::vector<int>::iterator begin,
 
 	std::vector<int>::iterator mid = begin + std::distance(begin, end) / 2;
 
-	fusionSortVector(begin, mid);
-	fusionSortVector(mid, end);
+	mergeSortVector(begin, mid);
+	mergeSortVector(mid, end);
 
 	std::inplace_merge(begin, mid, end);
 }
