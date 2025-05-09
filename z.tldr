@@ -3811,9 +3811,9 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 7189.310338636693,
-			"y": 7814.556966358765,
-			"lastActivityTimestamp": 1746634236325,
+			"x": 4036.5478234640423,
+			"y": 6828.963610735083,
+			"lastActivityTimestamp": 1746638799018,
 			"meta": {}
 		},
 		{
@@ -24561,9 +24561,9 @@
 			"typeName": "shape"
 		},
 		{
-			"x": -6794.947776961309,
-			"y": -7339.97074696916,
-			"z": 1.578919368934063,
+			"x": -3811.013299807574,
+			"y": -6511.67886350885,
+			"z": 2.2997219166398946,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"
@@ -50761,8 +50761,10 @@
 		{
 			"editingShapeId": null,
 			"croppingShapeId": null,
-			"selectedShapeIds": [],
-			"hoveredShapeId": null,
+			"selectedShapeIds": [
+				"shape:4Jg85_nMtSWKmlQfUOemf"
+			],
+			"hoveredShapeId": "shape:4Jg85_nMtSWKmlQfUOemf",
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -52442,8 +52444,8 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 3989.6153918534033,
-			"y": 6731.152324963013,
+			"x": 3986.7164950581414,
+			"y": 6729.557946986252,
 			"rotation": 3.2288591161895095,
 			"isLocked": false,
 			"opacity": 1,
@@ -79132,7 +79134,7 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "mergeSortVector()"
+									"text": "fusionSortVector()"
 								}
 							]
 						}
@@ -91097,7 +91099,7 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "    mergeSortVector(mid, end);"
+									"text": "    fusionSortVector(mid, end);"
 								}
 							]
 						}
@@ -93208,7 +93210,7 @@
 			"type": "geo",
 			"props": {
 				"w": 329.53934523621,
-				"h": 33.06863213078759,
+				"h": 31.474227613794937,
 				"geo": "rectangle",
 				"color": "grey",
 				"labelColor": "black",
@@ -115753,7 +115755,7 @@
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
-				"type": "grabbing",
+				"type": "ns-resize",
 				"rotation": 0
 			},
 			"isFocusMode": false,
@@ -115763,7 +115765,7 @@
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 1474.666748046875,
+				"w": 1274.666748046875,
 				"h": 902
 			},
 			"insets": [
@@ -122733,7 +122735,7 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "    mergeSortVector(begin, mid);"
+									"text": "    fusionSortVector(begin, mid);"
 								}
 							]
 						}

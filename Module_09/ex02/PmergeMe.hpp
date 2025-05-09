@@ -25,7 +25,6 @@ inline void printElement<std::pair<int, int> >(const std::pair<int, int>& p) {
 
 template <typename Container>
 void printer(const Container& c) {
-    std::cout << "\033[1;33m-------\033[0m" << std::endl;
 
     typename Container::const_iterator it = c.begin();
     while (it != c.end())
