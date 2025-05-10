@@ -39,25 +39,35 @@ void printer(const Container& c) {
     std::cout << "\033[1;33m-------\033[0m" << std::endl;
 }
 
+typedef typename std::vector <int>					Vector;
+typedef typename std::vector <std::pair<int, int>>	VectorPair;
+
+typedef typename std::deque <int>					Deque;
+typedef typename std::deque <std::pair<int, int>>	DequePair;
+
 class PmergeMe
 {
 private:
-	size_t				ArrSize;
-	std::vector	< int >	vec;
-	std::deque	< int >	deq;
+	size_t	ArgsNumber;
+	Vector	JSequence;
+	Vector	vec;
+	Deque	deq;
 
-	std::vector <std::pair<int, int> >	makeVectorPairs( void );
-	void	splitVectorPairs(	std::vector <std::pair<int, int> > &,
-								std::vector <int> &,
-								std::vector <int> &
+	template < typename Container, typename PairedContainer>
+	PairedContainer	makePairs(const Container &C, PairedContainer &pairs);
+
+	template < typename Container, typename PairedContainer>
+	void	splitPairs	(	PairedContainer &,
+							Container &,
+							Container &
+						);
+
+	void	mergeSortVector	(	Vector::iterator begin,
+								Vector::iterator end
 							);
-	void	mergeSortVector(
-								std::vector<int>::iterator begin,
-								std::vector<int>::iterator end
-							);
- 	std::vector<int>	JacobSthalSequence( void );
-	void	insertSmallElementsVec	(	std::vector<int> &bigElements,
-										const std::vector<int> &smallElements
+ 	Vector	JacobSthalSequence( void );
+	void	insertSmallElementsVec	(	Vector &bigElements,
+										const Vector &smallElements
 									);
 
 public:

@@ -44320,7 +44320,7 @@
 							"content": [
 								{
 									"type": "text",
-									"text": "splitVectorPairs()"
+									"text": "splitPairs()"
 								}
 							]
 						}

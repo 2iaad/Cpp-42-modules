@@ -31,7 +31,8 @@ void	PmergeMe::init_data(int ac, char **av)
 	double	tmp = 0;
 	char	*end = NULL;
 
-	this->ArrSize = ac - 1;
+	this->ArgsNumber = ac - 1;
+	this->JSequence = JacobSthalSequence();
 	for (int i = 1; i < ac; i++)
 	{
 		tmp = std::strtod(av[i], &end);
@@ -45,15 +46,33 @@ void	PmergeMe::init_data(int ac, char **av)
 	// printer(deq);
 }
 
+Vector PmergeMe::JacobSthalSequence()
+{
+	size_t	n = 0, PreviousN = 0, CurrentN = 0;
+
+	JSequence.push_back(0);
+
+	for (size_t i = 0; i < ArgsNumber; i++, n++)
+	{
+		CurrentN = std::pow(2,n) - PreviousN; // J (n + 1) = 2^(n) - J(n)
+ 
+		for (size_t j = CurrentN; j > PreviousN; j--, i++)
+			JSequence.push_back(j);
+		PreviousN = CurrentN; // next loop PreviousN
+	}
+	return JSequence;
+}
+
 void	PmergeMe::sortVector( void )
 {
 	//		1	-	Make the pairs
-	std::vector <std::pair<int, int> > pairs = makeVectorPairs();
+	VectorPair pairs;
+	makePairs(this->vec, pairs); // i can remove the f<vector, VectorPair>() here since the compiler will know the type of each one via the function arguments
 	printer(pairs);
 
 	//		2	-	Split big and small
-	std::vector<int> bigElements, smallElements;
-	splitVectorPairs(pairs, bigElements, smallElements);
+	Vector bigElements, smallElements;
+	splitPairs(pairs, bigElements, smallElements);
 
 	std::cout << "\033[1;31mbig elements:   " << std::endl; printer(bigElements);
 	std::cout << "\033[1;31msmall elements:   " << std::endl; printer(smallElements);
@@ -73,30 +92,31 @@ void	PmergeMe::sortVector( void )
 	|#------------------------------------------------------#|
 */
 
-std::vector <std::pair<int, int> >	PmergeMe::makeVectorPairs( void )
+template < typename Container, typename PairedContainer>
+PairedContainer	PmergeMe::makePairs(const Container &C, PairedContainer &pairs)
 {
 	int	first, second;
-	std::vector <std::pair<int, int> > pairs;
 
-	for (size_t i = 0; i + 1 < this->vec.size(); i += 2)
+	for (size_t i = 0; i + 1 < C.size(); i += 2)
 	{
-		first = this->vec[i];
-		second = this->vec[i + 1];
+		first = C[i];
+		second = C[i + 1];
 		if (first > second)
 			std::swap(first, second);
 
 		pairs.push_back(std::make_pair(first, second));
 	}
 
-	if (this->vec.size() % 2 != 0) // if odd number of elements -> push struggler with -1
-		pairs.push_back(std::make_pair(this->vec.back(), -1));
+	if (C.size() % 2 != 0) // if odd number of elements -> push struggler with -1
+		pairs.push_back(std::make_pair(C.back(), -1));
 
 	return pairs;
 }
 
-void	PmergeMe::splitVectorPairs	(	std::vector <std::pair<int, int> > &pairs,
-										std::vector <int> &bigElements,
-										std::vector <int> &smallElements
+template < typename Container, typename PairedContainer>
+void	PmergeMe::splitPairs	(	PairedContainer &pairs,
+										Container &bigElements,
+										Container &smallElements
 									)
 {
 	for (size_t i = 0; i < pairs.size(); ++i)
@@ -107,39 +127,14 @@ void	PmergeMe::splitVectorPairs	(	std::vector <std::pair<int, int> > &pairs,
 	}
 }
 
-/*
-	mergeSortVector on this : {14, 11, 3, 12, 1, 4, 25, 24, 30, 2}
-
-	mergeSortVector on this : [14 12 4 25 30]
-
-		 [14 12 4 25 30]
-				|
-			 [14 12]        
-			 /      \       
-		 [14]        [12]
-
-			[4 25 30]
-			/       \
-		 [4]	   [25 30]
-				   /     \
-		    	[25]     [30]
-
-	Recursion while going back :
-
-	[12, 14]						[25, 30]
-	[12, 14]				[4]		[25, 30]
-	[12, 14]					[4, 25, 30]
-	[4, 12, 14, 25, 30]	
-*/
-
-void	PmergeMe::mergeSortVector	(	std::vector<int>::iterator begin,
-										std::vector<int>::iterator end
+void	PmergeMe::mergeSortVector	(	Vector::iterator begin,
+										Vector::iterator end
 									)
 {
 	if (std::distance(begin, end) <= 1) // Base case: yb9a element wa7d f vector
 		return;
 
-	std::vector<int>::iterator mid = begin + std::distance(begin, end) / 2;
+	Vector::iterator mid = begin + std::distance(begin, end) / 2;
 
 	mergeSortVector(begin, mid);
 	mergeSortVector(mid, end);
@@ -147,12 +142,11 @@ void	PmergeMe::mergeSortVector	(	std::vector<int>::iterator begin,
 	std::inplace_merge(begin, mid, end);
 }
 
-void	PmergeMe::insertSmallElementsVec	(	std::vector<int> &bigElements,
-												const std::vector<int> &smallElements
+void	PmergeMe::insertSmallElementsVec	(	Vector &bigElements,
+												const Vector &smallElements
 											)
 {
-	std::vector<int>::iterator	insertionPoint;
-	std::vector<int>			JSequence = JacobSthalSequence();
+	Vector::iterator	insertionPoint;
 
 	for (unsigned int i = 0; i < smallElements.size(); ++i)
 	{
@@ -161,25 +155,4 @@ void	PmergeMe::insertSmallElementsVec	(	std::vector<int> &bigElements,
 											smallElements[JSequence[i]]);
 		bigElements.insert(insertionPoint, smallElements[JSequence[i]]);	// then insert the small element right before it
 	}
-}
-
-// int tmp = (std::pow(2,n) - std::pow(-1, n)) / 3; // this will work perfectly
-
-std::vector<int> PmergeMe::JacobSthalSequence()
-{
-    std::vector<int>	JSequence;
-	size_t	n = 0, PreviousN = 0, CurrentN = 0;
-
-	JSequence.push_back(0);
-	// JSequence.push_back(1);
-
-	for (size_t i = 0; i < ArrSize; i++, n++)
-	{
-		CurrentN = std::pow(2,n) - PreviousN; // J (n + 1) = 2^(n) - J(n)
- 
-		for (size_t j = CurrentN; j > PreviousN; j--, i++)
-			JSequence.push_back(j);
-		PreviousN = CurrentN; // next loop PreviousN
-	}
-	return JSequence;
 }

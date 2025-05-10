@@ -80,7 +80,8 @@
 		"format": "cpp",
 		"map": "cpp",
 		"span": "cpp",
-		"__tree": "cpp"
+		"__tree": "cpp",
+		"list": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }
