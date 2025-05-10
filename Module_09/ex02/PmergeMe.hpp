@@ -40,10 +40,10 @@ void printer(const Container& c) {
 }
 
 typedef typename std::vector <int>					Vector;
-typedef typename std::vector <std::pair<int, int>>	VectorPair;
+typedef typename std::vector <std::pair<int, int> >	VectorPair;
 
 typedef typename std::deque <int>					Deque;
-typedef typename std::deque <std::pair<int, int>>	DequePair;
+typedef typename std::deque <std::pair<int, int> >	DequePair;
 
 class PmergeMe
 {
