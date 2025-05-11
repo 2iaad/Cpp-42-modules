@@ -1,8 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() {
-	std::cout << "PmergeMe Constructor called!" << std::endl;
-}
+PmergeMe::PmergeMe() {	std::cout << "PmergeMe Constructor called!" << std::endl; }
 
 PmergeMe::PmergeMe(const PmergeMe &other) : vec(other.vec), deq(other.deq) {
 	std::cout << "PmergeMe Copy Constructor called" << std::endl;
@@ -17,9 +15,7 @@ PmergeMe	&PmergeMe::operator=(const PmergeMe &other) {
     return *this;
 }
 
-PmergeMe::~PmergeMe() {
-	std::cout << "PmergeMe Destructor called" << std::endl;
-}
+PmergeMe::~PmergeMe() {	std::cout << "PmergeMe Destructor called" << std::endl; }
 
 /*	|#------------------------------------------------------#|
 	|#			 		Public Member functions    			#|
@@ -68,7 +64,6 @@ void	PmergeMe::sortVector( void )
 	//		1	-	Make the pairs
 	VectorPair pairs;
 	makePairs(this->vec, pairs); // i can remove the f<vector, VectorPair>() here since the compiler will know the type of each one via the function arguments
-	printer(pairs);
 
 	//		2	-	Split big and small
 	Vector bigElements, smallElements;
@@ -85,6 +80,29 @@ void	PmergeMe::sortVector( void )
 
 	this->vec = bigElements;
 	std::cout << "\033[1;31m#######----> Final result:   " << std::endl; printer(this->vec);
+}
+
+void	PmergeMe::sortDeque( void )
+{
+	//		1	-	Make the pairs
+	DequePair pairs;
+	makePairs(this->deq, pairs); // i can remove the f<Deque, DequePair>() here since the compiler will know the type of each one via the function arguments
+
+	//		2	-	Split big and small
+	Deque bigElements, smallElements;
+	splitPairs(pairs, bigElements, smallElements);
+
+	std::cout << "\033[1;31mbig elements:   " << std::endl; printer(bigElements);
+	std::cout << "\033[1;31msmall elements:   " << std::endl; printer(smallElements);
+
+	//		3	-	Sort bigElements
+	mergeSortDeque(bigElements.begin(), bigElements.end());
+
+	//		4	-	Insert small
+	insertSmallElementsDeq(bigElements, smallElements);
+
+	this->deq = bigElements;
+	std::cout << "\033[1;31m#######----> Final result:   " << std::endl; printer(this->deq);
 }
 
 /*	|#------------------------------------------------------#|
@@ -127,6 +145,11 @@ void	PmergeMe::splitPairs	(	PairedContainer &pairs,
 	}
 }
 
+/*	|#------------------------------------------------------#|
+	|#			 			Vector Sorter		   			#|
+	|#------------------------------------------------------#|
+*/
+
 void	PmergeMe::mergeSortVector	(	Vector::iterator begin,
 										Vector::iterator end
 									)
@@ -147,6 +170,41 @@ void	PmergeMe::insertSmallElementsVec	(	Vector &bigElements,
 											)
 {
 	Vector::iterator	insertionPoint;
+
+	for (unsigned int i = 0; i < smallElements.size(); ++i)
+	{
+		insertionPoint = std::lower_bound(	bigElements.begin(), // look for the smallest element in the bigElement
+											bigElements.end(),
+											smallElements[JSequence[i]]);
+		bigElements.insert(insertionPoint, smallElements[JSequence[i]]);	// then insert the small element right before it
+	}
+}
+
+/*	|#------------------------------------------------------#|
+	|#			 			Deque Sorter	    			#|
+	|#------------------------------------------------------#|
+*/
+
+void	PmergeMe::mergeSortDeque	(	Deque::iterator begin,
+										Deque::iterator end
+									)
+{
+	if (std::distance(begin, end) <= 1) // Base case: yb9a element wa7d f Deque
+		return;
+
+	Deque::iterator mid = begin + std::distance(begin, end) / 2;
+
+	mergeSortDeque(begin, mid);
+	mergeSortDeque(mid, end);
+
+	std::inplace_merge(begin, mid, end);
+}
+
+void	PmergeMe::insertSmallElementsDeq	(	Deque &bigElements,
+												const Deque &smallElements
+											)
+{
+	Deque::iterator	insertionPoint;
 
 	for (unsigned int i = 0; i < smallElements.size(); ++i)
 	{

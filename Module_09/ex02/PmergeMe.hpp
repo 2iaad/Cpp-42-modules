@@ -39,11 +39,11 @@ void printer(const Container& c) {
     std::cout << "\033[1;33m-------\033[0m" << std::endl;
 }
 
-typedef typename std::vector <int>					Vector;
-typedef typename std::vector <std::pair<int, int> >	VectorPair;
+typedef	std::vector <int>					Vector;
+typedef	std::vector <std::pair<int, int> >	VectorPair;
 
-typedef typename std::deque <int>					Deque;
-typedef typename std::deque <std::pair<int, int> >	DequePair;
+typedef	std::deque <int>					Deque;
+typedef	std::deque <std::pair<int, int> >	DequePair;
 
 class PmergeMe
 {
@@ -52,6 +52,8 @@ private:
 	Vector	JSequence;
 	Vector	vec;
 	Deque	deq;
+
+ 	Vector	JacobSthalSequence( void );
 
 	template < typename Container, typename PairedContainer>
 	PairedContainer	makePairs(const Container &C, PairedContainer &pairs);
@@ -65,9 +67,15 @@ private:
 	void	mergeSortVector	(	Vector::iterator begin,
 								Vector::iterator end
 							);
- 	Vector	JacobSthalSequence( void );
 	void	insertSmallElementsVec	(	Vector &bigElements,
 										const Vector &smallElements
+									);
+
+	void	mergeSortDeque	(	Deque::iterator begin,
+								Deque::iterator end
+							);
+	void	insertSmallElementsDeq	(	Deque &bigElements,
+										const Deque &smallElements
 									);
 
 public:
@@ -78,5 +86,5 @@ public:
 
 	void	init_data(int ac, char **av);
 	void	sortVector( void );
-	// void	sortDeque( void );
+	void	sortDeque( void );
 };

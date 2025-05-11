@@ -8,4 +8,5 @@ int main(int ac, char **av)
 	PmergeMe	pmergeMe;
 	pmergeMe.init_data(ac, av);
 	pmergeMe.sortVector();
+	pmergeMe.sortDeque();
 }
