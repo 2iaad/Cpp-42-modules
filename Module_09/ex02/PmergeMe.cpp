@@ -38,8 +38,6 @@ void	PmergeMe::init_data(int ac, char **av)
 		this->vec.push_back(tmp);
 		this->deq.push_back(tmp);
 	}
-	// printer(vec);
-	// printer(deq);
 }
 
 Vector PmergeMe::JacobSthalSequence()
@@ -84,21 +82,14 @@ void	PmergeMe::sortVector( void )
 
 void	PmergeMe::sortDeque( void )
 {
-	//		1	-	Make the pairs
 	DequePair pairs;
 	makePairs(this->deq, pairs); // i can remove the f<Deque, DequePair>() here since the compiler will know the type of each one via the function arguments
 
-	//		2	-	Split big and small
 	Deque bigElements, smallElements;
 	splitPairs(pairs, bigElements, smallElements);
 
-	std::cout << "\033[1;31mbig elements:   " << std::endl; printer(bigElements);
-	std::cout << "\033[1;31msmall elements:   " << std::endl; printer(smallElements);
-
-	//		3	-	Sort bigElements
 	mergeSortDeque(bigElements.begin(), bigElements.end());
 
-	//		4	-	Insert small
 	insertSmallElementsDeq(bigElements, smallElements);
 
 	this->deq = bigElements;
