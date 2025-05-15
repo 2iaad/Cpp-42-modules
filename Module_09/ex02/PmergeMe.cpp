@@ -59,41 +59,56 @@ Vector PmergeMe::JacobSthalSequence()
 
 void	PmergeMe::sortVector( void )
 {
-	//		1	-	Make the pairs
-	VectorPair pairs;
-	makePairs(this->vec, pairs); // i can remove the f<vector, VectorPair>() here since the compiler will know the type of each one via the function arguments
 
-	//		2	-	Split big and small
-	Vector bigElements, smallElements;
-	splitPairs(pairs, bigElements, smallElements);
+	clock_t start = std::clock();
+	{
+		VectorPair pairs;
+		makePairs(this->vec, pairs); // i can remove the f<vector, VectorPair>() here since the compiler will know the type of each one via the function arguments
 
-	std::cout << "\033[1;31mbig elements:   " << std::endl; printer(bigElements);
-	std::cout << "\033[1;31msmall elements:   " << std::endl; printer(smallElements);
+		Vector bigElements, smallElements;
+		splitPairs(pairs, bigElements, smallElements);
 
-	//		3	-	Sort bigElements
-	mergeSortVector(bigElements.begin(), bigElements.end());
+		mergeSortVector(bigElements.begin(), bigElements.end());
 
-	//		4	-	Insert small
-	insertSmallElementsVec(bigElements, smallElements);
+		insertSmallElementsVec(bigElements, smallElements);
 
-	this->vec = bigElements;
-	std::cout << "\033[1;31m#######----> Final result:   " << std::endl; printer(this->vec);
+		this->vec = bigElements;
+		std::cout << "\033[1;31mFinal result:   " << std::endl; printer(this->vec);
+	}
+	clock_t end = std::clock();
+
+	double duration = (end - start);
+	/*
+		(/ CLOCKS_PER_SEC) to convert to seconds
+		(* 1000) to convert to miliseconds
+	*/
+	std::cout	<< "Time to process a range of " << this->vec.size()
+				<< " elements of a Vector is: " << duration << " ms" << std::endl;
 }
 
 void	PmergeMe::sortDeque( void )
 {
-	DequePair pairs;
-	makePairs(this->deq, pairs); // i can remove the f<Deque, DequePair>() here since the compiler will know the type of each one via the function arguments
+	std::clock_t start = std::clock();
+	{
+		DequePair pairs;
+		makePairs(this->deq, pairs); // i can remove the f<Deque, DequePair>() here since the compiler will know the type of each one via the function arguments
 
-	Deque bigElements, smallElements;
-	splitPairs(pairs, bigElements, smallElements);
+		Deque bigElements, smallElements;
+		splitPairs(pairs, bigElements, smallElements);
 
-	mergeSortDeque(bigElements.begin(), bigElements.end());
+		mergeSortDeque(bigElements.begin(), bigElements.end());
 
-	insertSmallElementsDeq(bigElements, smallElements);
+		insertSmallElementsDeq(bigElements, smallElements);
 
-	this->deq = bigElements;
-	std::cout << "\033[1;31m#######----> Final result:   " << std::endl; printer(this->deq);
+		this->deq = bigElements;
+		std::cout << "\033[1;31mFinal result:   " << std::endl; printer(this->deq);
+	}
+	std::clock_t end = std::clock();
+
+	double duration = (end - start);
+	std::cout << duration << std::endl;
+	std::cout	<< "Time to process a range of " << this->vec.size()
+				<< " elements of a Deque is: " << duration << " ms" << std::endl;
 }
 
 /*	|#------------------------------------------------------#|

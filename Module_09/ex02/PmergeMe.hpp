@@ -4,6 +4,7 @@
 #include <algorithm>	// inplace_merge()
 #include <cstdlib>		// std::strtod()
 #include <cmath>		// std::pow()
+#include <ctime>		// std::clock
 #include <limits>
 #include <vector>
 #include <deque>
