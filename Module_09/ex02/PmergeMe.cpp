@@ -60,7 +60,7 @@ Vector PmergeMe::JacobSthalSequence()
 void	PmergeMe::sortVector( void )
 {
 
-	clock_t start = std::clock();
+	double	start = std::clock();
 	{
 		VectorPair pairs;
 		makePairs(this->vec, pairs); // i can remove the f<vector, VectorPair>() here since the compiler will know the type of each one via the function arguments
@@ -75,9 +75,8 @@ void	PmergeMe::sortVector( void )
 		this->vec = bigElements;
 		std::cout << "\033[1;31mFinal result:   " << std::endl; printer(this->vec);
 	}
-	clock_t end = std::clock();
 
-	double duration = (end - start);
+	double	duration = (std::clock() - start);
 	/*
 		(/ CLOCKS_PER_SEC) to convert to seconds
 		(* 1000) to convert to miliseconds
@@ -88,7 +87,7 @@ void	PmergeMe::sortVector( void )
 
 void	PmergeMe::sortDeque( void )
 {
-	std::clock_t start = std::clock();
+	double	start = std::clock();
 	{
 		DequePair pairs;
 		makePairs(this->deq, pairs); // i can remove the f<Deque, DequePair>() here since the compiler will know the type of each one via the function arguments
@@ -103,10 +102,8 @@ void	PmergeMe::sortDeque( void )
 		this->deq = bigElements;
 		std::cout << "\033[1;31mFinal result:   " << std::endl; printer(this->deq);
 	}
-	std::clock_t end = std::clock();
 
-	double duration = (end - start);
-	std::cout << duration << std::endl;
+	double	duration = (std::clock() - start);
 	std::cout	<< "Time to process a range of " << this->vec.size()
 				<< " elements of a Deque is: " << duration << " ms" << std::endl;
 }
