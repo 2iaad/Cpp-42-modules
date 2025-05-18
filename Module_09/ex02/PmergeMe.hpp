@@ -19,8 +19,7 @@ void printElement(const T& element) {
     std::cout << " " << element;
 }
 
-template <>
-inline void printElement<std::pair<int, int> >(const std::pair<int, int>& p) {
+inline void printElement(const std::pair<int, int>& p) {
     std::cout << "(" << p.first << ", " << p.second << ")";
 }
 
@@ -32,10 +31,7 @@ void printer(const Container& c) {
 	{
         printElement(*it);
         ++it;
-        if (it != c.end())
-			std::cout << "\t";
-        else
-			std::cout << std::endl;
+        it != c.end() ? std::cout << " - " : std::cout << std::endl;
     }
     std::cout << "\033[1;33m-------\033[0m" << std::endl;
 }
@@ -60,24 +56,12 @@ private:
 	PairedContainer	makePairs(const Container &C, PairedContainer &pairs);
 
 	template < typename Container, typename PairedContainer>
-	void	splitPairs	(	PairedContainer &,
-							Container &,
-							Container &
-						);
+	void	splitPairs	(PairedContainer &, Container &, Container &);
 
-	void	mergeSortVector	(	Vector::iterator begin,
-								Vector::iterator end
-							);
-	void	insertSmallElementsVec	(	Vector &bigElements,
-										const Vector &smallElements
-									);
-
-	void	mergeSortDeque	(	Deque::iterator begin,
-								Deque::iterator end
-							);
-	void	insertSmallElementsDeq	(	Deque &bigElements,
-										const Deque &smallElements
-									);
+	void	mergeSortVector	(Vector::iterator begin, Vector::iterator end);
+	void	mergeSortDeque	(Deque::iterator begin, Deque::iterator end);
+	void	insertSmallElementsVec	(Vector &bigElements, const Vector &smallElements);
+	void	insertSmallElementsDeq	(Deque &bigElements, const Deque &smallElements);
 
 public:
 	PmergeMe();

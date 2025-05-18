@@ -73,7 +73,7 @@ void	PmergeMe::sortVector( void )
 		insertSmallElementsVec(bigElements, smallElements);
 
 		this->vec = bigElements;
-		std::cout << "\033[1;31mFinal result:   " << std::endl; printer(this->vec);
+		std::cout << "\033[1;31mFinal result:\033[0m   " << std::endl; printer(this->vec);
 	}
 
 	double	duration = (std::clock() - start);
@@ -100,7 +100,7 @@ void	PmergeMe::sortDeque( void )
 		insertSmallElementsDeq(bigElements, smallElements);
 
 		this->deq = bigElements;
-		std::cout << "\033[1;31mFinal result:   " << std::endl; printer(this->deq);
+		std::cout << "\033[1;31mFinal result:\033[0m   " << std::endl; printer(this->deq);
 	}
 
 	double	duration = (std::clock() - start);
