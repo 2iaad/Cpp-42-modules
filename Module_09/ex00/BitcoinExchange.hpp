@@ -15,8 +15,6 @@
 #define	DATE_ERR	"Error: bad input => "
 #define	PRICE_ERR	"Error: related to Price."
 
-// typedef std::map <std::string, float> BitcoinDB;
-
 class BitcoinExchange 
 {
 private:
@@ -25,7 +23,6 @@ private:
 	bool	Spliter(std::string &, std::string &, std::string &);
 	bool	priceParser(std::string &);
 
-	bool	dateDigitChecker(std::string [3]);
 	bool	dateChecker(std::string [3]);
 	bool	dateParser(std::string &);
 

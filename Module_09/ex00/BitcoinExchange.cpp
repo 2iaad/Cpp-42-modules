@@ -26,32 +26,23 @@ BitcoinExchange::~BitcoinExchange() {
 
 void	BitcoinExchange::Executer(std::string &date, std::string &amount)
 {
-	float amountf = static_cast<float>(std::strtod(amount.c_str(), NULL));
+	float	amountf = static_cast<float>(std::strtod(amount.c_str(), NULL));
 
 	std::map<std::string,float>::const_iterator it = dataBase.lower_bound(date);
 	/*
-		there is a fix needed here
+		there is a fix needed here in case date < 2009-01-02
 	*/
-	if (it == dataBase.end() || it->first != date)
+	if (it == dataBase.end() && it->first != date)
 		--it;
 	std::cout << date << " => " << amount << " = " << amountf * (it->second) << std::endl;
 }
 
-bool	BitcoinExchange::dateDigitChecker(std::string date[3])
-{
-	for (size_t	i = 0; i < 3; i++)
-	{
-		for (size_t	j = 0; j < date[i].size(); j++)
-			if (!std::isdigit(date[i][j]))					return false ;
-	}
-	return true ;
-}
-
 bool	BitcoinExchange::dateChecker(std::string date[3]) // checking if DD-MM-YYYY makes sence or not
 {
-	double Y = std::strtod(date[0].c_str(), NULL);
-	double M = std::strtod(date[1].c_str(), NULL);
-	double D = std::strtod(date[2].c_str(), NULL);
+	char *tmp = NULL;
+	double Y = std::strtod(date[0].c_str(), &tmp);	if (*tmp)	return false;
+	double M = std::strtod(date[1].c_str(), &tmp);	if (*tmp)	return false;
+	double D = std::strtod(date[2].c_str(), &tmp);	if (*tmp)	return false;
 
 	// std::cout << Y << "-" << M << "-" << D << std::endl;
 
@@ -81,7 +72,6 @@ bool	BitcoinExchange::dateParser(std::string &buf)
 
 	if (date[0].empty() || date[1].empty() || date[2].empty())	return false ;
 	if (std::count(buf.begin(), buf.end(), '-') != 2)			return false ;
-	if (!dateDigitChecker(date))								return false ;
 	if (!dateChecker(date))										return false ;
 	return true ;
 }
@@ -90,8 +80,8 @@ bool	BitcoinExchange::priceParser(std::string &price)
 {
 	if (std::count(price.begin(), price.end(), '.') > 1)						return false ; // ila kant kter mn '.'
 	if (std::count(price.begin(), price.end(), '.') == 1 && price.size() < 3)	return false ; // ila kant matalan '.1' || '1.' || '.'
-	for (auto c : price) // fhad case c rah *char*
-		if (!std::isdigit(c) && c != '.')					return false ;
+	for (std::string::iterator it = price.begin(); it != price.end(); it++)
+		if (!std::isdigit(*it) && *it != '.')				return false ;
 
 	double	value = std::strtod(price.c_str(), NULL);
 	if (value < 0 || value > 1000)							return false ;
@@ -124,7 +114,6 @@ bool	BitcoinExchange::Spliter(std::string &line, std::string &date,
 
 void	BitcoinExchange::dataBaseReader()
 {
-	std::size_t		ret;
 	std::string		line;
 	std::string		date;
 	std::string		valueStr;
@@ -155,7 +144,7 @@ void	BitcoinExchange::inputFileReader(char *file)
 	if (!infile)
 		return (void) (std::cerr << OPEN_ERR << std::endl);
 	if (infile.peek() == EOF) // Returns next character without extracting it.
-		return (void) (std::cerr << READ_ERR<< std::endl);
+		return (void) (std::cerr << READ_ERR << std::endl);
 	
 	std::getline(infile, line);
 	while (std::getline(infile, line))
