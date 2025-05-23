@@ -136,9 +136,9 @@ PairedContainer	PmergeMe::makePairs(const Container &C, PairedContainer &pairs)
 
 template < typename Container, typename PairedContainer>
 void	PmergeMe::splitPairs	(	PairedContainer &pairs,
-										Container &bigElements,
-										Container &smallElements
-									)
+									Container &bigElements,
+									Container &smallElements
+								)
 {
 	for (size_t i = 0; i < pairs.size(); ++i)
 	{

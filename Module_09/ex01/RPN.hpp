@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <iostream>
 #include <stack>
 #include <sstream>
@@ -12,6 +11,13 @@
 class RPN
 {
 private:
+	std::stack<int> stack;
+	void	DoOperation(char operation);
 public:
-	static int evaluate(const std::string &expression);
+	RPN();
+	RPN(const RPN &other);
+	RPN &operator=(const RPN &other);
+	~RPN();
+
+	int	Evaluate(const std::string &expression);
 };
