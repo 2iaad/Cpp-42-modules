@@ -1,9 +1,11 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe() {	std::cout << "PmergeMe Constructor called!" << std::endl; }
+PmergeMe::PmergeMe() {
+	// std::cout << "PmergeMe Constructor called!" << std::endl;
+}
 
 PmergeMe::PmergeMe(const PmergeMe &other) : vec(other.vec), deq(other.deq) {
-	std::cout << "PmergeMe Copy Constructor called" << std::endl;
+	// std::cout << "PmergeMe Copy Constructor called" << std::endl;
 }
 
 PmergeMe	&PmergeMe::operator=(const PmergeMe &other) {
@@ -11,18 +13,20 @@ PmergeMe	&PmergeMe::operator=(const PmergeMe &other) {
 		vec = other.vec;
 		deq = other.deq;
 	}
-	std::cout << "PmergeMe Copy Assignment Operator called" << std::endl;
+	// std::cout << "PmergeMe Copy Assignment Operator called" << std::endl;
     return *this;
 }
 
-PmergeMe::~PmergeMe() {	std::cout << "PmergeMe Destructor called" << std::endl; }
+PmergeMe::~PmergeMe() {
+	// std::cout << "PmergeMe Destructor called" << std::endl;
+}
 
 /*	|#------------------------------------------------------#|
 	|#			 		Public Member functions    			#|
 	|#------------------------------------------------------#|
 */
 
-void	PmergeMe::init_data(int ac, char **av)
+bool	PmergeMe::init_data(int ac, char **av)
 {
 	double	tmp = 0;
 	char	*end = NULL;
@@ -33,11 +37,14 @@ void	PmergeMe::init_data(int ac, char **av)
 	{
 		tmp = std::strtod(av[i], &end);
 
-		if (!(*av[i]) || *end || tmp < 0 || tmp > std::numeric_limits<int>::max()) // ila kant number negative ola invalide arg
-			throw std::invalid_argument("Error");
+		if (!(*av[i])	||	*end	||
+			tmp < 0		||	tmp > std::numeric_limits<int>::max() ||
+			std::find(vec.begin(), vec.end(), tmp) != vec.end()	)
+			return std::cout << "Error: Invalide argument" << std::endl, false;
 		this->vec.push_back(tmp);
 		this->deq.push_back(tmp);
 	}
+	return true;
 }
 
 Vector PmergeMe::JacobSthalSequence()

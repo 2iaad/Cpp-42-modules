@@ -69,7 +69,7 @@ public:
 	PmergeMe	&operator=(const PmergeMe	&other);
 	~PmergeMe();
 
-	void	init_data(int ac, char **av);
+	bool	init_data(int ac, char **av);
 	void	sortVector( void );
 	void	sortDeque( void );
 };

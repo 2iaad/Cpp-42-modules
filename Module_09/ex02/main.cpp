@@ -6,7 +6,9 @@ int main(int ac, char **av)
 		return std::cout << ARG_ERR1 << std::endl, 1;
 
 	PmergeMe	pmergeMe;
-	pmergeMe.init_data(ac, av);
+
+	if (!pmergeMe.init_data(ac, av))
+		return 1;
 	pmergeMe.sortVector();
 	pmergeMe.sortDeque();
 }
