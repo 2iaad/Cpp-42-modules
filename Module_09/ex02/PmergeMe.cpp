@@ -67,6 +67,7 @@ Vector PmergeMe::JacobSthalSequence()
 void	PmergeMe::sortVector( void )
 {
 
+	std::cout << "Before:	"; printer(this->vec);
 	double	start = std::clock();
 	{
 		VectorPair pairs;
@@ -80,20 +81,20 @@ void	PmergeMe::sortVector( void )
 		insertSmallElementsVec(bigElements, smallElements);
 
 		this->vec = bigElements;
-		std::cout << "\033[1;31mFinal result:\033[0m   " << std::endl; printer(this->vec);
 	}
-
 	double	duration = (std::clock() - start);
+	std::cout << "After:	"; printer(this->vec);
 	/*
 		(/ CLOCKS_PER_SEC) to convert to seconds
 		(* 1000) to convert to miliseconds
 	*/
 	std::cout	<< "Time to process a range of " << this->vec.size()
-				<< " elements of a Vector is: " << duration << " ms" << std::endl;
+				<< " elements with std::vector : " << duration << " ms" << std::endl;
 }
 
 void	PmergeMe::sortDeque( void )
 {
+	std::cout << "Before:	"; printer(this->deq);
 	double	start = std::clock();
 	{
 		DequePair pairs;
@@ -107,12 +108,11 @@ void	PmergeMe::sortDeque( void )
 		insertSmallElementsDeq(bigElements, smallElements);
 
 		this->deq = bigElements;
-		std::cout << "\033[1;31mFinal result:\033[0m   " << std::endl; printer(this->deq);
 	}
-
 	double	duration = (std::clock() - start);
-	std::cout	<< "Time to process a range of " << this->vec.size()
-				<< " elements of a Deque is: " << duration << " ms" << std::endl;
+	std::cout << "After:	"; printer(this->deq);
+	std::cout	<< "Time to process a range of " << this->deq.size()
+				<< " elements with std::deque : " << duration << " ms" << std::endl;
 }
 
 /*	|#------------------------------------------------------#|

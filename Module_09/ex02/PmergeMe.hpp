@@ -14,26 +14,12 @@
 #define	ARG_ERR1 "Wrong number of arguments."
 #define	ARG_ERR2 "Bad arguments."
 
-template <typename T>
-void printElement(const T& element) {
-    std::cout << " " << element;
-}
-
-inline void printElement(const std::pair<int, int>& p) {
-    std::cout << "(" << p.first << ", " << p.second << ")";
-}
-
 template <typename Container>
-void printer(const Container& c) {
+inline void printer(const Container& c) {
 
-    typename Container::const_iterator it = c.begin();
-    while (it != c.end())
-	{
-        printElement(*it);
-        ++it;
-        it != c.end() ? std::cout << " - " : std::cout << std::endl;
-    }
-    std::cout << "\033[1;33m-------\033[0m" << std::endl;
+    for (typename Container::const_iterator it = c.begin(); it != c.end(); it++)
+        std::cout << *it << " ";
+	std::cout << std::endl;
 }
 
 typedef	std::vector <int>					Vector;
