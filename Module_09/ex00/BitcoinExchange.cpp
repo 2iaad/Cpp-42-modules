@@ -1,22 +1,22 @@
 #include "BitcoinExchange.hpp"
 
 BitcoinExchange::BitcoinExchange() {
-	std::cout << "BitcoinExchange Default Constructor called" << std::endl;
+	// std::cout << "BitcoinExchange Default Constructor called" << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &other) : dataBase(other.dataBase) {
-	std::cout << "BitcoinExchange Copy Constructor called" << std::endl;
+	// std::cout << "BitcoinExchange Copy Constructor called" << std::endl;
 }
 
 BitcoinExchange	&BitcoinExchange::operator=(const BitcoinExchange &other) {
     if (this != &other)
 		dataBase = other.dataBase;
-	std::cout << "BitcoinExchange Copy Assignment Operator called" << std::endl;
+	// std::cout << "BitcoinExchange Copy Assignment Operator called" << std::endl;
     return *this;
 }
 
 BitcoinExchange::~BitcoinExchange() {
-	std::cout << "BitcoinExchange Destructor called" << std::endl;
+	// std::cout << "BitcoinExchange Destructor called" << std::endl;
 }
 
 /*	|#------------------------------------------------------#|
@@ -39,10 +39,16 @@ void	BitcoinExchange::Executer(std::string &date, std::string &amount)
 
 bool	BitcoinExchange::dateChecker(std::string date[3]) // checking if DD-MM-YYYY makes sence or not
 {
-	char *tmp = NULL;
-	double Y = std::strtod(date[0].c_str(), &tmp);	if (*tmp)	return false;
-	double M = std::strtod(date[1].c_str(), &tmp);	if (*tmp)	return false;
-	double D = std::strtod(date[2].c_str(), &tmp);	if (*tmp)	return false;
+	for (short i = 0; i < 3; i++) {
+		for (size_t j = 0; j < date[j].size(); j++) {
+			if (!std::isdigit(date[i][j]))
+				return false;
+		}
+	}
+
+	double Y = std::strtod(date[0].c_str(), NULL);
+	double M = std::strtod(date[1].c_str(), NULL);
+	double D = std::strtod(date[2].c_str(), NULL);
 
 	// std::cout << Y << "-" << M << "-" << D << std::endl;
 
@@ -66,13 +72,11 @@ bool	BitcoinExchange::dateParser(std::string &buf)
 		old_ret = ++ret; // increment->to skip the '-' in old_ret + to start from the charachter that follows '-' in find()
 	}
 
-	// std::cout << "date [0]:	{" << date[0] << "}" << std::endl;
-	// std::cout << "date [1]:	{" << date[1] << "}" << std::endl;
-	// std::cout << "date [2]:	{" << date[2] << "}" << std::endl;
-
-	if (date[0].empty() || date[1].empty() || date[2].empty())	return false ;
-	if (std::count(buf.begin(), buf.end(), '-') != 2)			return false ;
-	if (!dateChecker(date))										return false ;
+	if (date[0].length() != 4 ||
+		date[1].length() != 2 ||
+		date[2].length() != 2)							return false ;
+	if (std::count(buf.begin(), buf.end(), '-') != 2)	return false ;
+	if (!dateChecker(date))								return false ;
 	return true ;
 }
 
