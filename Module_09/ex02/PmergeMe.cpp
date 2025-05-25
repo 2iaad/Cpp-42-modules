@@ -175,6 +175,12 @@ void	PmergeMe::mergeSortVector	(	Vector::iterator begin,
 	std::inplace_merge(begin, mid, end);
 }
 
+/**
+ * 
+ *	Element to insert:{[1]    34531 abort      ./PmergeMe 9 8 2 77 55 7777
+ *  the jacobsthal be like 0 1 {3} the index 3 isnt available so the system aborts
+ */
+
 void	PmergeMe::insertSmallElementsVec	(	Vector &bigElements,
 												const Vector &smallElements
 											)
@@ -183,10 +189,12 @@ void	PmergeMe::insertSmallElementsVec	(	Vector &bigElements,
 
 	for (unsigned int i = 0; i < smallElements.size(); ++i)
 	{
-		insertionPoint = std::lower_bound(	bigElements.begin(), // look for the smallest element in the bigElement
+
+		std::cout << "Element to insert:{" << smallElements[JSequence[i]] << "}" << std::endl;
+		insertionPoint = std::lower_bound(	bigElements.begin(),
 											bigElements.end(),
-											smallElements[JSequence[i]]);
-		bigElements.insert(insertionPoint, smallElements[JSequence[i]]);	// then insert the small element right before it
+											smallElements[i]);
+		bigElements.insert(insertionPoint, smallElements[i]);
 	}
 }
 
