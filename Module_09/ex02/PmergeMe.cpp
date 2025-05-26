@@ -29,18 +29,19 @@ PmergeMe::~PmergeMe() {
 bool	PmergeMe::init_data(int ac, char **av)
 {
 	double	tmp = 0;
-	char	*end = NULL;
 
 	this->ArgsNumber = ac - 1;
 	this->JSequence = JacobSthalSequence();
 	for (int i = 1; i < ac; i++)
 	{
-		tmp = std::strtod(av[i], &end);
+		tmp = std::strtod(av[i], NULL);
 
-		if (!(*av[i])	||	*end	||
-			tmp < 0		||	tmp > std::numeric_limits<int>::max() ||
+		for (int j = 0; av[i][j]; j++)
+			if (!std::isdigit(av[i][j]))
+				return false;
+		if (!(*av[i]) || tmp < 0 || tmp > std::numeric_limits<int>::max() ||
 			std::find(vec.begin(), vec.end(), tmp) != vec.end()	)
-			return std::cout << "Error: Invalide argument" << std::endl, false;
+			return false;
 		this->vec.push_back(tmp);
 		this->deq.push_back(tmp);
 	}

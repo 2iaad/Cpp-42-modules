@@ -11,8 +11,8 @@
 
 #include <stdio.h>
 
-#define	ARG_ERR1 "Wrong number of arguments."
-#define	ARG_ERR2 "Bad arguments."
+#define	AC_ERR	"Wrong number of arguments."
+#define	AV_ERR	"Bad arguments."
 
 template <typename Container>
 inline void printer(const Container& c) {
