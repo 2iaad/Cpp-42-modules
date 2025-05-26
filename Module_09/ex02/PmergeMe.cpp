@@ -66,7 +66,6 @@ Vector PmergeMe::JacobSthalSequence()
 
 void	PmergeMe::sortVector( void )
 {
-
 	std::cout << "Before:	"; printer(this->vec);
 	double	start = std::clock();
 	{
@@ -82,14 +81,10 @@ void	PmergeMe::sortVector( void )
 
 		this->vec = bigElements;
 	}
-	double	duration = (std::clock() - start);
+	double	duration = (std::clock() - start) / CLOCKS_PER_SEC * 1000000;
 	std::cout << "After:	"; printer(this->vec);
-	/*
-		(/ CLOCKS_PER_SEC) to convert to seconds
-		(* 1000) to convert to miliseconds
-	*/
 	std::cout	<< "Time to process a range of " << this->vec.size()
-				<< " elements with std::vector : " << duration << " ms" << std::endl;
+				<< " elements with std::vector : " << duration << " µs" << std::endl;
 }
 
 void	PmergeMe::sortDeque( void )
@@ -109,10 +104,10 @@ void	PmergeMe::sortDeque( void )
 
 		this->deq = bigElements;
 	}
-	double	duration = (std::clock() - start);
+	double	duration = (std::clock() - start) / CLOCKS_PER_SEC * 1000000;
 	std::cout << "After:	"; printer(this->deq);
 	std::cout	<< "Time to process a range of " << this->deq.size()
-				<< " elements with std::deque : " << duration << " ms" << std::endl;
+				<< " elements with std::deque : " << duration << " µs" << std::endl;
 }
 
 /*	|#------------------------------------------------------#|
@@ -153,6 +148,8 @@ void	PmergeMe::splitPairs	(	PairedContainer &pairs,
 		if (pairs[i].second != -1) // ila makanch struggler
 			bigElements.push_back(pairs[i].second); // .second huwa big element mn koula pair
 	}
+	bigElements.insert(bigElements.begin(), smallElements.front());
+	smallElements.erase(smallElements.begin());
 }
 
 /*	|#------------------------------------------------------#|
@@ -178,6 +175,7 @@ void	PmergeMe::mergeSortVector	(	Vector::iterator begin,
 /**
  * 
  *	Element to insert:{[1]    34531 abort      ./PmergeMe 9 8 2 77 55 7777
+ *	Element to insert:{[1]    34531 abort      ./PmergeMe 1 4 2 9 3 8 7 5
  *  the jacobsthal be like 0 1 {3} the index 3 isnt available so the system aborts
  */
 
@@ -185,14 +183,13 @@ void	PmergeMe::insertSmallElementsVec	(	Vector &bigElements,
 												const Vector &smallElements
 											)
 {
-	Vector::iterator	insertionPoint;
-
 	for (unsigned int i = 0; i < smallElements.size(); i++)
 	{
-		std::cout << "Element to insert:{" << smallElements[JSequence[i]] << "}" << std::endl;
-		insertionPoint = std::lower_bound(	bigElements.begin(),
-											bigElements.end(),
-											smallElements[JSequence[i]]);
+		while (i < JSequence.size() && JSequence[i] >= (int)smallElements.size())
+			i++;
+		Vector::iterator insertionPoint = std::lower_bound(	bigElements.begin(),
+															bigElements.end(),
+															smallElements[JSequence[i]]);
 		bigElements.insert(insertionPoint, smallElements[JSequence[i]]);
 	}
 }
@@ -225,9 +222,11 @@ void	PmergeMe::insertSmallElementsDeq	(	Deque &bigElements,
 
 	for (unsigned int i = 0; i < smallElements.size(); i++)
 	{
-		insertionPoint = std::lower_bound(	bigElements.begin(), // look for the smallest element in the bigElement
-											bigElements.end(),
-											smallElements[JSequence[i]]);
+		while (i < JSequence.size() && JSequence[i] >= (int)smallElements.size())
+			i++;
+		Deque::iterator	insertionPoint = std::lower_bound(bigElements.begin(), // look for the smallest element in the bigElement
+														  bigElements.end(),
+														  smallElements[JSequence[i]]);
 		bigElements.insert(insertionPoint, smallElements[JSequence[i]]);	// then insert the small element right before it
 	}
 }
