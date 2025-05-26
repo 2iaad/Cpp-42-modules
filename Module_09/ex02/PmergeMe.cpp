@@ -147,7 +147,7 @@ void	PmergeMe::splitPairs	(	PairedContainer &pairs,
 									Container &smallElements
 								)
 {
-	for (size_t i = 0; i < pairs.size(); ++i)
+	for (size_t i = 0; i < pairs.size(); i++)
 	{
 		smallElements.push_back(pairs[i].first); // .first huwa small element mn koula pair
 		if (pairs[i].second != -1) // ila makanch struggler
@@ -187,14 +187,13 @@ void	PmergeMe::insertSmallElementsVec	(	Vector &bigElements,
 {
 	Vector::iterator	insertionPoint;
 
-	for (unsigned int i = 0; i < smallElements.size(); ++i)
+	for (unsigned int i = 0; i < smallElements.size(); i++)
 	{
-
 		std::cout << "Element to insert:{" << smallElements[JSequence[i]] << "}" << std::endl;
 		insertionPoint = std::lower_bound(	bigElements.begin(),
 											bigElements.end(),
-											smallElements[i]);
-		bigElements.insert(insertionPoint, smallElements[i]);
+											smallElements[JSequence[i]]);
+		bigElements.insert(insertionPoint, smallElements[JSequence[i]]);
 	}
 }
 
@@ -224,7 +223,7 @@ void	PmergeMe::insertSmallElementsDeq	(	Deque &bigElements,
 {
 	Deque::iterator	insertionPoint;
 
-	for (unsigned int i = 0; i < smallElements.size(); ++i)
+	for (unsigned int i = 0; i < smallElements.size(); i++)
 	{
 		insertionPoint = std::lower_bound(	bigElements.begin(), // look for the smallest element in the bigElement
 											bigElements.end(),
