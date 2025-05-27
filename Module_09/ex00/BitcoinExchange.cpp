@@ -147,9 +147,7 @@ void	BitcoinExchange::inputFileReader(char *file)
 	infile.open(file);
 	if (!infile)
 		return (void) (std::cerr << OPEN_ERR << std::endl);
-	if (infile.peek() == EOF) // Returns next character without extracting it.
-		return (void) (std::cerr << READ_ERR << std::endl);
-	
+
 	std::getline(infile, line);
 	while (std::getline(infile, line))
 	{

@@ -8,10 +8,8 @@
 
 #include <stdio.h>
 
-#define OPEN_ERR	"Error: could not open file."
-#define READ_ERR	"Error: empty file."
-#define EMPTY_ERR	"Error: Empty Date or Price."
-#define PIPE_ERR	"Error: related to pipe."
+#define OPEN_ERR	"Error: Could not open file."
+#define EMPTY_ERR	"Error: Invalide Date or Price."
 #define	DATE_ERR	"Error: bad input => "
 #define	PRICE_ERR	"Error: related to Price."
 
