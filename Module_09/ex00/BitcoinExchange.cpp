@@ -26,36 +26,44 @@ BitcoinExchange::~BitcoinExchange() {
 
 void	BitcoinExchange::Executer(std::string &date, std::string &amount)
 {
-	float	amountf = static_cast<float>(std::strtod(amount.c_str(), NULL));
+	double	amountd = std::strtod(amount.c_str(), NULL);
 
 	std::map<std::string,float>::const_iterator it = dataBase.lower_bound(date);
-	/*
-		there is a fix needed here in case date < 2009-01-02
-	*/
-	if (it == dataBase.end() && it->first != date)
+
+	if (it == dataBase.begin() && it->first != date) // ila date < 2009
+		return (void)(std::cout << "There was no Bitcoin at the given date." << std::endl);
+	else if (it == dataBase.end() && it->first != date) // ila date > 2022
 		--it;
-	std::cout << date << " => " << amount << " = " << amountf * (it->second) << std::endl;
+
+	std::cout << date << " => " << amount << " = " << std::fixed << std::setprecision(2)
+		<< amountd * (it->second) << std::endl;
 }
 
 bool	BitcoinExchange::dateChecker(std::string date[3]) // checking if DD-MM-YYYY makes sence or not
 {
+	const int arr[] = {1337, 31, 28, 31, 30, 31, 30, 31, 30, 31, 30, 31, 30};
+
 	for (short i = 0; i < 3; i++) {
 		for (size_t j = 0; j < date[j].size(); j++) {
 			if (!std::isdigit(date[i][j]))
-				return false;
-		}
-	}
+				return false;	}}
 
 	double Y = std::strtod(date[0].c_str(), NULL);
 	double M = std::strtod(date[1].c_str(), NULL);
 	double D = std::strtod(date[2].c_str(), NULL);
 
-	// std::cout << Y << "-" << M << "-" << D << std::endl;
+	if ((D < 1 || D > 31) || (M < 1 || M > 12) || (Y < 1 || Y > INT_MAX))
+		return false ;
+	if (M == 2)
+	{
+		bool leapYear = (!((int)Y % 400) || (!((int)Y % 4) && ((int)Y % 100)));
 
-	if (M == 2 && D > 29) // sana kabisa hh
-		return false ;
-	if ((D < 0 || D > 31) || (M < 0 || M > 12) || (Y < 0 || Y > FLT_MAX))
-		return false ;
+		if (leapYear && D != 29)	return false;
+		if (!leapYear && D != 28)	return false;
+	}
+	else
+		if (D != arr[(int)M])	return false;
+
 	return true ;
 }
 
@@ -147,6 +155,8 @@ void	BitcoinExchange::inputFileReader(char *file)
 	infile.open(file);
 	if (!infile)
 		return (void) (std::cerr << OPEN_ERR << std::endl);
+	if (infile.peek() == EOF)
+		return (void) (std::cerr << READ_ERR << std::endl);	
 
 	std::getline(infile, line);
 	while (std::getline(infile, line))
